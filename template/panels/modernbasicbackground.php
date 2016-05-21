@@ -136,8 +136,7 @@
             <form id="fcm-form-custom-background" method="post" action="upload.php" enctype="multipart/form-data">
                 
                 <p>
-                    La taille idéale du fond personnel est de <b>791 x 1107</b> pixels en incluant les bordures.<br/>
-                    Les bordures font 41 pixels d'épaisseur.<br/>
+                    La taille idéale du fond personnel est de <b>791 x 1107</b> pixels en incluant 41 pixels de bordure.<br/>
                     Vous pouvez aussi utiliser un fond dont les dimensions sont proportionnelles à celles-ci.<br/>
                 </p>
                 
