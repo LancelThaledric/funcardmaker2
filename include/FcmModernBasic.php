@@ -28,25 +28,22 @@ class FcmModernBasic extends FcmFuncard {
         parent::__construct(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT, false, $data);
         $this->setTemplateName(self::TEMPLATE_NAME);
         
-        if($init){
-            $this->initDefaultFields();
-            $this->initComponents();
-            $this->initDefaultParameters();
-            $this->initListeningList();
-            //var_dump($this->_fields);
-            $this->setDefaults();
-            //var_dump($this->_fields);
-            $this->setDefaultParameters();
-        }
-        
+        //fiels
+        $this->initDefaultFields();
+        $this->setDefaults();
         $this->import($data);
         
-        //var_dump($this->_fields);
-        
+        //components
+        $this->initComponents();
         $this->pushComponentsData();
         
-        //var_dump($this->_fields);
+        //component parameters
+        $this->initDefaultParameters();
+        $this->setDefaultParameters();
         
+        $this->initListeningList();
+        //var_dump($this->_fields);
+
         $this->beforeInit();
         
         $this->init();
