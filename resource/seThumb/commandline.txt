@@ -1,0 +1,1 @@
+mogrify -resize x48 -path ..\..\seThumb\<extension> *.png

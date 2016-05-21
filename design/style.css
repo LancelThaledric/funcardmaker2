@@ -1,0 +1,1101 @@
+/* 1.0  Normalizing ========================================================================================================================== */
+
+*{
+    box-sizing: border-box;
+}
+
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+    font-size: 1rem;    /* Base size */
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+	display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+[hidden],
+template {
+	display: none;
+}
+
+a {
+	background-color: transparent;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: 700;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+img {
+	border: 0;
+}
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+figure {
+	margin: 0;
+}
+
+hr {
+	box-sizing: content-box;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-size: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+
+select {
+	text-transform: none;
+}
+
+button {
+	overflow: visible;
+}
+
+button,
+input,
+select,
+textarea {
+	max-width: 100%;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+	cursor: default;
+	opacity: .5;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	margin-right: 0.4375em;
+	padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+fieldset {
+	border: 1px solid #d1d1d1;
+	margin: 0 0 1.75em;
+	padding: 0.875em;
+}
+
+fieldset > :last-child {
+	margin-bottom: 0;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+}
+
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+optgroup {
+	font-weight: bold;
+}
+
+ul{
+    list-style-type: square;
+}
+
+/*============================================================================================================== */
+/* Chapter 1 : Generics ======================================================================================== */
+/*============================================================================================================== */
+
+/* Titles ------------------------------------------------------------------------------ */
+
+@font-face{
+    font-family: 'Beleren';
+    src: url('../resource/font/beleren-bold.ttf');
+    font-weight: bold;
+}
+
+h1, h2, h3{
+    font-family: 'Beleren';
+    font-weight: bold;
+}
+
+/*============================================================================================================== */
+/* Chapter 2 : Page Layout ===================================================================================== */
+/*============================================================================================================== */
+
+/* Gloabal Layout -----------------------------------------------------------------------*/
+
+html{
+    height: 100vh;
+}
+
+body{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    
+    min-height: 100%;
+}
+
+.fcm-wrapper{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+
+
+
+/* Header ---------------------------------------------------------------------------------------- */
+
+header{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    height: 4rem;
+    
+    background: #222;
+    color: #fff;
+    
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+header>*{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.fcm-title{
+    margin: 0 2rem;
+}
+
+header>a{
+    padding: 0 2rem;
+    
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+    
+    -webkit-transition: background-color ease 0.2s;
+    transition: background-color ease 0.2s;
+}
+header>a:hover{
+    background: rgba(255,255,255,0.1);
+}
+header>a:first-child{
+    padding: 0;
+}
+
+/* Menu -------------------------------------------------------------------------------------------- */
+
+#fcm-menu{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    background: #333;
+}
+
+#fcm-menu>ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#fcm-menu>ul>li{
+    position: relative;
+    box-shadow: #c74141 1rem 0;
+}
+#fcm-menu>ul>li.active:after{
+    content: '';
+    display: block;
+    right: 0; top: calc(50% - 0.8rem);
+    border: solid 0.8rem transparent;
+    border-right-color: #c74141;
+    position: absolute;
+    z-index: 1;
+}
+
+#fcm-menu>ul>li>*{ 
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+    width: 12rem;
+}
+
+#fcm-menu a{
+    color: #fff;
+    text-decoration: none;
+    
+    -webkit-transition: background-color ease 0.2s;
+    transition: background-color ease 0.2s;
+}
+#fcm-menu a:hover{
+    background: rgba(255,255,255,0.1);
+}
+
+.fcm-menu-item-large a{
+    background: rgba(0,0,0,0.5);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    font-weight: bold;
+}
+.fcm-menu-item-large a .fa{
+    font-size: 4em;
+}
+
+/* Generator --------------------------------------------------------------------------------------------- */
+
+.fcm-generator{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+.fcm-panel-container>section{
+    position: relative;
+    display: none;
+    width: 100%;
+    
+    background: #c74141;
+    color: #fff;
+}
+.fcm-panel-container>section.active{
+    display : inline-block;
+}
+
+/* Preview --------------------------------------------------------------------------------------------- */
+
+.fcm-preview-wrapper{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 6rem;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.fcm-preview{
+    position: relative;
+    width: 16em; height: 20em;
+    margin: 0 auto;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd), 
+        -webkit-linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+    background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd), 
+        linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+    background-size: 32px 32px;
+    background-position:0 0, 16px 16px;
+    z-index: 0;
+}
+.fcm-preview-image{
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+}
+.fcm-preview.nocard{
+    display: none;
+}
+
+#fcm-preview-reload{
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%; height: 100%;
+    opacity: 0;
+    background: rgba(255,255,255,0.5);
+    -webkit-transition: opacity ease 0.2s;
+    transition: opacity ease 0.2s;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    text-decoration: none;
+}
+#fcm-preview-reload:hover{
+    opacity: 1;
+}
+#fcm-preview-reload:active .fa{
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+}
+#fcm-preview-reload .fa{
+    display: block;
+    color: #c74141;
+    font-size: 8em;
+    margin: auto;
+    -webkit-transition: -webkit-transform ease 0.2s;
+    transition: -webkit-transform ease 0.2s;
+    transition: transform ease 0.2s;
+    transition: transform ease 0.2s, -webkit-transform ease 0.2s;
+}
+
+@-webkit-keyframes loader-rotate {
+    from {-webkit-transform: rotate(0deg); transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg); transform: rotate(360deg);}
+}
+
+@keyframes loader-rotate {
+    from {-webkit-transform: rotate(0deg); transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg); transform: rotate(360deg);}
+}
+
+.loading-wrapper,
+.fcm-preview-loading{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    display: none;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease 0.2s;
+    transition: opacity 0.2s ease 0.2s;
+}
+.loading-wrapper.active,
+.fcm-preview-loading.active{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.loading-wrapper.opaque,
+.fcm-preview-loading.opaque{
+    opacity: 1;
+}
+.loading-icon,
+.fcm-preview-loading-icon{
+    width: 4em; height: 4em;
+    background: #c74141; 
+    margin: 45vh auto 0;
+    -webkit-animation: loader-rotate linear 1s infinite;
+    animation: loader-rotate linear 1s infinite;
+}
+.fcm-preview-loading-icon{
+    margin: auto;
+}
+.fcm-preview-debug{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+
+/* Panels --------------------------------------------------------------------------------------------- */
+
+.fcm-panel a{
+    text-decoration: none;
+    color: #552626;
+}
+.fcm-panel a:hover{
+    color: #000;
+    text-decoration: underline;
+}
+
+.fcm-columns{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+.fcm-columns>*{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 30rem;
+    -ms-flex: 1 0 30rem;
+    flex: 1 0 30rem;
+}
+
+.fcm-panel>h2,
+.fcm-panel>h3,
+.fcm-panel>p,
+.fcm-panel>.input-container,
+.fcm-panel>form>h2,
+.fcm-panel>form>h3,
+.fcm-panel>form>p,
+.fcm-panel>form>.input-container,
+
+.fcm-columns>*>h2,
+.fcm-columns>*>h3,
+.fcm-columns>*>p,
+.fcm-columns>*>.input-container,
+.fcm-columns>*>form>h2,
+.fcm-columns>*>form>h3,
+.fcm-columns>*>form>p,
+.fcm-columns>*>form>.input-container{
+    margin: 2rem;
+}
+
+/*============================================================================================================== */
+/* Chapter 3 : Forms Layout ==================================================================================== */
+/*============================================================================================================== */
+
+/* Containers ----------------------------------------------------------------------------------- */
+
+.input-container{
+    max-width: 50vw;
+}
+.input-container.large{
+    max-width: initial;
+}
+.input-container.largeforce{
+    width: 100%;
+}
+
+input, textarea{
+    background: none;
+    border: none;
+    width: 100%;
+}
+
+/* Text inputs ---------------------------------------------------------------------------------------- */
+
+input[type="text"]{
+    border-bottom: solid 1px #fff;
+}
+input[type="text"].large{
+    font-size: 2em;
+}
+
+textarea{
+    display: block;
+    padding: 1em;
+    background: rgba(0,0,0,0.2);
+    -webkit-transition: background-color ease 0.2s;
+    transition: background-color ease 0.2s;
+}
+textarea:focus{
+    background: rgba(0,0,0,0.3);
+}
+
+textarea.large{
+    min-height: 12em;
+}
+
+
+/* Buttons -------------------------------------------------------------------------------------------- */
+
+input[type="submit"], button{
+    background: none;
+    border: none;
+    padding: 0.8rem;
+    width: auto;
+    position: relative;
+    
+    -webkit-transition: background-color ease 0.2s, -webkit-transform ease 0.2s;
+    transition: background-color ease 0.2s, -webkit-transform ease 0.2s;
+    transition: transform ease 0.2s, background-color ease 0.2s;
+    transition: transform ease 0.2s, background-color ease 0.2s, -webkit-transform ease 0.2s;
+}
+input[type="submit"].active, button.active{
+    background: rgba(0,0,0,0.2);
+}
+input[type="submit"]:hover, button:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+button.xlbutton{
+    min-height: 50vh;
+    font-family: 'Beleren';
+}
+
+/* Labels -------------------------------------------------------------------------------------------- */
+
+label.large{
+    display: block;
+    border: none;
+    border-bottom: solid 1px #fff;
+    font-size: 2em;
+    font-family: 'Beleren';
+    font-weight: bold;
+}
+
+
+.fcm-template-grid{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* Toolbar --------------------------------------------------------------------------------- */
+
+.input-toolbar{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+/* Selector -------------------------------------------------------------------------------- */
+
+.fcm-selector,
+.fcm-selector-inner{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+.fcm-selector.large,
+.fcm-selector.center{
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.fcm-selector.large>.fcm-selector-button{
+    padding: 4rem;
+}
+
+.fcm-selector.has-inner{
+    display: block;
+}
+
+.fcm-selector-button.active.first:after,
+.fcm-selector-button.active.second:after{
+    content: 'G';
+    position: absolute;
+    left: 0; bottom: 0;
+    padding: 1rem;
+    text-shadow: #000 0px 0px 2px, #000 0px 0px 2px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.fcm-selector-button.active.second:after{
+    content: 'D';
+    left: auto; right: 0;
+}
+
+/* File inputs ---------------------------------------------------------------------------- */
+
+.file-input-container{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.file-input-container input[type='file']{
+    display: block;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    font-size: 2em;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 50%;
+    -ms-flex: 1 1 50%;
+    flex: 1 1 50%;
+}
+
+.file-input-container .file-loading-icon{
+    margin-right: 2rem;
+    width: 4em; height: 4em;
+    background: #fff;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1;
+    -ms-flex: 0 1;
+    flex: 0 0 4em;
+    visibility: hidden;
+}
+.file-loading-icon.active{
+    -webkit-animation: loader-rotate linear 1s infinite;
+    animation: loader-rotate linear 1s infinite;
+    visibility: visible;
+}
+
+.file-preview-wrapper{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.file-preview-inner-wrapper{
+    position: relative;
+    max-width: 100%;
+}
+.file-preview{
+    display: none;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.file-preview.active{
+    display: block;
+}
+.file-error{
+    display: none;
+}
+.file-error.active{
+    display: block;
+}
+
+.file-submit{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+/* Panel top buttons ---------------------------------------------------------------------------- */
+
+.fcm-panel-top-toolbar{
+    display: inline-block;
+    margin-left: 4em;
+}
+.has-panel-top{
+    display: inline-block;
+}
+
+/* Color buttons -------------------------------------------------------------------------------*/
+
+.fcm-color-button,
+.fcm-square-cross{
+    width: 3rem; height: 3rem;
+}
+
+.fcm-square-cross{
+    font-size: 2em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.fcm-color-w{ background: #fbf9d9;}
+.fcm-color-u{ background: #385b8f;}
+.fcm-color-b{ background: #272624;}
+.fcm-color-r{ background: #b13d25;}
+.fcm-color-g{ background: #315134;}
+.fcm-color-m{ background: #d2bb55;}
+.fcm-color-a{ background: #dedad8;}
+.fcm-color-c{ box-shadow: rgba(255,255,255,0.2) 0px 0px 0px 2px inset;}
+.fcm-color-l{ background: #9d8e6e;}
+
+/*============================================================================================================== */
+/* Chapter 4 : Particular Panels Elements ==================================================================================== */
+/*============================================================================================================== */
+
+/* Illustration : center button ---------------------------------------------------------------------------- */
+
+#fcm-illsutration-center-viewport{
+    display: none;
+}
+#fcm-illsutration-center-viewport.active{
+    display: block;
+}
+
+#illustration-toolbar{
+    width: 100%;
+}
+#illustration-toolbar button{
+    width: auto; padding: 0 1em;
+}
+
+/* SE : toogle rarity visibility ---------------------------------------------------------------------------- */
+
+#fcm-se-rarity-selector{
+    display: none;
+}
+#fcm-se-rarity-selector.active{
+    display: block;
+}
+
+/* SE : Custom extension selector layout ---------------------------------------------------------------------------- */
+
+#fcm-se-extension-selector{
+    max-height: 70vh;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+#fcm-se-extension-selector h4{
+    margin-bottom: 0;
+    width: 100%;
+}
+#fcm-se-extension-selector h4.first{
+    margin-top: 0;
+}
+
+/* Background : loading icon ---------------------------------------------------------------------------- */
+
+#fcm-background-loading-icon{
+    display: none;
+    width: 4em; height: 4em;
+    margin: 1em auto;
+    background: #fff;
+}
+#fcm-background-loading-icon.active{
+    -webkit-animation: loader-rotate linear 1s infinite;
+    animation: loader-rotate linear 1s infinite;
+    display: block;
+}
+
+/* Download buttons ---------------------------------------------------------------------------- */
+
+#fcm-download{
+    font-size: 4em;
+}
+#fcm-download .fa{
+    font-size: 6rem;
+}
+#fcm-download-jpg,
+#fcm-export{
+    font-size: 2em;
+}
+
+
+
+.done-selector{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.done-selector>button{
+    -webkit-box-flex: 50%;
+    -webkit-flex: 50%;
+    -ms-flex: 50%;
+    flex: 50%;
+    min-height: 50vh;
+    font-family: 'Beleren';
+}
+.done-selector>button:hover{
+    background: rgba(255,255,255,0.1);
+}
+.fcm-download{
+    font-size: 4em;
+}
+.fcm-download .fa{
+    font-size: 1.5em;
+}
+.fcm-download-jpg{
+    font-size: 2em;
+}
+
+/* Import form ---------------------------------------------------------------------------- */
+
+#import-container{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+#import-container h3{
+    margin-top: 0;
+}
+
+/* Slimcard form ---------------------------------------------------------------------------- */
+
+#fcm-form-slimcard .file-submit{
+    font-family: 'Beleren';
+    font-size: 1.5em;
+    padding: 0.8rem 2rem;
+}
+
+/* Template selector ---------------------------------------------------------------------------- */
+
+#fcm-panel-template .fcm-selector-button h4{
+    margin: 0;
+    font-weight: normal;
+}
+#fcm-panel-template .fcm-selector-button h3{
+    margin-bottom: 0.5rem;
+}
+
+/* Modern Basic background selector ---------------------------------------------------------------------------- */
+
+#fcm-panel-modernbasicbackground .fcm-columns>*{
+    margin: 2rem;
+}
+
+/* Credits ---------------------------------------------------------------------------- */
+
+#thaledric-avatar{
+    float: right;
+    margin: 0 0 0 2rem;
+}
+
+.credits-list{
+    padding: 0;
+    margin: 2rem;
+}
+
+.lined{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+    position: relative;
+}
+.lined:after{
+    content: '';
+    display: block;
+    border-top: solid 1px #fff;
+    margin: 0 0 0 2rem;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+/* Aide ---------------------------------------------------------------------------- */
+
+.help-paragraph{
+    display: none;
+    margin: 2rem 4rem;
+}
+.help-paragraph.active{
+    display: block;
+}
+
+.help-title{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.help-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.help-title:before{
+    content: '';
+    display: block;
+    width: 0; height: 0;
+    border: solid 0.5rem transparent;
+    border-left-color: #fff;
+    margin-right: 0.5rem;
+}
+
+.help-title.active:before{
+    border: solid 0.5rem transparent;
+    border-top-color: #fff;
+    border-bottom: none;
+}
