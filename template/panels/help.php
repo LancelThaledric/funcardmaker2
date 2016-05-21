@@ -1,6 +1,8 @@
 <section class="fcm-panel" id="fcm-panel-help">
     <h2>Aide</h2>
     
+    <h3 class="lined">Utiliser le SMF Funcard Maker</h3>
+    
     <h3 class="help-title">Prévisualisation de la carte</h3>
     <div class="help-paragraph">
         <p>
@@ -16,6 +18,16 @@
         </p>
     </div>
     
+    <h3 class="help-title">Import / Export</h3>
+    <div class="help-paragraph">
+        <p>
+            La fonctionnalité d'import / export vous permet de sauvegarder votre travail sur le SMF Funcard Maker 2 dans un fichier *.json.<br/>
+            Vous pouvez ainsi charger ce fichier et retrouver vos données pré-complétées pour continuer votre travail.
+        </p>
+    </div>
+    
+    <h3 class="lined">Hébergement</h3>
+    
     <h3 class="help-title">Où héberger la version HD de ma funcard ?</h3>
     <div class="help-paragraph">
         <p>
@@ -29,6 +41,18 @@
             <li><a href="http://www.hostingpics.net/">HostingPics</a> est un autre hébergeur d'images. Sa FAQ précise que les images hébergées le sont indéfiniment. À vérifier.</li>
         </ul>
     </div>
+    
+    <h3 class="help-title">Durée d'hébergement de vos ressources</h3>
+    <div class="help-paragraph">
+        <p>
+            Le SMF Funcard Maker 2 vous permet d'utiliser vos propres ressources (fond perso, SE perso, illustration, etc.).<br/>
+            Vos fichiers seront hébergés par le SMF Funcard Maker 2 le temps de la création de votre funcard.<br/>
+            Comme indiqué pour chaque ressource chargée de cette manière, toutes vos ressources sont effacées tous les jours à minuit afin de ne pas engorger les serveurs.<br/>
+            Si vous dépassez ce délai lors de la création de la carte, ou que vous importez votre fichier de carte après minuit, il vous faudra ré-uploader vos ressources personnelles.
+        </p>
+    </div>
+    
+    <h3 class="lined">Illustration</h3>
     
     <h3 class="help-title">Je ne connais pas l'auteur de mon illustration</h3>
     <div class="help-paragraph">
@@ -56,23 +80,7 @@
         </p>
     </div>
     
-    <h3 class="help-title">Import / Export</h3>
-    <div class="help-paragraph">
-        <p>
-            La fonctionnalité d'import / export vous permet de sauvegarder votre travail sur le SMF Funcard Maker 2 dans un fichier *.json.<br/>
-            Vous pouvez ainsi charger ce fichier et retrouver vos données pré-complétées pour continuer votre travail.
-        </p>
-    </div>
-    
-    <h3 class="help-title">Durée d'hébergement de vos ressources</h3>
-    <div class="help-paragraph">
-        <p>
-            Le SMF Funcard Maker 2 vous permet d'utiliser vos propres ressources (fond perso, SE perso, illustration, etc.).<br/>
-            Vos fichiers seront hébergés par le SMF Funcard Maker 2 le temps de la création de votre funcard.<br/>
-            Comme indiqué pour chaque ressource chargée de cette manière, toutes vos ressources sont effacées tous les jours à minuit afin de ne pas engorger les serveurs.<br/>
-            Si vous dépassez ce délai lors de la création de la carte, ou que vous importez votre fichier de carte après minuit, il vous faudra ré-uploader vos ressources personnelles.
-        </p>
-    </div>
+    <h3 class="lined">Les fonds</h3>
     
     <h3 class="help-title">Je n'arrive pas à utiliser l'hybridation des fonds</h3>
     <div class="help-paragraph">
@@ -90,10 +98,51 @@
         </p>
     </div>
     
+    <h3 class="help-title">Comment créer un fond perso ?</h3>
+    <div class="help-paragraph">
+        <p>
+            La création de fond personnels n'est pas encore disponible dans le SMF Funcard Maker 2 (C'est prévu, mais il y a plus urgent).<br/>
+            Utilisez votre logiciel de traitement d'image préféré (Photoshop, Gimp, Paint <i>(hum...)</i> ) et utilisez des bases disponibles <a href="http://www.smfcorp.net/forum/post-1700-1-tout-pour-le-funcardeur.html" title="Tout pour le Funcardeur ! - SMFCorp">ici, sur le forum de SMFCorp</a>.
+        </p>
+        <p>
+            Si vous souhaitez créer un fond perso à partir de fonds officiels, la meilleure technique consiste à utiliser le SMF Funcard Maker 2 afin de générer une carte entièrement vide avec le fond que vous voulez, puis de télécharger le rendu. Modifiez-le comme vous voulez, puis utilisez-le comme fond perso dans votre SMF Funcard Maker favori.
+        </p>
+    </div>
+    
+    <h3 class="lined">Texte</h3>
+    
     <h3 class="help-title">Le titre de la carte est trop long</h3>
     <div class="help-paragraph">
         <p>
             Le dépassement de titre et de type ne sont pas encore gérés par le SMF Funcard Maker 2, mais cela viendra, patience !
+        </p>
+    </div>
+    
+    <h3 class="help-title">Insérer un caractère spécial</h3>
+    <div class="help-paragraph">
+        <p>
+            Le SMF Funcard Maker vous permet d'insérer facilement les caractères spéciaux les plus utilisés dans les funcards grâce aux boutons en-dessous de champs de texte.
+        </p>
+        <p>
+            Si vous voulez insérer un autre caractère spécial, il vous faudra le copier manuellement dans le champ en question. Cependant il se peut que ce caractère ne soit pas présent dans la police de caractères, faites donc attention.
+        </p>
+    </div>
+    
+    <h3 class="lined">Bugs, suggestions, etc.</h3>
+    
+    <h3 class="help-title">Au secours ! un BUG !</h3>
+    <div class="help-paragraph">
+        <p>
+            Comment ça ? Vous avez trouvé un BUG ?! Fichtre... ಠ╭╮ಠ<br/>
+            Un logiciel sans bugs ça n'existe pas ! Merci de bien vouloir vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas de m'indiquer comment reproduire le bug !
+        </p>
+    </div>
+    
+    <h3 class="help-title">Suggestions de fonctionnalités</h3>
+    <div class="help-paragraph">
+        <p>
+            Vous aimez tellement le SMF Funcard Maker 2, mais il lui manque toutefois quelque chose...
+            Vous pouvez vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas d'indiquer le type d'issue (&laquo; enhancement &raquo; pour une suggestion, car tout est en anglais).
         </p>
     </div>
     
