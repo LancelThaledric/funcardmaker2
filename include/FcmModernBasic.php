@@ -57,9 +57,6 @@ class FcmModernBasic extends FcmFuncard {
         $this->_defaults = [
             'border' => 'black',
             'background-base' => 'r',
-            'title' => 'Titre',
-            'type' => 'Type : sous-type',
-            'illustrator' => 'N\'oubliez pas l\'illustrateur !'
         ];
     }
     
