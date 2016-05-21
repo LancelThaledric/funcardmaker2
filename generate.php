@@ -1,8 +1,5 @@
 <?php require_once('include/functions.php');
 
-require_once('lib/PHPImageWorkshop/ImageWorkshop.php'); // Be sure of the path to the class
-use PHPImageWorkshop\ImageWorkshop;
-
 require_once('include/FcmModernBasic.php');
 
 $all_types = [
