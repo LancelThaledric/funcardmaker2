@@ -768,3 +768,11 @@ Panel.CONTAINER_ELEMENT.on('click', '.help-title', function(){
     $(this).toggleClass('active');
     paragraph.toggleClass('active');
 });
+
+/**
+ * Affiche / masque le menu principal sur petites résolutions
+ */
+$('#menu-toggle').click(function(){
+    $('#main-menu').toggleClass('active');
+    $('#menu-toggle .fa').toggleClass('fa-bars').toggleClass('fa-times');
+});
