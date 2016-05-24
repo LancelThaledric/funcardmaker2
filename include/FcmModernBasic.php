@@ -8,6 +8,7 @@ require_once('include/FcmBorderComponent.php');
 require_once('include/FcmModernBasicBackgroundComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmIllustrationComponent.php');
+require_once('include/FcmCapaboxComponent.php');
 
 //* Template Moderne Basique
 
@@ -62,7 +63,8 @@ class FcmModernBasic extends FcmFuncard {
         $this->_components = [
             'title' => new FcmSingleLineComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
-            'illustration' => new FcmIllustrationComponent($this, 100)
+            'illustration' => new FcmIllustrationComponent($this, 100),
+            'capabox' => new FcmCapaboxComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -89,7 +91,8 @@ class FcmModernBasic extends FcmFuncard {
                 'y' => (664. / 1107.) * 100,
                 'size' => 40. / 36.
             ],
-            'border' => []
+            'border' => [],
+            'capabox' => []
         ];
     }
     
