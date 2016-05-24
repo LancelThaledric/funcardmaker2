@@ -1,6 +1,7 @@
 <?php
 
 require_once('include/FcmFuncardComponent.php');
+require_once('include/FcmMultiLineComponent.php');
 
 /**
  * Component affichant la boîte de capacité (capa & ta)
@@ -21,6 +22,9 @@ require_once('include/FcmFuncardComponent.php');
 class FcmCapaboxComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
+    
+    $capaComponent = new FcmMultiLineComponent();
+    $taComponent = new FcmMultiLineComponent();
     
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
@@ -50,6 +54,13 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     }
     
     public function configure(){
+        
+        // C'est lors de la configuration qu'on va calculer les tailles de polices et prérendre le texte.
+        // Le apply() ne se charge que de l'affichage et de la fusion des calques.
+        
+        // Nous allons donc faire une boucle pour calculer la bonne taille de police.
+        
+        // TODO
         
         return false;
     
