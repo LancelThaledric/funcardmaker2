@@ -31,6 +31,9 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         self::$draw->push();
         
         // TODO
+        //var_dump($this);
+        
+        
         
         self::$draw->pop();
     }
@@ -44,6 +47,12 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $this->setParameter('fontcapa', 'mplantin');
         $this->setParameter('fontta', 'mplantin-italic');
         
+    }
+    
+    public function configure(){
+        
+        return false;
+    
     }
     
 }

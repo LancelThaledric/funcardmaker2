@@ -63,4 +63,6 @@ class FcmBorderComponent extends FcmFuncardComponent {
         $this->setParameter('thickness', (41. / 791) * 100);
     }
     
+    public function configure(){ return false; }
+    
 }

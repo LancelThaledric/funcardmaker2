@@ -97,4 +97,6 @@ abstract class FcmBackgroundComponent extends FcmFuncardComponent {
         // Voir les classes filles
     }
     
+    public function configure(){ return false; }
+    
 }

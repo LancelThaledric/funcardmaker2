@@ -1,4 +1,4 @@
-var DEBUG = false;
+var DEBUG = true;
 
 
 // TODO Clean all the code

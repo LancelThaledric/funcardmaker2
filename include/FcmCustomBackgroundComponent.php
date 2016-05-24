@@ -46,4 +46,6 @@ class FcmCustomBackgroundComponent extends FcmBackgroundComponent {
         // Il n'y a pas de paramètre par défaut : le seul paramètre est obligatoire
     }
     
+    public function configure(){ return false; }
+    
 }

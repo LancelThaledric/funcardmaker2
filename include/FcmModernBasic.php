@@ -49,7 +49,9 @@ class FcmModernBasic extends FcmFuncard {
         
         $this->init();
         
-        var_dump($this->_components);
+        $this->configureComponents();
+        
+        //var_dump($this);
     }
     
     //* Champs par défaut
@@ -120,6 +122,9 @@ class FcmModernBasic extends FcmFuncard {
         $this->updateParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
         $this->updateParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
         $this->updateParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        // Capacité / TA
+        $this->updateParameter('capabox', 'textcapa', $this->getField('capa'));
+        $this->updateParameter('capabox', 'textta', $this->getField('ta'));
     }
     
     //* Dernières vérificatiosn avant l'inition

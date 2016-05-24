@@ -43,4 +43,10 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         
     }
     
+    public function configure(){
+        
+        return false;
+    
+    }
+    
 }

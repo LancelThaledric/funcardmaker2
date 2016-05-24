@@ -108,4 +108,6 @@ class FcmModernBasicBackgroundComponent extends FcmBackgroundComponent {
         $this->setParameter('typebox-h', 62. / 1107. * 100);
         $this->setParameter('box-color', '');
     }
+    
+    public function configure(){ return false; }
 }

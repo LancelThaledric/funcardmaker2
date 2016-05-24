@@ -48,4 +48,6 @@ class FcmSingleLineComponent extends FcmFuncardComponent {
         $this->setParameter('font', 'matrix');
     }
     
+    public function configure(){ return false; }
+    
 }

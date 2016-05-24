@@ -71,10 +71,12 @@ abstract class FcmFuncardComponent {
         if(!$this->listens($name)) $_listenlist[] = $name;
     } 
     
-    //* applique le paramètre sur la funcard
+    //* Configure le component son l'application
+    public abstract function configure();
+    //* Applique le component sur la funcard
     public abstract function apply();
     
-    //* compare deux components
+    //* Compare deux components
     public static function compare(FcmFuncardComponent $a, FcmFuncardComponent $b){
         return $a->_priority - $b->_priority;
     }

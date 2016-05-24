@@ -60,6 +60,7 @@ abstract class FcmFuncard extends FcmFcRender{
             $this->setDefaults();
             $this->import($data);
             $this->init();
+            $this->configureComponents();
         }
     }
     
@@ -99,6 +100,20 @@ abstract class FcmFuncard extends FcmFcRender{
         foreach($params as $comp => $array){
             foreach($array as $key => $value){
                 $this->setParameter($comp, $key, $value);
+            }
+        }
+    }
+    
+    //* Met à jour les paramètres de components d'après une liste d'options
+    public function setListenedParameters($options){
+        if(isset($options) && $options){
+            if(!is_array($options)) return;
+            
+            foreach($options as $comp => $array){
+                foreach($array as $key => $value){
+                    if($this->getComponent($comp) && $this->getComponent($comp)->listens($key))
+                        $this->setParameter($comp, $key, $value);
+                }
             }
         }
     }
@@ -149,20 +164,33 @@ abstract class FcmFuncard extends FcmFcRender{
         
             $options = $this->_components[$name]->apply();
             // apply() a renvoyé un set d'options à mettre à jour
-            if($options){
-                foreach($options as $comp => $array){
-                    foreach($array as $key => $value){
-                        if($this->getComponent($comp) && $this->getComponent($comp)->listens($key))
-                            $this->setParameter($comp, $key, $value);
-                    }
-                }
-            }
+            $this->setListenedParameters($options);
             
         } catch (Exception $e){
             // Rien du tout, c'est une image qu'on génère
             // Mais au moins le scrit plante pas s'il y a une connerie
             // au niveau des paramètres des components
             // Et puis on innone pas le code de try{} 
+            if(DEBUG) echo $e->getMessage();
+        }
+    }
+    
+    //* Configure les components
+    public function configureComponents(){
+        foreach ($this->_components as $name => $component){
+            $this->configureComponent($name);
+        }
+    }
+    
+    //* Configure le component
+    public function configureComponent($name){
+        try{
+        
+            $options = $this->_components[$name]->configure();
+            // configure() a renvoyé un set d'options à mettre à jour
+            $this->setListenedParameters($options);
+            
+        } catch (Exception $e){
             if(DEBUG) echo $e->getMessage();
         }
     }
@@ -175,6 +203,8 @@ abstract class FcmFuncard extends FcmFcRender{
         if(isset($data['height']))
             $this->setHeight(intval($data['height']));
         // TODO prévoir le crop de l'image si nécessaire
+        
+        //var_dump($data);
         
         if(isset($data['fields']) and is_array($data['fields'])){
             foreach($data['fields'] as $key => $value){

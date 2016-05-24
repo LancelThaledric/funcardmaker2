@@ -123,4 +123,6 @@ class FcmIllustrationComponent extends FcmFuncardComponent {
         $this->setParameter('h', 480. / 1107. * 100);
     }
     
+    public function configure(){ return false; }
+    
 }
