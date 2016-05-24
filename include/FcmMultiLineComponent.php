@@ -1,6 +1,7 @@
 <?php
 
 require_once('include/FcmFuncardComponent.php');
+require_once('include/FcmReady2PrintText.php');
 
 /**
  * Component affichant plusieurs lignes de texte, éventuellement avec du mana dedans

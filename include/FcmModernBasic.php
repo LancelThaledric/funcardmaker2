@@ -48,6 +48,8 @@ class FcmModernBasic extends FcmFuncard {
         $this->beforeInit();
         
         $this->init();
+        
+        var_dump($this->_components);
     }
     
     //* Champs par défaut
