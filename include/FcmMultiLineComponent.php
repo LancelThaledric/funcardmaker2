@@ -3,7 +3,7 @@
 require_once('include/FcmFuncardComponent.php');
 
 /**
- * Component affichant la boîte de capacité (capa & ta)
+ * Component affichant plusieurs lignes de texte, éventuellement avec du mana dedans
  *
  * Parameters : 
  * - x : position x
@@ -12,13 +12,11 @@ require_once('include/FcmFuncardComponent.php');
  * - h : height of the box
  * - padding : internal padding in the box
  * - fontsize : font size in em basesize
- * - textcapa : capacity text to display
- * - textta : ambient text to display
- * - fontcapa : font to use for capacity text
- * - fontta : font to use for ambient text
+ * - text : text to display
+ * - font : font to use for text
  */
 
-class FcmCapaboxComponent extends FcmFuncardComponent {
+class FcmMultiLineComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
@@ -39,10 +37,8 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         
         $this->setParameter('padding', 11. / 791. * 100);
         $this->setParameter('fontsize', 1);
-        $this->setParameter('textcapa', '');
-        $this->setParameter('textta', '');
-        $this->setParameter('fontcapa', 'mplantin');
-        $this->setParameter('fontta', 'mplantin-italic');
+        $this->setParameter('text', '');
+        $this->setParameter('font', 'mplantin');
         
     }
     
