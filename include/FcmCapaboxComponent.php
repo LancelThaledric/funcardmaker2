@@ -23,11 +23,14 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
-    $capaComponent = new FcmMultiLineComponent();
-    $taComponent = new FcmMultiLineComponent();
+    private $_capaComponent;
+    private $_taComponent;
     
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
+        
+        $this->_capaCoponent = new FcmMultiLineComponent($funcard);
+        $this->_taCoponent = new FcmMultiLineComponent($funcard);
     }
     
     public function apply(){
