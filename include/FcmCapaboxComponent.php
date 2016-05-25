@@ -98,6 +98,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $ok = false;
         $fontsize = $this->getParameter('fontsize');
         $computed_font_size = $this->getFuncard()->fsc($fontsize);
+        
         while(!$ok){
             $fontsize = $this->getFuncard()->reverse_fsc($computed_font_size);
             $this->_capaComponent->setParameter('fontsize', $fontsize);

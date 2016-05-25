@@ -43,6 +43,11 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     public function configure(){
         
+        // On sépare les lignes entre elles
+        $lines = FcmTextLine::text2Lines($this->getParameter('text'));
+        var_dump($lines);
+        
+        
         return false;
     
     }

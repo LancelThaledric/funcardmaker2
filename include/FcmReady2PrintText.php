@@ -48,6 +48,17 @@ class FcmTextCursor{
  */
 class FcmTextLine{
     
+    /**
+     * Génère la liste des lignes à partir d'un texte
+     */
+    public static function text2Lines($text){
+        
+        $array = preg_split('#(\R+)#m', $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        
+        return $array;
+        //TODO continue
+    }
+    
     /** Array des nuggets de texte **/
     private $nuggets;
     

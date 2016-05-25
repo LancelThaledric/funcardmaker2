@@ -1,6 +1,6 @@
 <?php
 
-define('DEBUG', false);
+define('DEBUG', true);
 
 /**
  * Retourne la taille maximum d'upload en octets
