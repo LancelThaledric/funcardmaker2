@@ -11,7 +11,6 @@ require_once('include/FcmMultiLineComponent.php');
  * - y : position y
  * - w : width of the box
  * - h : height of the box
- * - padding : internal padding in the box
  * - fontsize : font size in em basesize
  * - textcapa : capacity text to display
  * - textta : ambient text to display
@@ -29,13 +28,27 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
         
-        $this->_capaCoponent = new FcmMultiLineComponent($funcard);
-        $this->_taCoponent = new FcmMultiLineComponent($funcard);
+        $this->_capaComponent = new FcmMultiLineComponent($funcard);
+        $this->_taComponent = new FcmMultiLineComponent($funcard);
     }
     
     public function apply(){
         //var_dump($this);
         self::$draw->push();
+        
+        // Là c'est du debug ! On affiche le BBOX de la capabox !
+        $capabox_bbox = new Imagick();
+        $capabox_bbox->newImage(
+            $this->getFuncard()->xc($this->getParameter('w')),
+            $this->getFuncard()->yc($this->getParameter('h')),
+            'rgba(0,0,255,0.2)'
+        );
+        $this->getFuncard()->getCanvas()->compositeImage(
+            $capabox_bbox, Imagick::COMPOSITE_OVER,
+            $this->getFuncard()->xc($this->getParameter('x')),
+            $this->getFuncard()->yc($this->getParameter('y'))
+        );
+        
         
         // TODO
         //var_dump($this);
@@ -47,7 +60,6 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     
     public function setDefaultParameters(){
         
-        $this->setParameter('padding', 11. / 791. * 100);
         $this->setParameter('fontsize', 1);
         $this->setParameter('textcapa', '');
         $this->setParameter('textta', '');
@@ -61,12 +73,42 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         // C'est lors de la configuration qu'on va calculer les tailles de polices et prérendre le texte.
         // Le apply() ne se charge que de l'affichage et de la fusion des calques.
         
+        // On fait hériter les paramètres aux components fils
+        
+        $this->_capaComponent->setParameter('font', $this->getParameter('fontcapa'));
+        $this->_capaComponent->setParameter('text', $this->getParameter('textcapa'));
+        $this->_capaComponent->setParameter('x', $this->getParameter('x'));
+        $this->_capaComponent->setParameter('w', $this->getParameter('w'));
+        
+        $this->_taComponent->setParameter('font', $this->getParameter('fontta'));
+        $this->_taComponent->setParameter('text', $this->getParameter('textta'));
+        $this->_taComponent->setParameter('x', $this->getParameter('x'));
+        $this->_taComponent->setParameter('w', $this->getParameter('w'));
+        
+        // Pour les deux components, il reste encore les params y, h et fontsize à calculer
         // Nous allons donc faire une boucle pour calculer la bonne taille de police.
         
-        // TODO
+        $this->computeOptimalFontSize();
         
         return false;
     
+    }
+                                                       
+    private function computeOptimalFontSize(){
+        $ok = false;
+        $fontsize = $this->getParameter('fontsize');
+        $computed_font_size = $this->getFuncard()->fsc($fontsize);
+        while(!$ok){
+            $fontsize = $this->getFuncard()->reverse_fsc($computed_font_size);
+            $this->_capaComponent->setParameter('fontsize', $fontsize);
+            $this->_taComponent->setParameter('fontsize', $fontsize);
+            
+            $this->_capaComponent->configure();
+            $this->_taComponent->configure();
+            
+            
+            /* en attendant que tout fonctionne */ $ok = true;
+        }
     }
     
 }

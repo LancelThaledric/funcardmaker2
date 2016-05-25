@@ -42,17 +42,26 @@ class FcmFcRender {
     //* La valeur le retour est en px
     
     public function xc($x) { return round($this->_width / 100. * $x); }
+    public function reverse_xc($x) { return $x / 100. * $this->_width ; }
     public function yc($y) { return round($this->_height / 100. * $y); }
+    public function reverse_yc($y) { return $y / 100. * $this->_height; }
     // $xy est un array de la forme ['x', 'y']
     public function xyc($xy) {
         return [
-            'x' => $this->getXCoord($xy['x']),
-            'y' => $this->getYCoord($xy['y'])
+            'x' => $this->xc($xy['x']),
+            'y' => $this->yc($xy['y'])
+        ];
+    }
+    public function reverse_xyc($xy) {
+        return [
+            'x' => $this->reverse_xc($xy['x']),
+            'y' => $this->reverse_yc($xy['y'])
         ];
     }
     
     //* Conversion des taille de texte
     public function fsc($fs) { return self::BASE_FONT_SIZE * $this->_height * $fs; }
+    public function reverse_fsc($fs) { return $fs / $this->_height / self::BASE_FONT_SIZE; }
     
     //* Retire les caractères spéciaux du nom de fichier
     public function filenameSpecialChars(){

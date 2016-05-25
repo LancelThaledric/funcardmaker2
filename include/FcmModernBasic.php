@@ -96,7 +96,12 @@ class FcmModernBasic extends FcmFuncard {
                 'size' => 40. / 36.
             ],
             'border' => [],
-            'capabox' => []
+            'capabox' => [
+                'x' => 79. / 791. * 100,
+                'y' => 700. / 1107. * 100,
+                'w' => 632. / 791. * 100,
+                'h' => 283. / 1107. * 100
+            ]
         ];
     }
     

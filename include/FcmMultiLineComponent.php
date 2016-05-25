@@ -11,7 +11,6 @@ require_once('include/FcmReady2PrintText.php');
  * - y : position y
  * - w : width of the box
  * - h : height of the box
- * - padding : internal padding in the box
  * - fontsize : font size in em basesize
  * - text : text to display
  * - font : font to use for text
@@ -36,7 +35,6 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     public function setDefaultParameters(){
         
-        $this->setParameter('padding', 11. / 791. * 100);
         $this->setParameter('fontsize', 1);
         $this->setParameter('text', '');
         $this->setParameter('font', 'mplantin');
