@@ -55,8 +55,33 @@ class FcmTextLine{
         
         $array = preg_split('#(\R+)#m', $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         
+        // On a séparé les lignes. On transforme les lignes en FcmTextLine
+        $array = array_map('FcmTextLine::createNuggets', $array);
+        
         return $array;
         //TODO continue
+    }
+    
+    /**
+     * Crée un tableau de nuggets par ligne
+     */
+    public static function createNuggets($text){
+        
+        $array = self::splitNuggets($text);
+        $array = array_map('FcmAbstractTextNugget::createNugget', $array);
+        
+        return $array;
+        
+    }
+    
+    /**
+     * Découpe le texte sélectionné en plusieurs nuggets
+     */
+    public static function splitNuggets($text){
+        
+        $regex = FcmManaNugget::$regex;
+        return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        
     }
     
     /** Array des nuggets de texte **/
