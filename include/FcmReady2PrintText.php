@@ -8,27 +8,36 @@ require_once('include/FcmTextNugget.php');
 
 class FcmReady2PrintText{
     
-    /** Array des lignes du texte à afficher. Les retours à la lignes ont déjà été calculés grâce aux données fournies au constructeur **/
-    private $_lines;
+    /** Array des nuggets du texte à afficher. **/
+    private $_nuggets;
     private $_font;
     private $_fontsize;
     private $_width, $_height;
+    private $_charMetrics;  //line height is ['chararcterHeight']
+    private $_imagick, $_imagickdraw;
     
     public function getHeight() { return $this->_height; }
     
     /**
      * Constructeur.
-     * @param $lines le texte à traiter, découpé en FcmTextLines
+     * @param $nuggets le texte à traiter, découpé en FcmTextLines
      * @param $font la police à utiliser
      * @param $fontsize la taille de police à utiliser en px.
      * @param $width la largeur de la boîte de texte en px.
      */
-    public function __construct($lines, $font, $fontsize, $width) {
-        $this->_lines = $lines;
+    public function __construct($nuggets, $font, $fontsize, $width) {
+        $this->_nuggets = $nuggets;
         $this->_font = FcmMultiLineComponent::$fontManager->getFont($font);
         $this->_fontsize = $fontsize;
         $this->_width = $width;
         $this->_height = null;
+        
+        $this->_imagick = new Imagick();
+        $this->_imagickdraw = new ImagickDraw();
+        
+        $this->_imagickdraw->setFont(realpath($this->_font));
+        $this->_imagickdraw->setFontSize($this->_fontsize);
+        $this->_charMetrics = $this->_imagick->queryFontMetrics($this->_imagickdraw, 'xD');
     }
     
     public function printText(){
@@ -40,8 +49,24 @@ class FcmReady2PrintText{
      * et calcule la hauteur totale du texte.
      */
     public function preRender(){
+        $cursor = new FcmTextCursor();
+        var_dump($this->_charMetrics);
+        
+        $count = count($this->_nuggets);
+        for($i = 0 ; $i < $count ; ++$i){
+            $this->preRenderNugget($i);
+        }
+    }
+    
+    /**
+     * Effectue le pré-rendu de la nugget numéro i (démarre à 0)
+     */
+    private function preRenderNugget($i){
+        var_dump($this->_nuggets[$i]);
         
     }
+    
+    
     
 }
 
@@ -55,58 +80,7 @@ class FcmReady2PrintText{
 class FcmTextCursor{
     
     public $x = 0, $y = 0;
-    public $lineHeight = 1., $jumpLineHeight = 2.; // TODO revoir l'espacement des lignes et des paragraphes
+    public $lineHeight = 1., $newLParagraphHeight = 2., $newSectionHeight = 3.; // TODO revoir l'espacement des lignes et des paragraphes
     
 }
 
-
-/**
- * Une ligne de texte. C'est un array content plusieurs FcmTextNugget
- */
-class FcmTextLine{
-    
-    /**
-     * Génère la liste des lignes à partir d'un texte
-     */
-    public static function text2Lines($text){
-        
-        $array = preg_split('#(\R+)#m', $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        
-        // On a séparé les lignes. On transforme les lignes en FcmTextLine
-        $array = array_map('FcmTextLine::createNuggets', $array);
-        
-        return $array;
-    }
-    
-    /**
-     * Crée un tableau de nuggets par ligne
-     */
-    public static function createNuggets($text){
-        
-        $nuggets = self::splitNuggets($text);
-        $nuggets = array_map('FcmAbstractTextNugget::createNugget', $nuggets);
-        
-        return new FcmTextLine($nuggets);
-    }
-    
-    /**
-     * Découpe le texte sélectionné en plusieurs nuggets
-     */
-    public static function splitNuggets($text){
-        
-        $regex = FcmManaNugget::$regex;
-        return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        
-    }
-    
-    /**
-     * Constructor
-     */
-    public function __construct($nuggets){
-        $this->_nuggets = $nuggets;
-    }
-    
-    /** Array des nuggets de texte **/
-    private $_nuggets;
-    
-}

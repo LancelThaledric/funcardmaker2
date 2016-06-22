@@ -122,14 +122,10 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         //var_dump($this->_capaComponent->getLines());
         //var_dump($this->_taComponent->getLines());
         
-        $separator = new FcmTextLine(array(
-            new FcmNewSectionNugget()
-        ));
+        $this->_capaComponent->addNugget(new FcmNewSectionNugget());
+        $this->_capaComponent->addNuggets($this->_taComponent->getNuggets());
         
-        $this->_capaComponent->addLine($separator);
-        $this->_capaComponent->addLines($this->_taComponent->getLines());
-        
-        var_dump($this->_capaComponent->getLines());
+        //var_dump($this->_capaComponent->getNuggets());
     }
     
     /**

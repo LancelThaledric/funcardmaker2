@@ -20,10 +20,10 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
-    private $_lines = null;
+    private $_nuggets = null;
     private $_ready2PrintText = null;
     
-    public function getLines() { return $this->_lines; }
+    public function getNuggets() { return $this->_nuggets; }
     
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
@@ -49,18 +49,18 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     public function configure(){
         
         // On sépare les lignes entre elles
-        $this->_lines = FcmTextLine::text2Lines($this->getParameter('text'));
+        $this->_nuggets = self::text2Nuggets($this->getParameter('text'));
         
         return true;
     
     }
     
-    public function addLine($line){
-        $this->_lines[] = $line;
+    public function addNugget($nugget){
+        $this->_nuggets[] = $nugget;
     }
     
-    public function addLines($lines){
-        $this->_lines = array_merge($this->_lines, $lines);
+    public function addNuggets($nuggets){
+        $this->_nuggets = array_merge($this->_nuggets, $nuggets);
     }
     
     /**
@@ -69,7 +69,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     public function computeHeight($fontsize, $width){
         
         $this->_ready2PrintText = new FcmReady2PrintText(
-            $this->_lines,
+            $this->_nuggets,
             $this->getParameter('font'),
             $fontsize,
             $width
@@ -77,6 +77,59 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         $this->_ready2PrintText->preRender();
         
         return $this->_ready2PrintText->getHeight();
+    }
+    
+    
+    /**
+     * Génère la liste des nuggets à partir d'un texte
+     */
+    public static function text2Nuggets($text){
+        
+        $lines = preg_split('#(\R+)#m', $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        // On a séparé les lignes. On parcours chaque ligne
+        $nuggets = array();
+        
+        foreach($lines as $k => $v){
+            self::appendNuggets($nuggets, $v);
+        }
+        
+        //var_dump($nuggets);
+        
+        return $nuggets;
+    }
+    
+    
+    /**
+     * Ajoute les nuggets d'un texte au tableau des nuggets
+     */
+    public static function appendNuggets(&$nuggets, $text){
+        
+        $newnuggs = self::createNuggets($text);
+        
+        $nuggets = array_merge($nuggets, $newnuggs);
+    }
+    
+    
+    /**
+     * Crée un tableau de nuggets par ligne
+     */
+    public static function createNuggets($text){
+        
+        $nuggets = self::splitNuggets($text);
+        $nuggets = array_map('FcmAbstractTextNugget::createNugget', $nuggets);
+        
+        return $nuggets;
+    }
+    
+    
+    /**
+     * Découpe le texte sélectionné en plusieurs nuggets
+     */
+    public static function splitNuggets($text){
+        
+        $regex = FcmManaNugget::$regex;
+        return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        
     }
     
 }
