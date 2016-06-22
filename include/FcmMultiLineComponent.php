@@ -20,6 +20,10 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
+    private $_lines = null;
+    
+    public function getLines() { return $this->_lines; }
+    
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
     }
@@ -44,12 +48,18 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     public function configure(){
         
         // On sépare les lignes entre elles
-        $lines = FcmTextLine::text2Lines($this->getParameter('text'));
-        var_dump($lines);
+        $this->_lines = FcmTextLine::text2Lines($this->getParameter('text'));
         
-        
-        return false;
+        return true;
     
+    }
+    
+    public function addLine($line){
+        $this->_lines[] = $line;
+    }
+    
+    public function addLines($lines){
+        $this->_lines = array_merge($this->_lines, $lines);
     }
     
 }

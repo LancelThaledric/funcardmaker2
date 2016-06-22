@@ -59,7 +59,6 @@ class FcmTextLine{
         $array = array_map('FcmTextLine::createNuggets', $array);
         
         return $array;
-        //TODO continue
     }
     
     /**
@@ -67,11 +66,10 @@ class FcmTextLine{
      */
     public static function createNuggets($text){
         
-        $array = self::splitNuggets($text);
-        $array = array_map('FcmAbstractTextNugget::createNugget', $array);
+        $nuggets = self::splitNuggets($text);
+        $nuggets = array_map('FcmAbstractTextNugget::createNugget', $nuggets);
         
-        return $array;
-        
+        return new FcmTextLine($nuggets);
     }
     
     /**
@@ -84,7 +82,14 @@ class FcmTextLine{
         
     }
     
+    /**
+     * Constructor
+     */
+    public function __construct($nuggets){
+        $this->_nuggets = $nuggets;
+    }
+    
     /** Array des nuggets de texte **/
-    private $nuggets;
+    private $_nuggets;
     
 }

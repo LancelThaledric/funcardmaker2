@@ -106,10 +106,29 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             
             $this->_capaComponent->configure();
             $this->_taComponent->configure();
-            
+            // là on fusionne les lignes de la capa et du ta
+            $this->fuseCapaTa();
             
             /* en attendant que tout fonctionne */ $ok = true;
         }
+    }
+    
+    /**
+     * fusionne les lignes de texte du CapaCOmponent et du TaComponent
+     */
+    private function fuseCapaTa(){
+        
+        var_dump($this->_capaComponent->getLines());
+        var_dump($this->_taComponent->getLines());
+        
+        $separator = new FcmTextLine(array(
+            new FcmNewSectionNugget()
+        ));
+        
+        $this->_capaComponent->addLine($separator);
+        $this->_capaComponent->addLines($this->_taComponent->getLines());
+        
+        var_dump($this->_capaComponent->getLines());
     }
     
 }
