@@ -9,21 +9,38 @@ require_once('include/FcmTextNugget.php');
 class FcmReady2PrintText{
     
     /** Array des lignes du texte à afficher. Les retours à la lignes ont déjà été calculés grâce aux données fournies au constructeur **/
-    private $lines;
+    private $_lines;
+    private $_font;
+    private $_fontsize;
+    private $_width, $_height;
+    
+    public function getHeight() { return $this->_height; }
     
     /**
      * Constructeur.
-     * @param $text le texte à traiter
+     * @param $lines le texte à traiter, découpé en FcmTextLines
      * @param $font la police à utiliser
-     * @param $fontsize la taille de police à utiliser
-     * @param $width la largeur de la boîte de texte.
+     * @param $fontsize la taille de police à utiliser en px.
+     * @param $width la largeur de la boîte de texte en px.
      */
-    public function __construct($text, $font, $fontsize, $width) {
-        // TODO
+    public function __construct($lines, $font, $fontsize, $width) {
+        $this->_lines = $lines;
+        $this->_font = FcmMultiLineComponent::$fontManager->getFont($font);
+        $this->_fontsize = $fontsize;
+        $this->_width = $width;
+        $this->_height = null;
     }
     
     public function printText(){
         // TODO
+    }
+    
+    /**
+     * Effectue les tâches de pré-rendu : place les retours à ligne aux bons endroits
+     * et calcule la hauteur totale du texte.
+     */
+    public function preRender(){
+        
     }
     
 }

@@ -98,7 +98,6 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $ok = false;
         $fontsize = $this->getParameter('fontsize');
         $computed_font_size = $this->getFuncard()->fsc($fontsize);
-        
         while(!$ok){
             $fontsize = $this->getFuncard()->reverse_fsc($computed_font_size);
             $this->_capaComponent->setParameter('fontsize', $fontsize);
@@ -109,6 +108,8 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             // là on fusionne les lignes de la capa et du ta
             $this->fuseCapaTa();
             
+            $totalheight = $this->computeHeight($computed_font_size);
+            
             /* en attendant que tout fonctionne */ $ok = true;
         }
     }
@@ -118,8 +119,8 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
      */
     private function fuseCapaTa(){
         
-        var_dump($this->_capaComponent->getLines());
-        var_dump($this->_taComponent->getLines());
+        //var_dump($this->_capaComponent->getLines());
+        //var_dump($this->_taComponent->getLines());
         
         $separator = new FcmTextLine(array(
             new FcmNewSectionNugget()
@@ -131,4 +132,13 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         var_dump($this->_capaComponent->getLines());
     }
     
+    /**
+     * Calcule la hauteur en pixels nécessaires pour afficher 
+     */
+    private function computeHeight($fontsize){
+        
+        $computed_width = $this->getFuncard()->xc($this->getParameter('w'));
+        return $this->_capaComponent->computeHeight($fontsize, $computed_width);
+        
+    }
 }

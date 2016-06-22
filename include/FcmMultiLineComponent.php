@@ -21,6 +21,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     // self::$draw est disponible par héritage
     
     private $_lines = null;
+    private $_ready2PrintText = null;
     
     public function getLines() { return $this->_lines; }
     
@@ -60,6 +61,22 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     public function addLines($lines){
         $this->_lines = array_merge($this->_lines, $lines);
+    }
+    
+    /**
+     * Calcule la hauteur en pixels nécessaires pour afficher 
+     */
+    public function computeHeight($fontsize, $width){
+        
+        $this->_ready2PrintText = new FcmReady2PrintText(
+            $this->_lines,
+            $this->getParameter('font'),
+            $fontsize,
+            $width
+        );
+        $this->_ready2PrintText->preRender();
+        
+        return $this->_ready2PrintText->getHeight();
     }
     
 }
