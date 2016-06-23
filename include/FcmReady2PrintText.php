@@ -38,6 +38,7 @@ class FcmReady2PrintText{
         
         $this->_imagickdraw->setFont(realpath($this->_font));
         $this->_imagickdraw->setFontSize($this->_fontsize);
+        $this->_imagickdraw->setFillColor('black');
         $this->_charMetrics = $this->_imagick->queryFontMetrics($this->_imagickdraw, 'x');
     
         $this->_cursor = null;
@@ -62,7 +63,7 @@ class FcmReady2PrintText{
             $this->preRenderNugget($i);
         }
         
-        $this->_cursor->y += $this->_charMetrics['descender'];
+        $this->_cursor->y -= $this->_charMetrics['descender'];
         
         $this->_height = $this->_cursor->y;
         
@@ -72,6 +73,8 @@ class FcmReady2PrintText{
      * Effectue le pré-rendu de la nugget numéro i (démarre à 0)
      */
     private function preRenderNugget($i){
+        
+        //var_dump($this->_nuggets[$i]);
         
         $coords = $this->_nuggets[$i]->getCursorUpdates($this->_imagick,
                                                         $this->_imagickdraw,
@@ -85,10 +88,28 @@ class FcmReady2PrintText{
             if($this->_nuggets[$i-1] instanceof FcmTextNugget
               && preg_match('#\s+#', $this->_nuggets[$i-1]->getText())){
                 $this->_nuggets[$i-1] = new FcmNewLineNugget();
+                //var_dump('Nugget transformé en NewLine');
+                // On met à jour le curseur avant de gérer le mot actuel
+                $coords = $this->_nuggets[$i-1]->getCursorUpdates($this->_imagick,
+                                                                  $this->_imagickdraw,
+                                                                  $this->_charMetrics,
+                                                                  $this->_cursor);
+                $this->advanceCursor($coords);
+                // Ensuite, on contnuera à traiter le mot actuel comme si de rien n'était.
+            } 
+            // Sinon, si le nugget actuel est un espace
+            else if($this->_nuggets[$i] instanceof FcmTextNugget
+              && preg_match('#\s+#', $this->_nuggets[$i]->getText())){
+                $this->_nuggets[$i] = new FcmNewLineNugget();
+                //var_dump('Espace transformé en NewLine');
+                // Rien d'autre à faire, on va le traiter juste après.
             }
             // Sinon on en insère un à cette position.
             else{
                 array_insert($this->_nuggets, $i, array(new FcmNewLineNugget()));
+                $this->_count++;
+                //var_dump('Nouveau nugget');
+                // On créée un nouveau nugget. On le traite ensuite, le mot actuel sera donc le prochian nugget.
             }
             
             
@@ -104,17 +125,65 @@ class FcmReady2PrintText{
         }
         
         
-        if($coords['y'] != 0){  // On effectue les retours chariots si necessaire
-            $this->_cursor->y += $coords['y'];
-            $this->_cursor->x = 0;
-        } else {    // Sinon on avance sur l'axe horizontal
-            $this->_cursor->x += $coords['x'];
+        $this->advanceCursor($coords);
+        
+        //var_dump($coords);
+        //var_dump($this->_cursor);
+        
+    }
+    
+    /**
+     * Retourne le résultat du rendu
+     */
+    public function getRendered(){ return $this->_imagick; }
+    
+    /**
+     * Effectue le rendu. Le preRender() doit avoir été appelé.
+     */
+    public function render(){
+        //var_dump($this->_nuggets);
+        $this->_imagick->newImage($this->_width, $this->_height, 'rgba(255,0,0,0.4)');
+        $this->_imagick->setImageFormat('png');
+        
+        $this->_cursor = new FcmTextCursor();
+        //var_dump($this->_charMetrics);
+        $this->_cursor->y = $this->_charMetrics['ascender'];
+        
+        $this->_count = count($this->_nuggets);
+        for($i = 0 ; $i < $this->_count ; ++$i){
+            $this->renderNugget($i);
         }
         
+    }
+    
+    /**
+     * Effectue le rendu de la nuggte numéro i
+     */
+    private function renderNugget($i){
+        //var_dump($this->_nuggets[$i]);
+        $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor);
+        $coords = $this->_nuggets[$i]->getCursorUpdates($this->_imagick,
+                                                        $this->_imagickdraw,
+                                                        $this->_charMetrics,
+                                                        $this->_cursor);
+        
+        $this->advanceCursor($coords);
         
         
     }
     
+    /**
+     * Avance sur curseur selon les coordonnées passées en paramètre
+     */
+    private function advanceCursor($coords){
+        if($coords['y'] != 0){  // On effectue les retours chariots si necessaire
+            $this->_cursor->y += $coords['y'];
+            $this->_cursor->x = 0;
+            //var_dump('new line : '.$coords['y']);
+        } else {    // Sinon on avance sur l'axe horizontal
+            $this->_cursor->x += $coords['x'];
+        }
+    }
     
     
 }

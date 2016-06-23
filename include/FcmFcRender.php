@@ -42,9 +42,9 @@ class FcmFcRender {
     //* La valeur le retour est en px
     
     public function xc($x) { return round($this->_width / 100. * $x); }
-    public function reverse_xc($x) { return $x / 100. * $this->_width ; }
+    public function reverse_xc($x) { return $x * 100 / $this->_width; }
     public function yc($y) { return round($this->_height / 100. * $y); }
-    public function reverse_yc($y) { return $y / 100. * $this->_height; }
+    public function reverse_yc($y) { return $y * 100 / $this->_height; }
     // $xy est un array de la forme ['x', 'y']
     public function xyc($xy) {
         return [

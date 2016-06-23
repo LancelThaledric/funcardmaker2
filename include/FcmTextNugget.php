@@ -30,6 +30,7 @@ abstract class FcmAbstractTextNugget{
      * Génère les coordonnées X / Y à appliquer au cursor lors du rendu de la nugget
      */
     public abstract function getCursorUpdates($imagick, $draw, $metrics, $cursor);
+    public abstract function render($imagick, $draw, $cursor);
     
 }
 
@@ -54,6 +55,16 @@ class FcmTextNugget extends FcmAbstractTextNugget{
             'x' => $customMetrics['textWidth'],
             'y' => 0
         ];
+    }
+    
+    public function render($imagick, $draw, $cursor){
+        // On dessine le texte!
+        $imagick->annotateImage($draw,
+                                $cursor->x,
+                                $cursor->y,
+                                0,
+                                $this->_text);
+        //var_dump('displaying "'.$this->_text.'" at '.$cursor->x.'/'.$cursor->y);
     }
     
 }
@@ -83,6 +94,9 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         ];
     }
     
+    public function render($imagick, $draw, $cursor){
+        // TODO
+    }
 }
 
 /**
@@ -97,6 +111,10 @@ class FcmNewLineNugget extends FcmAbstractTextNugget{
             'x' => 0,
             'y' => $metrics['characterHeight'] * $cursor->lineHeight
         ];
+    }
+    
+    public function render($imagick, $draw, $cursor){
+        // Nothing
     }
     
 }
@@ -115,6 +133,10 @@ class FcmNewParagraphNugget extends FcmAbstractTextNugget{
         ];
     }
     
+    public function render($imagick, $draw, $cursor){
+        // Nothing
+    }
+    
 }
 
 /**
@@ -130,6 +152,10 @@ class FcmNewSectionNugget extends FcmAbstractTextNugget{
             'x' => 0,
             'y' => $metrics['characterHeight'] * $cursor->newSectionHeight
         ];
+    }
+    
+    public function render($imagick, $draw, $cursor){
+        // Nothing
     }
     
 }

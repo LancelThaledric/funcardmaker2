@@ -33,7 +33,16 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         //var_dump($this);
         self::$draw->push();
         
-        // TODO
+        $this->_ready2PrintText->render();
+        $capabox_rendered_text = $this->_ready2PrintText->getRendered();
+            
+        // On plaque le rendu sur l'image de la funcard
+        
+        $this->getFuncard()->getCanvas()->compositeImage(
+            $capabox_rendered_text, Imagick::COMPOSITE_OVER,
+            $this->getFuncard()->xc($this->getParameter('x')),
+            $this->getFuncard()->yc($this->getParameter('y'))
+        );
         
         self::$draw->pop();
     }
@@ -132,6 +141,13 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         $regex = '#(\s+|(?:\{\w+\})+|</?i>)#';
         return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         
+    }
+    
+    /**
+     * Renvoie si le component est vide de texte.
+     */
+    public function isEmpty(){
+        return empty($this->_nuggets);
     }
     
 }

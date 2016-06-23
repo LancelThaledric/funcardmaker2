@@ -26,6 +26,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     
     private $_capaComponent;
     private $_taComponent;
+    private $_totalHeight;
     
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);
@@ -51,10 +52,16 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             $this->getFuncard()->yc($this->getParameter('y'))
         );
         
+        // On effectue le rendu
+        $yoffset = ($this->getFuncard()->yc($this->getParameter('h'))
+                    - $this->_totalHeight)
+                   / 2.;
         
-        // TODO
-        //var_dump($this);
         
+        $this->_capaComponent->setParameter('y', $this->getParameter('y') + $this->getFuncard()->reverse_yc($yoffset));
+        $this->_capaComponent->setParameter('h', $this->getFuncard()->reverse_yc($this->_totalHeight));
+        
+        $this->_capaComponent->apply();
         
         
         self::$draw->pop();
@@ -96,7 +103,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $this->fuseCapaTa();
         
         $this->computeOptimalFontSize();
-        var_dump($this->_capaComponent);
+        //var_dump($this->_capaComponent);
         
         return false;
     
@@ -108,7 +115,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $computed_font_size = $this->getFuncard()->fsc($fontsize);
         $expectedHeight = $this->getFuncard()->yc($this->getParameter('h'));
         while(!$ok){
-            var_dump($computed_font_size);
+            //var_dump($computed_font_size);
             if($computed_font_size < self::MIN_COMPUTED_FONT_SIZE){    // En deça de cette valeur le etxte est illisible
                 $computed_font_size = 0;
                 break;
@@ -119,18 +126,18 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             $this->_taComponent->setParameter('fontsize', $fontsize);
             
             // On calcule la heuteur totale
-            $totalheight = $this->computeHeight($computed_font_size);
+            $this->_totalHeight = $this->computeHeight($computed_font_size);
             //var_dump('total height = '.$totalheight . ', ' . $expectedHeight . ' expected');
             
             // On regarde si on a pas dépassé
-            if($totalheight > $expectedHeight){
+            if($this->_totalHeight > $expectedHeight){
                 $ok = false;
                 // Pour calculer la nouvelle valeur de fontsize, on calcule le ratio hauteur obtenue/hauteur espérée.
                 // On rapproche ce ratio de 1 pour prendre en compte qu'on gagnera aussi de la place en largeur
                 // On multiplie par ce ratio.
                 // C'est une méthode logarithmique plus rapide que la méthode linéaire (en décrémentant petit à petit).
                 // ... Mais peut-être moins précise, à vérifier.
-                $ratio = $expectedHeight / $totalheight;
+                $ratio = $expectedHeight / $this->_totalHeight;
                 //var_dump('ratio : '.$ratio.', multiply by '.(1+$ratio) / 2.);
                 $computed_font_size = (int) ($computed_font_size * (1+$ratio) / 2. );
                 /*$computed_font_size--;*/
@@ -140,7 +147,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             
         }
         
-        echo 'ok ', $computed_font_size;
+        //echo 'ok ', $computed_font_size;
         $this->_capaComponent->setParameter('fontsize', $fontsize);
     }
     
@@ -152,7 +159,10 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         //var_dump($this->_capaComponent->getLines());
         //var_dump($this->_taComponent->getLines());
         
-        $this->_capaComponent->addNugget(new FcmNewSectionNugget());
+        if(!$this->_capaComponent->isEmpty() && !$this->_taComponent->isEmpty()){
+            $this->_capaComponent->addNugget(new FcmNewSectionNugget());
+        }
+
         $this->_capaComponent->addNuggets($this->_taComponent->getNuggets());
         
         //var_dump($this->_capaComponent->getNuggets());
