@@ -198,7 +198,7 @@ class FcmReady2PrintText{
 class FcmTextCursor{
     
     public $x = 0, $y = 0;
-    public $lineHeight = 1., $newParagraphHeight = 2., $newSectionHeight = 3.; // TODO revoir l'espacement des lignes et des paragraphes
+    public $lineHeight = 1., $newParagraphHeight = 1.2, $newSectionHeight = 1.64; // TODO revoir l'espacement des lignes et des paragraphes
     
 }
 
