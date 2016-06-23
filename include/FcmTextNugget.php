@@ -14,7 +14,7 @@ abstract class FcmAbstractTextNugget{
         
         // on doit choisir le bon type de nugget
         if(preg_match(FcmManaNugget::$regex, $text))
-            return new FcmManaNugget(trim($text, '{}'));
+            return new FcmManaNugget($text);
         
         if(preg_match(FcmNewParagraphNugget::$regex, $text))
             return new FcmNewParagraphNugget();
@@ -26,6 +26,11 @@ abstract class FcmAbstractTextNugget{
         
     }
     
+    /**
+     * Génère les coordonnées X / Y à appliquer au cursor lors du rendu de la nugget
+     */
+    public abstract function getCursorUpdates($imagick, $draw, $metrics, $cursor);
+    
 }
 
 
@@ -35,10 +40,20 @@ abstract class FcmAbstractTextNugget{
  */
 class FcmTextNugget extends FcmAbstractTextNugget{
     
-    private $text;
+    private $_text;
+    
+    public function getText() { return $this->_text; }
     
     public function __construct($t){
-        $this->text = $t;
+        $this->_text = $t;
+    }
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        $customMetrics = $imagick->queryFontMetrics($draw, $this->_text);
+        return [
+            'x' => $customMetrics['textWidth'],
+            'y' => 0
+        ];
     }
     
 }
@@ -50,12 +65,22 @@ class FcmTextNugget extends FcmAbstractTextNugget{
  */
 class FcmManaNugget extends FcmAbstractTextNugget{
     
-    public static $regex = '#(\{.+\})#U';
+    public static $regex = '#((\{\w+\})+)#';
     
-    private $text;
+    private $_text;
+    
+    public function getText() { return $this->_text; }
     
     public function __construct($t){
-        $this->text = $t;
+        $this->_text = $t;
+    }
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        $customMetrics = $imagick->queryFontMetrics($draw, $this->_text);
+        return [
+            'x' => $customMetrics['textWidth'],
+            'y' => 0
+        ];
     }
     
 }
@@ -67,6 +92,13 @@ class FcmNewLineNugget extends FcmAbstractTextNugget{
     
     public static $regex = '#^(\R)$#m';
     
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        return [
+            'x' => 0,
+            'y' => $metrics['characterHeight'] * $cursor->lineHeight
+        ];
+    }
+    
 }
 
 /**
@@ -75,6 +107,13 @@ class FcmNewLineNugget extends FcmAbstractTextNugget{
 class FcmNewParagraphNugget extends FcmAbstractTextNugget{
     
     public static $regex = '#^(\R{2,})$#m';
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        return [
+            'x' => 0,
+            'y' => $metrics['characterHeight'] * $cursor->newParagraphHeight
+        ];
+    }
     
 }
 
@@ -85,5 +124,12 @@ class FcmNewParagraphNugget extends FcmAbstractTextNugget{
 class FcmNewSectionNugget extends FcmAbstractTextNugget{
     
     public static $regex = null;
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        return [
+            'x' => 0,
+            'y' => $metrics['characterHeight'] * $cursor->newSectionHeight
+        ];
+    }
     
 }

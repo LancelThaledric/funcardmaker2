@@ -149,4 +149,11 @@ function json_readable_encode($in, $indent = 0, $from_array = false)
 }
 
 
-
+/**
+ * Insère un array dans un autre à la position $position.
+ * Code from PHP community manual
+ * http://php.net/manual/fr/function.array-splice.php
+ */
+function array_insert (&$original, $position, $inserted) { 
+    array_splice( $original, $position, 0, $inserted );
+} 

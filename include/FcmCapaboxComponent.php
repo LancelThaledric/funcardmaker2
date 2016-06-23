@@ -22,6 +22,8 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
+    const MIN_COMPUTED_FONT_SIZE = 10;
+    
     private $_capaComponent;
     private $_taComponent;
     
@@ -88,7 +90,13 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         // Pour les deux components, il reste encore les params y, h et fontsize à calculer
         // Nous allons donc faire une boucle pour calculer la bonne taille de police.
         
+        $this->_capaComponent->configure();
+        $this->_taComponent->configure();
+        // là on fusionne les lignes de la capa et du ta
+        $this->fuseCapaTa();
+        
         $this->computeOptimalFontSize();
+        var_dump($this->_capaComponent);
         
         return false;
     
@@ -98,20 +106,42 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $ok = false;
         $fontsize = $this->getParameter('fontsize');
         $computed_font_size = $this->getFuncard()->fsc($fontsize);
+        $expectedHeight = $this->getFuncard()->yc($this->getParameter('h'));
         while(!$ok){
+            var_dump($computed_font_size);
+            if($computed_font_size < self::MIN_COMPUTED_FONT_SIZE){    // En deça de cette valeur le etxte est illisible
+                $computed_font_size = 0;
+                break;
+            }
+            
             $fontsize = $this->getFuncard()->reverse_fsc($computed_font_size);
             $this->_capaComponent->setParameter('fontsize', $fontsize);
             $this->_taComponent->setParameter('fontsize', $fontsize);
             
-            $this->_capaComponent->configure();
-            $this->_taComponent->configure();
-            // là on fusionne les lignes de la capa et du ta
-            $this->fuseCapaTa();
-            
+            // On calcule la heuteur totale
             $totalheight = $this->computeHeight($computed_font_size);
+            //var_dump('total height = '.$totalheight . ', ' . $expectedHeight . ' expected');
             
-            /* en attendant que tout fonctionne */ $ok = true;
+            // On regarde si on a pas dépassé
+            if($totalheight > $expectedHeight){
+                $ok = false;
+                // Pour calculer la nouvelle valeur de fontsize, on calcule le ratio hauteur obtenue/hauteur espérée.
+                // On rapproche ce ratio de 1 pour prendre en compte qu'on gagnera aussi de la place en largeur
+                // On multiplie par ce ratio.
+                // C'est une méthode logarithmique plus rapide que la méthode linéaire (en décrémentant petit à petit).
+                // ... Mais peut-être moins précise, à vérifier.
+                $ratio = $expectedHeight / $totalheight;
+                //var_dump('ratio : '.$ratio.', multiply by '.(1+$ratio) / 2.);
+                $computed_font_size = (int) ($computed_font_size * (1+$ratio) / 2. );
+                /*$computed_font_size--;*/
+            } else {
+                /* tout fonctionne */ $ok = true;
+            }
+            
         }
+        
+        echo 'ok ', $computed_font_size;
+        $this->_capaComponent->setParameter('fontsize', $fontsize);
     }
     
     /**

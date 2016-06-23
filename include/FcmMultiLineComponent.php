@@ -115,6 +115,8 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
      */
     public static function createNuggets($text){
         
+        
+        
         $nuggets = self::splitNuggets($text);
         $nuggets = array_map('FcmAbstractTextNugget::createNugget', $nuggets);
         
@@ -127,7 +129,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
      */
     public static function splitNuggets($text){
         
-        $regex = FcmManaNugget::$regex;
+        $regex = '#(\s+|(?:\{\w+\})+|</?i>)#';
         return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         
     }
