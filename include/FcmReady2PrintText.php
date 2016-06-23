@@ -10,7 +10,7 @@ class FcmReady2PrintText{
     
     /** Array des nuggets du texte à afficher. **/
     private $_nuggets;
-    private $_font;
+    private $_font, $_fontItalic;
     private $_fontsize;
     private $_width, $_height;
     private $_charMetrics;  //line height is ['chararcterHeight']
@@ -26,9 +26,10 @@ class FcmReady2PrintText{
      * @param $fontsize la taille de police à utiliser en px.
      * @param $width la largeur de la boîte de texte en px.
      */
-    public function __construct($nuggets, $font, $fontsize, $width) {
+    public function __construct($nuggets, $font, $fontItalic, $fontsize, $width) {
         $this->_nuggets = $nuggets;
         $this->_font = FcmMultiLineComponent::$fontManager->getFont($font);
+        $this->_fontItalic = FcmMultiLineComponent::$fontManager->getFont($fontItalic);
         $this->_fontsize = $fontsize;
         $this->_width = $width;
         $this->_height = null;
@@ -161,7 +162,7 @@ class FcmReady2PrintText{
      */
     private function renderNugget($i){
         //var_dump($this->_nuggets[$i]);
-        $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor);
+        $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor, $this);
         $coords = $this->_nuggets[$i]->getCursorUpdates($this->_imagick,
                                                         $this->_imagickdraw,
                                                         $this->_charMetrics,
@@ -185,6 +186,19 @@ class FcmReady2PrintText{
         }
     }
     
+    /**
+     * Change le mode italique/pasitalique
+     */
+    public function setItalicMode($val){
+        $this->_cursor->italicMode = $val;
+        if($val){
+            $this->_imagickdraw->setFont(realpath($this->_fontItalic));
+        } else {
+            $this->_imagickdraw->setFont(realpath($this->_font));
+        }
+        
+    }
+    
     
 }
 
@@ -199,6 +213,6 @@ class FcmTextCursor{
     
     public $x = 0, $y = 0;
     public $lineHeight = 1., $newParagraphHeight = 1.2, $newSectionHeight = 1.64; // TODO revoir l'espacement des lignes et des paragraphes
-    
+    public $italicMode = false;
 }
 

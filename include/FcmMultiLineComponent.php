@@ -14,6 +14,7 @@ require_once('include/FcmReady2PrintText.php');
  * - fontsize : font size in em basesize
  * - text : text to display
  * - font : font to use for text
+ * - fontItalic : italicfont to use for text
  */
 
 class FcmMultiLineComponent extends FcmFuncardComponent {
@@ -52,7 +53,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         $this->setParameter('fontsize', 1);
         $this->setParameter('text', '');
         $this->setParameter('font', 'mplantin');
-        
+        $this->setParameter('fontItalic', 'mplantin-italic');
     }
     
     public function configure(){
@@ -80,6 +81,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         $this->_ready2PrintText = new FcmReady2PrintText(
             $this->_nuggets,
             $this->getParameter('font'),
+            $this->getParameter('fontItalic'),
             $fontsize,
             $width
         );

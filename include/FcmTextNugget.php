@@ -22,6 +22,12 @@ abstract class FcmAbstractTextNugget{
         if(preg_match(FcmNewLineNugget::$regex, $text))
             return new FcmNewLineNugget();
         
+        if(preg_match(FcmBeginItalicNugget::$regex, $text))
+            return new FcmBeginItalicNugget();
+        
+        if(preg_match(FcmEndItalicNugget::$regex, $text))
+            return new FcmEndItalicNugget();
+        
         return new FcmTextNugget($text);
         
     }
@@ -30,7 +36,7 @@ abstract class FcmAbstractTextNugget{
      * Génère les coordonnées X / Y à appliquer au cursor lors du rendu de la nugget
      */
     public abstract function getCursorUpdates($imagick, $draw, $metrics, $cursor);
-    public abstract function render($imagick, $draw, $cursor);
+    public abstract function render($imagick, &$draw, &$cursor, &$ready2Print);
     
 }
 
@@ -57,7 +63,7 @@ class FcmTextNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, $draw, $cursor){
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
         // On dessine le texte!
         $imagick->annotateImage($draw,
                                 $cursor->x,
@@ -94,7 +100,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, $draw, $cursor){
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
         // TODO
     }
 }
@@ -113,7 +119,7 @@ class FcmNewLineNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, $draw, $cursor){
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
         // Nothing
     }
     
@@ -133,7 +139,7 @@ class FcmNewParagraphNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, $draw, $cursor){
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
         // Nothing
     }
     
@@ -154,8 +160,50 @@ class FcmNewSectionNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, $draw, $cursor){
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
         // Nothing
+    }
+    
+}
+
+/**
+ * TextNugget de type Begin Italique.
+ * Sert activer le texte italique.
+ */
+class FcmBeginItalicNugget extends FcmAbstractTextNugget{
+    
+    public static $regex = '#(<i>)#';
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        return [
+            'x' => 0,
+            'y' => 0
+        ];
+    }
+    
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+        $ready2Print->setItalicMode(true);
+    }
+    
+}
+
+/**
+ * TextNugget de type Begin Italique.
+ * Sert activer le texte italique.
+ */
+class FcmEndItalicNugget extends FcmAbstractTextNugget{
+    
+    public static $regex = '#(</i>)#';
+    
+    public function getCursorUpdates($imagick, $draw, $metrics, $cursor){
+        return [
+            'x' => 0,
+            'y' => 0
+        ];
+    }
+    
+    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+        $ready2Print->setItalicMode(false);
     }
     
 }

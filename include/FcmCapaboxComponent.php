@@ -15,7 +15,7 @@ require_once('include/FcmMultiLineComponent.php');
  * - textcapa : capacity text to display
  * - textta : ambient text to display
  * - fontcapa : font to use for capacity text
- * - fontta : font to use for ambient text
+ * - fontta : font to use for ambient text and italic capacity
  */
 
 class FcmCapaboxComponent extends FcmFuncardComponent {
@@ -85,14 +85,11 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         // On fait hériter les paramètres aux components fils
         
         $this->_capaComponent->setParameter('font', $this->getParameter('fontcapa'));
+        $this->_capaComponent->setParameter('fontItalic', $this->getParameter('fontta'));
         $this->_capaComponent->setParameter('text', $this->getParameter('textcapa'));
+        $this->_taComponent->setParameter('text', $this->getParameter('textta'));
         $this->_capaComponent->setParameter('x', $this->getParameter('x'));
         $this->_capaComponent->setParameter('w', $this->getParameter('w'));
-        
-        $this->_taComponent->setParameter('font', $this->getParameter('fontta'));
-        $this->_taComponent->setParameter('text', $this->getParameter('textta'));
-        $this->_taComponent->setParameter('x', $this->getParameter('x'));
-        $this->_taComponent->setParameter('w', $this->getParameter('w'));
         
         // Pour les deux components, il reste encore les params y, h et fontsize à calculer
         // Nous allons donc faire une boucle pour calculer la bonne taille de police.
@@ -163,7 +160,12 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             $this->_capaComponent->addNugget(new FcmNewSectionNugget());
         }
 
-        $this->_capaComponent->addNuggets($this->_taComponent->getNuggets());
+        if(!$this->_taComponent->isEmpty()){
+            $this->_capaComponent->addNugget(new FcmBeginItalicNugget());
+            $this->_capaComponent->addNuggets($this->_taComponent->getNuggets());
+            $this->_capaComponent->addNugget(new FcmEndItalicNugget());
+        }
+        
         
         //var_dump($this->_capaComponent->getNuggets());
     }
