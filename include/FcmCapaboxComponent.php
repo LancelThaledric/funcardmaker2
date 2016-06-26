@@ -22,6 +22,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
+    // En dessous de cette taille de police (en pixels) le texte ne sera pas rendu.
     const MIN_COMPUTED_FONT_SIZE = 10;
     
     private $_capaComponent;

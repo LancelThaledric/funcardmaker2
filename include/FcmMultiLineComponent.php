@@ -21,6 +21,9 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
+    // Parfois le texte dépasse de la BBOX. On ajoute en haut et en bas un padding pour bien rendre tous les pixels.
+    const EXTERNAL_PADDING = 10;
+    
     private $_nuggets = null;
     private $_ready2PrintText = null;
     
@@ -42,7 +45,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
         $this->getFuncard()->getCanvas()->compositeImage(
             $capabox_rendered_text, Imagick::COMPOSITE_OVER,
             $this->getFuncard()->xc($this->getParameter('x')),
-            $this->getFuncard()->yc($this->getParameter('y'))
+            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING
         );
         
         self::$draw->pop();
@@ -83,7 +86,8 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
             $this->getParameter('font'),
             $this->getParameter('fontItalic'),
             $fontsize,
-            $width
+            $width,
+            self::EXTERNAL_PADDING
         );
         $this->_ready2PrintText->preRender();
         
@@ -140,7 +144,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
      */
     public static function splitNuggets($text){
         
-        $regex = '#(\s+|(?:\{\w+\})+|</?i>)#';
+        $regex = '#(\s+|(?:\{[a-zA-Z1-9/]+\})+|</?i>)#';
         return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         
     }

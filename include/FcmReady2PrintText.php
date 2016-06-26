@@ -16,6 +16,7 @@ class FcmReady2PrintText{
     private $_charMetrics;  //line height is ['chararcterHeight']
     private $_imagick, $_imagickdraw;
     private $_cursor;
+    private $_topBottomExternalPadding;
     
     public function getHeight() { return $this->_height; }
     
@@ -26,7 +27,7 @@ class FcmReady2PrintText{
      * @param $fontsize la taille de police à utiliser en px.
      * @param $width la largeur de la boîte de texte en px.
      */
-    public function __construct($nuggets, $font, $fontItalic, $fontsize, $width) {
+    public function __construct($nuggets, $font, $fontItalic, $fontsize, $width, $padding) {
         $this->_nuggets = $nuggets;
         $this->_font = FcmMultiLineComponent::$fontManager->getFont($font);
         $this->_fontItalic = FcmMultiLineComponent::$fontManager->getFont($fontItalic);
@@ -42,6 +43,8 @@ class FcmReady2PrintText{
         $this->_imagickdraw->setFillColor('black');
         $this->_charMetrics = $this->_imagick->queryFontMetrics($this->_imagickdraw, 'x');
     
+        $this->_topBottomExternalPadding = $padding;
+        
         $this->_cursor = null;
         $this->_count = 0;
     }
@@ -143,12 +146,12 @@ class FcmReady2PrintText{
      */
     public function render(){
         //var_dump($this->_nuggets);
-        $this->_imagick->newImage($this->_width, $this->_height, 'rgba(255,0,0,0.4)');
+        $this->_imagick->newImage($this->_width, $this->_height + $this->_topBottomExternalPadding * 2, 'rgba(255,0,0,0.4)');
         $this->_imagick->setImageFormat('png');
         
         $this->_cursor = new FcmTextCursor();
         //var_dump($this->_charMetrics);
-        $this->_cursor->y = $this->_charMetrics['ascender'];
+        $this->_cursor->y = $this->_charMetrics['ascender'] + $this->_topBottomExternalPadding;
         
         $this->_count = count($this->_nuggets);
         for($i = 0 ; $i < $this->_count ; ++$i){
@@ -162,6 +165,7 @@ class FcmReady2PrintText{
      */
     private function renderNugget($i){
         //var_dump($this->_nuggets[$i]);
+        //var_dump($this->_charMetrics);
         $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor, $this);
         $coords = $this->_nuggets[$i]->getCursorUpdates($this->_imagick,
                                                         $this->_imagickdraw,
@@ -198,6 +202,8 @@ class FcmReady2PrintText{
         }
         
     }
+    
+    public function getCharMetrics() { return $this->_charMetrics; }
     
     
 }
