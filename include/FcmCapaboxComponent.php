@@ -41,7 +41,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         self::$draw->push();
         
         // Là c'est du debug ! On affiche le BBOX de la capabox !
-        $capabox_bbox = new Imagick();
+        /*$capabox_bbox = new Imagick();
         $capabox_bbox->newImage(
             $this->getFuncard()->xc($this->getParameter('w')),
             $this->getFuncard()->yc($this->getParameter('h')),
@@ -51,7 +51,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
             $capabox_bbox, Imagick::COMPOSITE_OVER,
             $this->getFuncard()->xc($this->getParameter('x')),
             $this->getFuncard()->yc($this->getParameter('y'))
-        );
+        );*/
         
         // On effectue le rendu
         $yoffset = ($this->getFuncard()->yc($this->getParameter('h'))
