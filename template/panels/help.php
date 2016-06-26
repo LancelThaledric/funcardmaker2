@@ -134,7 +134,7 @@
     <div class="help-paragraph">
         <p>
             Comment ça ? Vous avez trouvé un BUG ?! Fichtre... ಠ╭╮ಠ<br/>
-            Un logiciel sans bugs ça n'existe pas ! Merci de bien vouloir vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas de m'indiquer comment reproduire le bug !
+            Un logiciel sans bugs ça n'existe pas ! Merci de bien vouloir vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas de m'indiquer comment reproduire le bug !
         </p>
     </div>
     
@@ -142,7 +142,7 @@
     <div class="help-paragraph">
         <p>
             Vous aimez tellement le SMF Funcard Maker 2, mais il lui manque toutefois quelque chose...
-            Vous pouvez vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas d'indiquer le type d'issue (&laquo; enhancement &raquo; pour une suggestion, car tout est en anglais).
+            Vous pouvez vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas d'indiquer le type d'issue (&laquo; enhancement &raquo; pour une suggestion, car tout est en anglais).
         </p>
     </div>
     
