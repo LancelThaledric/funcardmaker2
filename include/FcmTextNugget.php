@@ -127,6 +127,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         '100' => '100.png',
         '1000000' => 'million.png',
         'i' => 'inf.png',
+        'h' => 'half.png',
         // Letter manas
         'x' => 'x.png',
         'y' => 'y.png',

@@ -620,7 +620,9 @@ header>a:first-child{
 .fcm-columns>*>form>h2,
 .fcm-columns>*>form>h3,
 .fcm-columns>*>form>p,
-.fcm-columns>*>form>.input-container{
+.fcm-columns>*>form>.input-container,
+
+.input-container.margin{
     margin: 2rem;
 }
 
@@ -743,6 +745,14 @@ label.large{
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.input-toolbar .separator{
+    border-left: solid 1px rgba(255,255,255,0.2);
+    margin: 0 4px;
 }
 
 /* Selector -------------------------------------------------------------------------------- */
