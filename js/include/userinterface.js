@@ -264,6 +264,10 @@ Panel.CONTAINER_ELEMENT.on('click', 'button.single-inserter', function(){
                    + txtToAdd
                    + textAreaTxt.substring(caretPosEnd) );
     focusElement.focus();
+    setCaretPosition(focusElement[0],
+                     caretPosEnd + txtToAdd.length,
+                     caretPosEnd + txtToAdd.length);
+    
 });
 
 Panel.CONTAINER_ELEMENT.on('click', 'button.double-inserter', function(){
@@ -281,7 +285,30 @@ Panel.CONTAINER_ELEMENT.on('click', 'button.double-inserter', function(){
                    + txtToAdd[1]
                    + textAreaTxt.substring(caretPosEnd) );
     focusElement.focus();
+    setCaretPosition(focusElement[0],
+                     caretPosStart,
+                     caretPosEnd + txtToAdd[0].length + txtToAdd[1].length);
 });
+
+/**
+ * Code from eternal : http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
+ */
+function setCaretPosition(ctrl, pos1, pos2)
+{
+
+    if(ctrl.setSelectionRange)
+    {
+        ctrl.focus();
+        ctrl.setSelectionRange(pos1,pos2);
+    }
+    else if (ctrl.createTextRange) {
+        var range = ctrl.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', pos2);
+        range.moveStart('character', pos1);
+        range.select();
+    }
+}
 
 
 // Media Handling
