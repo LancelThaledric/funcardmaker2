@@ -1,5 +1,8 @@
 <section class="fcm-panel" id="fcm-panel-template">
     <h2>Choisissez votre template</h2>
+    <p class="warning-template-changes">
+        Attention, cliquer sur l'un des templates ci-dessous réinitialisera votre carte.
+    </p>
     <div class="fcm-selector large" id="fcm-template-selector">
         
         <button class="fcm-selector-button" data-value="modern-basic">

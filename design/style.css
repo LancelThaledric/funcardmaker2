@@ -352,6 +352,16 @@ header a:hover{
 }
 header>a:first-child{
     padding: 0;
+    position: relative;
+}
+
+h1 .betabox{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.5em;
+    padding: 2px;
+    color: rgba(255,255,255,0.5);
 }
 
 #menu-toggle{
@@ -1151,6 +1161,16 @@ label.large{
     border: solid 0.5rem transparent;
     border-top-color: #fff;
     border-bottom: none;
+}
+
+/* Template Warning ---------------------------------------------------------------------------- */
+
+.warning-template-changes{
+    text-align: center;
+    display: none;
+}
+.warning-template-changes.active{
+    display: block;
 }
 
 /*============================================================================================================== */

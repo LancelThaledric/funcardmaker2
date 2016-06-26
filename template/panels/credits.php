@@ -39,4 +39,7 @@
     <p>
         Merci aussi à Wizard of the Coast pour avoir réalisé Magic: The Gathering.
     </p>
+    <p>
+        Bravo et merci à <a href="http://eldarzakirov.deviantart.com/" title="Page DeviantArt de Eldar Zakirov">Eldar Zakirov</a> pour ses magnifiques illustrations. C'est lui l'auteur de l'image que j'utilise comme avatar.
+    </p>
 </section>

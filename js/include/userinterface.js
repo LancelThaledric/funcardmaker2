@@ -85,6 +85,10 @@ function loadPanels(funcard){
             showPanels(funcard, data);
             changePanel(panelsTab[0]);
             generator.trigger('panelsLoaded');
+            
+            setTimeout( function(){
+                $('.warning-template-changes').addClass('active');
+            }, 10);
         }
     ).fail(function() {
         alert( 'Erreur au chargement des composantes de la funcard. Veuillez réessayer.' );

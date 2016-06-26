@@ -18,10 +18,4 @@
                 <input class="file-submit" type="submit" value="Miniaturisation !"/>
         </div>
     </form>
-    
-    <h3>Palette de couleurs</h3>
-    <p>
-        Voici une palette de couleurs reprenant les tons utilisés sur les cartes officielles.
-        Pratique si vous voulez créer votre Symbole d'Édition personnel !
-    </p>
 </section>
