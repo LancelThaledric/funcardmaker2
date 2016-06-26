@@ -108,6 +108,12 @@ class FcmReady2PrintText{
                 //var_dump('Espace transformé en NewLine');
                 // Rien d'autre à faire, on va le traiter juste après.
             }
+            // Si on a déjà un retour à ligne, de paragraphe ou de section juste avant
+            else if($this->_nuggets[$i-1] instanceof FcmNewLineNugget
+                    || $this->_nuggets[$i-1] instanceof FcmNewParagraphNugget
+                    || $this->_nuggets[$i-1] instanceof FcmNewSectionNugget){
+                // On ne faire rien ! (One ne rajoute pas de Nugget de retour à la ligne)
+            }
             // Sinon on en insère un à cette position.
             else{
                 array_insert($this->_nuggets, $i, array(new FcmNewLineNugget()));

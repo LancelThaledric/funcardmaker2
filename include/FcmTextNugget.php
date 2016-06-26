@@ -82,7 +82,7 @@ class FcmTextNugget extends FcmAbstractTextNugget{
  */
 class FcmManaNugget extends FcmAbstractTextNugget{
     
-    public static $regex = '#((\{[a-zA-Z1-9/]+\})+)#';
+    public static $regex = '#((\{[a-zA-Z0-9/]+\})+)#';
     public static $parseRegex = '#(\w/\w|2/\w|p\w|o+\w|\d+|chaos|\w)#'; // Note : le \w seul doit impérativement être à la fin de la regex. Les recherches se font dans l'ordre.
     public static $largeManaRegex = '#\w/\w|2/\w|p\w#';
     
@@ -197,6 +197,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         ];
         foreach($this->_manas as $mana){
             //if(!self::isExistingMana($mana)) continue;
+            if(self::isBraces($mana)) continue;
             if(self::isLargeMana($mana))
                 $ret['x'] += (int)($metrics['characterHeight'] * self::LARGE_MANA_EFFECTIVE_WIDTH);
             else
@@ -216,6 +217,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         ];
         foreach($this->_manas as $mana){
             //if(!self::isExistingMana($mana)) continue;
+            if(self::isBraces($mana)) continue;
             // On charge le fichier
             $manaImage = new Imagick(self::getManaFile($mana));
             $size = 0; $yoffset = 0; $xoffset = 0; $advance = 0;
@@ -225,7 +227,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
                 // Rendu mana large
                 $size = (int)($metrics['characterHeight'] * self::LARGE_MANA_RATIO);
                 //var_dump($size);
-                $manaImage->resizeImage($size, $size, Imagick::FILTER_LANCZOS, 1);
+                $manaImage->resizeImage(0, $size, Imagick::FILTER_LANCZOS, 1);
                 $yoffset = (int)($metrics['characterHeight'] * self::LARGE_MANA_TOPLINE);
                 $xoffset = (int)($metrics['characterHeight'] * ( self::LARGE_MANA_EFFECTIVE_WIDTH - self::LARGE_MANA_RATIO) / 2);
                 $advance = (int)($metrics['characterHeight'] * self::LARGE_MANA_EFFECTIVE_WIDTH);
@@ -233,7 +235,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
                 // Rendu mana small
                 $size = (int)($metrics['characterHeight'] * self::SMALL_MANA_RATIO);
                 //var_dump($size);
-                $manaImage->resizeImage($size, $size, Imagick::FILTER_LANCZOS, 1);
+                $manaImage->resizeImage(0, $size, Imagick::FILTER_LANCZOS, 1);
                 $yoffset = (int)($metrics['characterHeight'] * self::SMALL_MANA_TOPLINE);
                 $xoffset = (int)($metrics['characterHeight'] * ( self::SMALL_MANA_EFFECTIVE_WIDTH - self::SMALL_MANA_RATIO) / 2);
                 $advance = (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH);
@@ -249,7 +251,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
     }
     
     public function parseMana(){
-        $this->_text = str_replace(['{', '}'], '', $this->_text);
+        //$this->_text = str_replace(['{', '}'], '', $this->_text); // On utilise les { et } comme séparateurs de manas
         $this->_text = strtolower($this->_text);
         $this->_manas = preg_split(self::$parseRegex, $this->_text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
     }
@@ -260,6 +262,10 @@ class FcmManaNugget extends FcmAbstractTextNugget{
     
     public static function isExistingMana($text){
         return isset(self::$existingManas[$text]);
+    }
+    
+    public static function isBraces($text){
+        return preg_match('#(\{|\})+#', $text);
     }
     
     public static function getManaFile($text){

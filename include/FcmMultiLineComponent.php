@@ -144,7 +144,7 @@ class FcmMultiLineComponent extends FcmFuncardComponent {
      */
     public static function splitNuggets($text){
         
-        $regex = '#(\s+|(?:\{[a-zA-Z1-9/]+\})+|</?i>)#';
+        $regex = '#(\s+|(?:\{[a-zA-Z0-9/]+\})+|</?i>)#';
         return preg_split($regex, $text, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         
     }
