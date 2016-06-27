@@ -85,7 +85,7 @@ class FcmModernBasicBackgroundComponent extends FcmBackgroundComponent {
         
         // Re-dernière étape, il faut calculer la couleur de l'illustrateur
         
-        $base_letter = $this->getParameter('base-color');
+        $base_letter = $this->getParameter('base-color')[0];
         if($base_letter == 'b' || $base_letter == 'l'){
             $ret['illus'] = [
                 'color' => 'white',
