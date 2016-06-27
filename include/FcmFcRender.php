@@ -132,28 +132,26 @@ class FcmFcRender {
     public function miniaturize(){
         $this->_canvas->resizeImage(self::THUMBNAIL_SIZE_X, 0,
                                     Imagick::FILTER_LANCZOS, 1, false);
-        $white = new Imagick();
-        $white->newImage($this->_canvas->getImageWidth(),
-                         $this->_canvas->getImageHeight(),
-                         'white', 'jpg');
-        $white->compositeImage($this->_canvas, Imagick::COMPOSITE_OVER, 0, 0);
+        $this->_canvas->setImageBackgroundColor('white');
+        $this->_canvas->setImageAlphaChannel(imagick::ALPHACHANNEL_REMOVE);
+        $this->_canvas->mergeImageLayers(imagick::LAYERMETHOD_FLATTEN);
         
         // ensuite il faut choisir la qualité de compression
         // $white is my image
         // self::THUMBNAIL_SIZE_KO is 150
 
         $quality = 100;
-        $white->setImageFormat('jpg');
-        $white->setImageCompression(Imagick::COMPRESSION_JPEG);
-        $white->setImageCompressionQuality($quality);
-        $data = $white->getImageBlob();
+        $this->_canvas->setImageFormat('jpg');
+        $this->_canvas->setImageCompression(Imagick::COMPRESSION_JPEG);
+        $this->_canvas->setImageCompressionQuality($quality);
+        $data = $this->_canvas->getImageBlob();
         while(strlen($data) > self::THUMBNAIL_SIZE_KO * 1024 && $quality > 0){
             $quality--;
-            $white->setImageCompressionQuality($quality);
-            $data = $white->getImageBlob();
+            $this->_canvas->setImageCompressionQuality($quality);
+            $data = $this->_canvas->getImageBlob();
         }
-
-        $this->_canvas = $white;
+        
+        
         $this->_filename .= '-thumb';
         $this->_extension = 'jpg';
     }
