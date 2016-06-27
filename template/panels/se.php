@@ -534,7 +534,7 @@
                 <div class="input-container large file-preview-wrapper">
                     <div class="file-error"></div>
                     <div class="file-preview-inner-wrapper">
-                        <img src="" alt="Prévisualisation" class="file-preview"/>
+                        <img src="" alt="Prévisualisation" class="file-preview" id="fcm-se-file-preview"/>
                     </div>
                 </div>
 

@@ -535,63 +535,6 @@ Panel.CONTAINER_ELEMENT.on('click', '.fcm-selector-clear-button', function(){
 });
 
 /**
- * Gestion du sélecteur de rareté
- */
-Panel.CONTAINER_ELEMENT.on('click', '#fcm-se-extension-selector .fcm-selector-button', function(){
-    var rarities = getElementPanel($(this)).get().find('#fcm-se-rarity-selector');
-    // Là il s'agit d'ajouter les 5 images de rareté de l'extension sélectionnée
-    rarities.addClass('active');
-    
-    var img;
-    // common
-    img = rarities.find('button[data-value="c"]>img');
-    img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-c.png');
-    // uncommon
-    img = rarities.find('button[data-value="u"]>img');
-    img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-u.png');
-    // rare
-    img = rarities.find('button[data-value="r"]>img');
-    img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-r.png');
-    // mythic
-    img = rarities.find('button[data-value="m"]>img');
-    img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-m.png');
-    // shifted
-    img = rarities.find('button[data-value="s"]>img');
-    img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-s.png');
-    
-    // auto rarity
-    var field = rarities.find('.fcm-selector-field');
-    if(!field.val()){
-        rarities.find('button[data-value="c"]').trigger('click');
-    }
-});
-
-/**
- * Clear symbole d'extension
- */
-Panel.CONTAINER_ELEMENT.on('click', '#fcm-se-clear-button', function(){
-    clearExistingSE(true);
-});
-
-function clearExistingSE(){
-    $('#fcm-se-rarity-selector .fcm-selector-button.active').removeClass('active');
-    $('#fcm-se-rarity-selector').removeClass('active');
-    
-    $('#fcm-se-extension-selector .fcm-selector-button.active').removeClass('active');
-    
-    //hidden fields
-    $('#fcm-field-se-extension').val('');
-    if(rarity){
-        $('#fcm-field-se-rarity').val('');
-    }
-    $('#fcm-field-se-custom').val('');
-    
-    // image
-    $('.fcm-se-preview').removeClass('active');
-    $('.fcm-se-preview').attr('src', '');
-}
-
-/**
  * Télécharge le rendu final
  */
 Panel.CONTAINER_ELEMENT.on('click', '#fcm-download-jpg', function(){

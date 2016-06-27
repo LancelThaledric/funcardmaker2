@@ -158,12 +158,106 @@ ModernBasicBackgroundPanel.prototype.onActivate = function(){
     ModernBasicBackgroundPanel.FORM_CUSTOM_BG_IMAGE = ModernBasicBackgroundPanel.FORM_CUSTOM_BG.find('.file-preview');
     
     ModernBasicBackgroundPanel.BUTTONS_GENERATED_BG.click(function(){
-        console.log('HAHAHAHA');
         ModernBasicBackgroundPanel.FORM_CUSTOM_BG.find('#fcm-file-background').val('');
         ModernBasicBackgroundPanel.FORM_CUSTOM_BG_ERROR.removeClass('active');
         ModernBasicBackgroundPanel.FORM_CUSTOM_BG_IMAGE.removeClass('active');
         ModernBasicBackgroundPanel.FORM_CUSTOM_BG.find('#fcm-field-background-custom').val('');
     });
+}
+
+
+
+
+
+
+function ExtensionSymbolPanel(n, t){
+    Panel.call(this, n, t);
+}
+ExtensionSymbolPanel.prototype = Object.create(Panel.prototype);
+
+ExtensionSymbolPanel.prototype.onActivate = function(){
+    var varthis = this;
+    
+    ExtensionSymbolPanel.RARITY_SELECTOR = $('#fcm-se-rarity-selector');
+    ExtensionSymbolPanel.RARITY_SELECTOR_BUTTONS = ExtensionSymbolPanel.RARITY_SELECTOR.find('.fcm-selector-button');
+    ExtensionSymbolPanel.EXTENSION_SELECTOR = $('#fcm-se-extension-selector');
+    ExtensionSymbolPanel.EXTENSION_SELECTOR_BUTTONS = ExtensionSymbolPanel.EXTENSION_SELECTOR.find('.fcm-selector-button');
+    ExtensionSymbolPanel.SE_CLEAR_BUTTON = $('#fcm-se-clear-button');
+    
+    ExtensionSymbolPanel.FIELD_EXTENSION = $('#fcm-field-se-extension');
+    ExtensionSymbolPanel.FIELD_RARITY = $('#fcm-field-se-rarity');
+    ExtensionSymbolPanel.FIELD_CUSTOM = $('#fcm-field-se-custom');
+    
+    ExtensionSymbolPanel.CUSTOM_PREVIEW = $('#fcm-se-file-preview');
+    ExtensionSymbolPanel.FILE_SELECTOR = $('#fcm-file-se');
+    ExtensionSymbolPanel.UPLOAD_FORM = $('#fcm-form-custom-se');
+    
+    ExtensionSymbolPanel.EXTENSION_SELECTOR_BUTTONS.click(function(){
+        ExtensionSymbolPanel.RARITY_SELECTOR.addClass('active');
+        
+        var img;
+        // common
+        img = ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="c"]>img');
+        img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-c.png');
+        // uncommon
+        img = ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="u"]>img');
+        img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-u.png');
+        // rare
+        img = ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="r"]>img');
+        img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-r.png');
+        // mythic
+        img = ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="m"]>img');
+        img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-m.png');
+        // shifted
+        img = ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="s"]>img');
+        img.attr('src', 'resource/seThumb/'+$(this).data('value')+'-s.png');
+
+        // auto rarity
+        var field = ExtensionSymbolPanel.RARITY_SELECTOR.find('.fcm-selector-field');
+        if(!field.val()){
+            ExtensionSymbolPanel.RARITY_SELECTOR.find('button[data-value="c"]').trigger('click');
+        }
+        
+    });
+    
+    ExtensionSymbolPanel.SE_CLEAR_BUTTON.click(function(){
+        varthis.clearOfficialSE();
+        varthis.clearCustomSE();
+    });
+    
+    ExtensionSymbolPanel.UPLOAD_FORM.on('uploadSuccess', function(){
+        varthis.clearOfficialSE();
+    })
+    
+    ExtensionSymbolPanel.RARITY_SELECTOR_BUTTONS.click(function(){
+        varthis.clearCustomSE();
+    });
+    ExtensionSymbolPanel.EXTENSION_SELECTOR_BUTTONS.click(function(){
+        varthis.clearCustomSE();
+    });
+    
+    
+}
+
+ExtensionSymbolPanel.prototype.clearOfficialSE = function(){
+    // Clear rarity selector
+    ExtensionSymbolPanel.RARITY_SELECTOR_BUTTONS.filter('.active').removeClass('active');
+    ExtensionSymbolPanel.RARITY_SELECTOR.removeClass('active');
+    ExtensionSymbolPanel.EXTENSION_SELECTOR_BUTTONS.filter('.active').removeClass('active');
+
+    // hidden fields
+    ExtensionSymbolPanel.FIELD_EXTENSION.val('');
+    ExtensionSymbolPanel.FIELD_RARITY.val('');
+}
+
+ExtensionSymbolPanel.prototype.clearCustomSE = function(){
+    // image
+    ExtensionSymbolPanel.CUSTOM_PREVIEW.removeClass('active');
+    ExtensionSymbolPanel.CUSTOM_PREVIEW.attr('src', '');
+    ExtensionSymbolPanel.FILE_SELECTOR.val('');
+    
+    // hidden field
+    ExtensionSymbolPanel.FIELD_CUSTOM.val('');
 }
 
 
@@ -197,7 +291,7 @@ existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');
 existingPanels['fe'] = new Panel('fe', 'Force / Endurance');
-existingPanels['se'] = new Panel('se', 'Symbole d\'extension');
+existingPanels['se'] = new ExtensionSymbolPanel('se', 'Symbole d\'extension');
 existingPanels['illus-copy'] = new Panel('illus-copy', 'Illustrateur<br/>Copyright');
 
 

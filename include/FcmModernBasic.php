@@ -10,6 +10,7 @@ require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmIllustrationComponent.php');
 require_once('include/FcmCapaboxComponent.php');
 require_once('include/FcmManaCostComponent.php');
+require_once('include/FcmExtensionSymbolComponent.php');
 
 //* Template Moderne Basique
 
@@ -70,7 +71,8 @@ class FcmModernBasic extends FcmFuncard {
             'type' => new FcmSingleLineComponent($this, 100),
             'illustration' => new FcmIllustrationComponent($this, 100),
             'capabox' => new FcmCapaboxComponent($this, 100),
-            'cm' => new FcmManaCostComponent($this, 100)
+            'cm' => new FcmManaCostComponent($this, 100),
+            'se' => new FcmExtensionSymbolComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -111,6 +113,11 @@ class FcmModernBasic extends FcmFuncard {
                 'shadowx' => -1. / 791. * 100,
                 'shadowy' => 4. / 1107. * 100,
                 'largeManaOffset' => -4. / 1107. * 100
+            ],
+            'se' =>[
+                'x' => 718. / 791. * 100,
+                'y' => 630. / 1107. * 100,
+                'h' => 44. / 1107. * 100
             ]
         ];
     }
@@ -142,6 +149,10 @@ class FcmModernBasic extends FcmFuncard {
         $this->updateParameter('capabox', 'textta', $this->getField('ta'));
         // Mana cost
         $this->updateParameter('cm', 'text', $this->getField('cm'));
+        // Extension symbol
+        $this->updateParameter('se', 'name', $this->getField('se-extension'));
+        $this->updateParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->updateParameter('se', 'file', $this->getField('se-custom'));
     }
     
     //* Dernières vérificatiosn avant l'inition
