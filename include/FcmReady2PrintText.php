@@ -172,7 +172,7 @@ class FcmReady2PrintText{
     private function renderNugget($i){
         //var_dump($this->_nuggets[$i]);
         //var_dump($this->_charMetrics);
-        $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor, $this);
+        $this->_nuggets[$i]->render($this->_imagick, $this->_imagickdraw, $this->_cursor, $this, $this->_charMetrics);
         $coords = $this->_nuggets[$i]->getCursorUpdates($this->_imagick,
                                                         $this->_imagickdraw,
                                                         $this->_charMetrics,

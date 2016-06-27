@@ -36,7 +36,7 @@ abstract class FcmAbstractTextNugget{
      * Génère les coordonnées X / Y à appliquer au cursor lors du rendu de la nugget
      */
     public abstract function getCursorUpdates($imagick, $draw, $metrics, $cursor);
-    public abstract function render($imagick, &$draw, &$cursor, &$ready2Print);
+    public abstract function render($imagick, &$draw, &$cursor, $ready2Print, $metrics);
     
 }
 
@@ -63,7 +63,7 @@ class FcmTextNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         // On dessine le texte!
         $imagick->annotateImage($draw,
                                 $cursor->x,
@@ -207,9 +207,8 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         return $ret;
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         //var_dump($this);
-        $metrics = $ready2Print->getCharMetrics();
         //var_dump($metrics);
         $tmpcur = [
             'x' => 0,
@@ -288,7 +287,7 @@ class FcmNewLineNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         // Nothing
     }
     
@@ -308,7 +307,7 @@ class FcmNewParagraphNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         // Nothing
     }
     
@@ -329,7 +328,7 @@ class FcmNewSectionNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         // Nothing
     }
     
@@ -350,7 +349,7 @@ class FcmBeginItalicNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         $ready2Print->setItalicMode(true);
     }
     
@@ -371,7 +370,7 @@ class FcmEndItalicNugget extends FcmAbstractTextNugget{
         ];
     }
     
-    public function render($imagick, &$draw, &$cursor, &$ready2Print){
+    public function render($imagick, &$draw, &$cursor, $ready2Print, $metrics){
         $ready2Print->setItalicMode(false);
     }
     
