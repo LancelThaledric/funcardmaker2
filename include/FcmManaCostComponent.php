@@ -12,6 +12,7 @@ require_once('include/FcmFuncardComponent.php');
  * - text : unparsed manas to display
  * - shadowx : x offset of shadow
  * - shadowy : y offset of shadow
+ * - largeManaOffset : y offset if there is large manas
  */
 
 class FcmManaCostComponent extends FcmFuncardComponent {
@@ -36,10 +37,16 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         
         self::$draw->push();
         
+        
         $cursor = new FcmTextCursor();
         $cursor->y = $this->_metrics['ascender'] + self::EXTERNAL_PADDING;
-        
+        // On calcule le rendu
         $this->_nugget->render($this->_imagick, self::$draw, $cursor, null, $this->_metrics); // 4e paramètre inutile pour du rendu de mana
+        
+        // Si le CM contient de gros manas, alors il doit être légèrement décalé
+        $yoffset = 0;
+        if($this->_nugget->hasLargeManas())
+            $yoffset += $this->getFuncard()->xc($this->getParameter('largeManaOffset'));
         
         // On calcule et on plaque l'ombre
         $this->_imagickShadow = clone $this->_imagick;
@@ -48,14 +55,14 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         $this->getFuncard()->getCanvas()->compositeImage(
             $this->_imagickShadow, Imagick::COMPOSITE_OVER,
             $this->getFuncard()->xc($this->getParameter('x')) - $this->_width + $this->getFuncard()->xc($this->getParameter('shadowx')),
-            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING + $this->getFuncard()->xc($this->getParameter('shadowy'))
+            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING + $yoffset + $this->getFuncard()->xc($this->getParameter('shadowy'))
         );
         
         // On plaque le rendu sur l'image de la funcard
         $this->getFuncard()->getCanvas()->compositeImage(
             $this->_imagick, Imagick::COMPOSITE_OVER,
             $this->getFuncard()->xc($this->getParameter('x')) - $this->_width,
-            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING
+            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING + $yoffset
         );
         
         self::$draw->pop();
@@ -70,8 +77,10 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         self::$draw->setFont(self::$fontManager->getFont('mplantin'));
         self::$draw->setFontSize($this->getFuncard()->fsc($this->getParameter('size')));
         
+        // On va utiliser le code des Nuggets de type ManaNugget pour gérer le CM
         $this->_nugget = new FcmManaNugget($this->getParameter('text'));
         
+        // Il faut calculer la largeur pour aligner le CM à droite.
         $this->computeWidth();
         if($this->_width == 0) return;
         

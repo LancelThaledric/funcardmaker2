@@ -259,6 +259,10 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         return preg_match(self::$largeManaRegex, $text);
     }
     
+    public function hasLargeManas(){
+        return self::isLargeMana($this->_text);
+    }
+    
     public static function isExistingMana($text){
         return isset(self::$existingManas[$text]);
     }
