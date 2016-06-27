@@ -65,10 +65,13 @@ abstract class FcmFuncardComponent {
     //* Liste d'écoute - Tous les noms de paramètres à checker les changements depuis les autres paramètres
     private $_listenlist;
     //* Retourne si le component écoute le paramètre
-    public function listens($name) { return in_array($name, $this->_listenlist); }
+    public function listens($name) {
+        return in_array($name, $this->_listenlist);
+    }
     //* Fait écouter le paramètre
     public function listen($name) {
-        if(!$this->listens($name)) $_listenlist[] = $name;
+        if(!$this->listens($name)) $this->_listenlist[] = $name;
+        //var_dump($this->_listenlist);
     } 
     
     //* Configure le component son l'application

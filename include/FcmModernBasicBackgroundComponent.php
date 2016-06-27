@@ -79,9 +79,21 @@ class FcmModernBasicBackgroundComponent extends FcmBackgroundComponent {
         elseif($edging) $ret = substr($this->getParameter('edging-color'), -1, 1);
         else $ret = substr($this->getParameter('base-color'), -1, 1);
         
-        return [
-            'fe' => ['febox-color' => $ret]
+        $ret = [
+            'fe' => ['febox-color' => $ret],
         ];
+        
+        // Re-dernière étape, il faut calculer la couleur de l'illustrateur
+        
+        $base_letter = $this->getParameter('base-color');
+        if($base_letter == 'b' || $base_letter == 'l'){
+            $ret['illus'] = [
+                'color' => 'white',
+                'altcolor' => 'black'
+            ];
+        }
+        
+        return $ret;
         
     }
     

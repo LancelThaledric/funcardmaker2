@@ -11,6 +11,7 @@ require_once('include/FcmIllustrationComponent.php');
 require_once('include/FcmCapaboxComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
+require_once('include/FcmIllustratorComponent.php');
 
 //* Template Moderne Basique
 
@@ -72,7 +73,8 @@ class FcmModernBasic extends FcmFuncard {
             'illustration' => new FcmIllustrationComponent($this, 100),
             'capabox' => new FcmCapaboxComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 100),
-            'se' => new FcmExtensionSymbolComponent($this, 100)
+            'se' => new FcmExtensionSymbolComponent($this, 100),
+            'illus' => new FcmIllustratorComponent($this, 200)
         ];
         
         // Gestion du fond
@@ -114,10 +116,18 @@ class FcmModernBasic extends FcmFuncard {
                 'shadowy' => 4. / 1107. * 100,
                 'largeManaOffset' => -4. / 1107. * 100
             ],
-            'se' =>[
+            'se' => [
                 'x' => 718. / 791. * 100,
                 'y' => 630. / 1107. * 100,
                 'h' => 44. / 1107. * 100
+            ],
+            'illus' => [
+                'x' => 124. / 791. * 100,
+                'y' => 1034. / 1107. * 100,
+                'brushx' => 65. / 791. * 100,
+                'brushy' => 1035. / 1107. * 100,
+                'size' => 29. / 36.,
+                'brushsize' => 26. / 36.
             ]
         ];
     }
@@ -125,6 +135,8 @@ class FcmModernBasic extends FcmFuncard {
     //* Liste d'écoute
     public function initListeningList(){
         // TODO liste d'écoute pour les cartes modern-basic
+        $this->_components['illus']->listen('color');
+        $this->_components['illus']->listen('altcolor');
     }
     
     //* Envoie les champs aux components
@@ -153,6 +165,8 @@ class FcmModernBasic extends FcmFuncard {
         $this->updateParameter('se', 'name', $this->getField('se-extension'));
         $this->updateParameter('se', 'rarity', $this->getField('se-rarity'));
         $this->updateParameter('se', 'file', $this->getField('se-custom'));
+        // Illustrator
+        $this->updateParameter('illus', 'text', $this->getField('illustrator'));
     }
     
     //* Dernières vérificatiosn avant l'inition

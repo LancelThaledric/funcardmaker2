@@ -109,10 +109,15 @@ abstract class FcmFuncard extends FcmFcRender{
         if(isset($options) && $options){
             if(!is_array($options)) return;
             
+            //var_dump($options);
+            
             foreach($options as $comp => $array){
                 foreach($array as $key => $value){
-                    if($this->getComponent($comp) && $this->getComponent($comp)->listens($key))
+                    //var_dump('check '.$comp.' '.$key);
+                    if($this->getComponent($comp) !== null && $this->getComponent($comp)->listens($key)){
                         $this->setParameter($comp, $key, $value);
+                        //var_dump('set '.$comp.' '.$key);
+                    }
                 }
             }
         }
@@ -147,7 +152,7 @@ abstract class FcmFuncard extends FcmFcRender{
     //* Effectue un rendu de la funcard : appelle un à un les différents components
     public function render(){
         // 1 On trie les components par ordre de priorité
-        usort($this->_components, 'FcmFuncardComponent::compare');
+        uasort($this->_components, 'FcmFuncardComponent::compare');
         
         // 2 On les applique un à un
         foreach ($this->_components as $name => $component){
