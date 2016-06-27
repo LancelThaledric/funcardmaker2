@@ -12,6 +12,7 @@ require_once('include/FcmCapaboxComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmIllustratorComponent.php');
+require_once('include/FcmModernBasicFEBoxComponent.php');
 
 //* Template Moderne Basique
 
@@ -76,7 +77,8 @@ class FcmModernBasic extends FcmFuncard {
             'se' => new FcmExtensionSymbolComponent($this, 100),
             
             'illus' => new FcmIllustratorComponent($this, 200),
-            'copyright' => new FcmSingleLineComponent($this, 200)
+            'copyright' => new FcmSingleLineComponent($this, 200),
+            'fe' => new FcmModernBasicFEBoxComponent($this, 200)
         ];
         
         // Gestion du fond
@@ -136,6 +138,16 @@ class FcmModernBasic extends FcmFuncard {
                 'y' => (1057. / 1107.) * 100,
                 'size' => 18. / 36.,
                 'font' => 'mplantin'
+            ],
+            'fe' => [
+                'x' => 570. / 791. * 100,
+                'y' => 973. / 1107. * 100,
+                'w' => 173. / 791. * 100,
+                'h' => 93. / 1107. * 100,
+                'textx' => 588. / 791. * 100,
+                'texty' => 981. / 1107. * 100,
+                'textw' => 145. / 791. * 100,
+                'texth' => 60. / 1107. * 100
             ]
         ];
     }
@@ -146,6 +158,7 @@ class FcmModernBasic extends FcmFuncard {
         $this->_components['illus']->listen('color');
         $this->_components['illus']->listen('altcolor');
         $this->_components['copyright']->listen('color');
+        $this->_components['fe']->listen('color');
     }
     
     //* Envoie les champs aux components
@@ -178,6 +191,8 @@ class FcmModernBasic extends FcmFuncard {
         $this->updateParameter('illus', 'text', $this->getField('illustrator'));
         // Copyright
         $this->updateParameter('copyright', 'text', $this->getField('copyright'));
+        // F/E
+        $this->updateParameter('fe', 'text', $this->getField('fe'));
     }
     
     //* Dernières vérificatiosn avant l'inition

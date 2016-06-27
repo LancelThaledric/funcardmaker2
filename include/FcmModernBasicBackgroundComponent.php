@@ -80,7 +80,7 @@ class FcmModernBasicBackgroundComponent extends FcmBackgroundComponent {
         else $ret = substr($this->getParameter('base-color'), -1, 1);
         
         $ret = [
-            'fe' => ['febox-color' => $ret],
+            'fe' => ['color' => $ret]
         ];
         
         // Re-dernière étape, il faut calculer la couleur de l'illustrateur
