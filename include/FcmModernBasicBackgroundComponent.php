@@ -91,6 +91,9 @@ class FcmModernBasicBackgroundComponent extends FcmBackgroundComponent {
                 'color' => 'white',
                 'altcolor' => 'black'
             ];
+            $ret['copyright'] = [
+                'color' => 'white',
+            ];
         }
         
         return $ret;

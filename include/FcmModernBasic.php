@@ -74,7 +74,9 @@ class FcmModernBasic extends FcmFuncard {
             'capabox' => new FcmCapaboxComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 100),
             'se' => new FcmExtensionSymbolComponent($this, 100),
-            'illus' => new FcmIllustratorComponent($this, 200)
+            
+            'illus' => new FcmIllustratorComponent($this, 200),
+            'copyright' => new FcmSingleLineComponent($this, 200)
         ];
         
         // Gestion du fond
@@ -128,6 +130,12 @@ class FcmModernBasic extends FcmFuncard {
                 'brushy' => 1035. / 1107. * 100,
                 'size' => 29. / 36.,
                 'brushsize' => 26. / 36.
+            ],
+            'copyright' => [
+                'x' => (67. / 791.) * 100,
+                'y' => (1057. / 1107.) * 100,
+                'size' => 18. / 36.,
+                'font' => 'mplantin'
             ]
         ];
     }
@@ -137,6 +145,7 @@ class FcmModernBasic extends FcmFuncard {
         // TODO liste d'écoute pour les cartes modern-basic
         $this->_components['illus']->listen('color');
         $this->_components['illus']->listen('altcolor');
+        $this->_components['copyright']->listen('color');
     }
     
     //* Envoie les champs aux components
@@ -167,6 +176,8 @@ class FcmModernBasic extends FcmFuncard {
         $this->updateParameter('se', 'file', $this->getField('se-custom'));
         // Illustrator
         $this->updateParameter('illus', 'text', $this->getField('illustrator'));
+        // Copyright
+        $this->updateParameter('copyright', 'text', $this->getField('copyright'));
     }
     
     //* Dernières vérificatiosn avant l'inition
