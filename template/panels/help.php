@@ -24,6 +24,10 @@
             La fonctionnalité d'import / export vous permet de sauvegarder votre travail sur le SMF Funcard Maker 2 dans un fichier *.json.<br/>
             Vous pouvez ainsi charger ce fichier et retrouver vos données pré-complétées pour continuer votre travail.
         </p>
+        <p>
+            Les ressources que vous uploadez sur le SMF Funcard Maker 2 sont effacées tous les jours à minuit afin de ne pas engorger les serveurs.<br/>
+            Il est donc possible que vous ayez à réuploader vos ressources après un import.
+        </p>
     </div>
     
     <h3 class="lined">Hébergement</h3>
@@ -136,14 +140,39 @@
             Comment ça ? Vous avez trouvé un BUG ?! Fichtre... ಠ╭╮ಠ<br/>
             Un logiciel sans bugs ça n'existe pas ! Merci de bien vouloir vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas de m'indiquer comment reproduire le bug !
         </p>
+        <p>
+            <i>(Pensez aussi à regarder si quelqu'un n'a pas déjà déposé un ticket pour ce bug...)</i>
+        </p>
     </div>
     
     <h3 class="help-title">Suggestions de fonctionnalités</h3>
     <div class="help-paragraph">
         <p>
-            Vous aimez tellement le SMF Funcard Maker 2, mais il lui manque toutefois quelque chose...
+            Vous aimez tellement le SMF Funcard Maker 2, mais vous trouvez qu'il lui manque toutefois quelque chose...
             Vous pouvez vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> (grâce à ce lien ou à celui dans le menu tout en haut), puis cliquez sur "Create Issue" à droite. N'oubliez pas d'indiquer le type d'issue (&laquo; enhancement &raquo; pour une suggestion, car tout est en anglais).
         </p>
     </div>
+    
+    <h3 class="help-title">Il y a une faute d'orthographe, là.</h3>
+    <div class="help-paragraph">
+        <p>
+            Cher Vognar, avec toute la quantité de texte que contient le SMF Funcard Maker 2, il se peut aisément que j'aie laissé par ci par là une ou deux coquilles orthographiques.<br/>
+            Je te suggère de te rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a>
+            (grâce à ce lien ou à celui dans le menu tout en haut), puis de cliquer sur "Create Issue" à droite.<br/>
+            N'oublie pas d'indiquer le type d'issue (Il n'y a pas vraiment de type spécial pour les erreurs de type orthographique... Tu as le droit d'utiliser le type &laquo; bug &raquo;, mais c'est bien parce que c'est toi).
+        </p>
+        <p>
+            Il se peut que vous ne soyez pas Vognar. Le cas échéant, je vous suggère de vous rendre sur le <a href="https://bitbucket.org/Thaledric/funcardmaker2/issues?status=new&status=open" title="Aller sur le Bug Tracker" target="_blank">Bug Tracker</a> afin d'effectuer la démarche de déposition de ticket de bug, comme si vous étiez Vognar, mais sans que vous ne le soyez réellement.
+        </p>
+        <p>
+            Qui que vous soyez, je vous remercie de m'aider à améliorer le SMF Funcard Maker 2 jusque dans ses détails les plus fins.
+        </p>
+    </div>
+    
+    <h3 class="lined">Tout ce qui est écrit ici ne m'aide pas vraiment...</h3>
+    <p>
+        Cette page d'aide ne vous aide pas assez ?<br/>
+        Si la réponse à votre problème ne se situe pas sur cette page, je vous invite à aller poster un message sur le forum de la SMF, dans ce sujet dédié au SMF Funcard Maker 2 (aussi accessible grâce au menu en haut).<br/>
+    </p>
     
 </section>

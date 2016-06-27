@@ -24,7 +24,7 @@
 
     <h3>Icones</h3>
     <p>
-        Font Awesome by Dave Gandy - <a href="http://fontawesome.io">http://fontawesome.io</a>
+        Font Awesome by Dave Gandy - <a href="http://fontawesome.io" target="_blank">http://fontawesome.io</a>
     </p>
     
     <h3 class="lined">Technologie</h3>
@@ -40,6 +40,6 @@
         Merci aussi à Wizard of the Coast pour avoir réalisé Magic: The Gathering.
     </p>
     <p>
-        Bravo et merci à <a href="http://eldarzakirov.deviantart.com/" title="Page DeviantArt de Eldar Zakirov">Eldar Zakirov</a> pour ses magnifiques illustrations. C'est lui l'auteur de l'image que j'utilise comme avatar.
+        Bravo et merci à <a href="http://eldarzakirov.deviantart.com/" title="Page DeviantArt de Eldar Zakirov" target="_blank">Eldar Zakirov</a> pour ses magnifiques illustrations. C'est lui l'auteur de l'image que j'utilise comme avatar.
     </p>
 </section>
