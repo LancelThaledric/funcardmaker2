@@ -21,6 +21,9 @@
     <h3 class="help-title">Import / Export</h3>
     <div class="help-paragraph">
         <p>
+            <em>Les fonctionnalités d'import/export ne sont pas encore disponibles.</em>
+        </p>
+        <p>
             La fonctionnalité d'import / export vous permet de sauvegarder votre travail sur le SMF Funcard Maker 2 dans un fichier *.json.<br/>
             Vous pouvez ainsi charger ce fichier et retrouver vos données pré-complétées pour continuer votre travail.
         </p>
