@@ -247,7 +247,13 @@ class FcmManaNugget extends FcmAbstractTextNugget{
                 $manaImage->resizeImage(0, $size, Imagick::FILTER_LANCZOS, 1);
                 $yoffset = (int)($metrics['characterHeight'] * self::SMALL_MANA_TOPLINE);
                 $xoffset = (int)($metrics['characterHeight'] * ( self::SMALL_MANA_EFFECTIVE_WIDTH - self::SMALL_MANA_RATIO) / 2);
-                $advance = (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH);
+                
+                if(self::isHundred($mana))
+                    $advance = (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH + ($metrics['characterHeight'] * self::HUNDRED_ADDITIONNAL_SIZE * self::SMALL_MANA_RATIO));
+                elseif(self::isMillion($mana))
+                    $advance = (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH + ($metrics['characterHeight'] * self::MILLION_ADDITIONNAL_SIZE * self::SMALL_MANA_RATIO));
+                else
+                    $advance = (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH);
             }
             
             $imagick->compositeImage(
