@@ -5,7 +5,7 @@
     <ul class="fcm-template-menu" id="fcm-template-menu">
     </ul>
     <ul>
-        <li><a href="#" data-panel="import-export"><i class="fa fa-exchange fa-fw"></i>&nbsp; Import / Export</a></li>
+        <!--<li><a href="#" data-panel="import-export"><i class="fa fa-exchange fa-fw"></i>&nbsp; Import / Export</a></li>-->
         <li class="fcm-menu-item-large">
             <a href="#" id="fcm-done" data-panel="done">
                 <i class="fa fa-check"></i>

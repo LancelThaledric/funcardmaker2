@@ -623,6 +623,15 @@ h1 .betabox{
 .fcm-panel>form>p,
 .fcm-panel>form>.input-container,
 
+.fcm-panel-section>h2,
+.fcm-panel-section>h3,
+.fcm-panel-section>p,
+.fcm-panel-section>.input-container,
+.fcm-panel-section>form>h2,
+.fcm-panel-section>form>h3,
+.fcm-panel-section>form>p,
+.fcm-panel-section>form>.input-container,
+
 .fcm-columns>*>h2,
 .fcm-columns>*>h3,
 .fcm-columns>*>p,
@@ -634,6 +643,17 @@ h1 .betabox{
 
 .input-container.margin{
     margin: 2rem;
+}
+
+.fcm-panel-section{
+    overflow: auto;
+}
+
+.narrowp{
+    max-width: 60rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: justify;
 }
 
 /*============================================================================================================== */
@@ -1171,6 +1191,21 @@ label.large{
 }
 .warning-template-changes.active{
     display: block;
+}
+
+/* Home ---------------------------------------------------------------------------- */
+
+.home-title{
+    text-align: center;
+    font-size: 2em;
+}
+
+.center{
+    text-align: center;
+}
+
+#fcm-panel-home p{
+    line-height: 1.6em;
 }
 
 /*============================================================================================================== */
