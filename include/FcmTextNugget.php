@@ -179,6 +179,12 @@ class FcmManaNugget extends FcmAbstractTextNugget{
      */
     const SMALL_MANA_EFFECTIVE_WIDTH = 0.875;
     const LARGE_MANA_EFFECTIVE_WIDTH = 1.035;
+    /**
+     * Les deux constantes ci-dessous rajoutent de la longueur aux manas non-ronds.
+     * La longueur additionnelle sera ajoutée à la longueur de base et est exprimée en ratio de taille de police.
+     */
+    const HUNDRED_ADDITIONNAL_SIZE = 0.88; // 176. / 200.
+    const MILLION_ADDITIONNAL_SIZE = 4.08; // 816. / 200.
     
     private $_text; // texte brut
     private $_manas; // texte parsé en array de manas
@@ -200,6 +206,10 @@ class FcmManaNugget extends FcmAbstractTextNugget{
             if(self::isBraces($mana)) continue;
             if(self::isLargeMana($mana))
                 $ret['x'] += (int)($metrics['characterHeight'] * self::LARGE_MANA_EFFECTIVE_WIDTH);
+            elseif(self::isHundred($mana))
+                $ret['x'] += (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH + ($metrics['characterHeight'] * self::HUNDRED_ADDITIONNAL_SIZE * self::SMALL_MANA_RATIO));
+            elseif(self::isMillion($mana))
+                $ret['x'] += (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH + ($metrics['characterHeight'] * self::MILLION_ADDITIONNAL_SIZE * self::SMALL_MANA_RATIO));
             else
                 $ret['x'] += (int)($metrics['characterHeight'] * self::SMALL_MANA_EFFECTIVE_WIDTH);
         }
@@ -261,6 +271,14 @@ class FcmManaNugget extends FcmAbstractTextNugget{
     
     public function hasLargeManas(){
         return self::isLargeMana($this->_text);
+    }
+    
+    public static function isHundred($text){
+        return $text == '100';
+    }
+    
+    public static function isMillion($text){
+        return $text == '1000000';
     }
     
     public static function isExistingMana($text){
