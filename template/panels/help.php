@@ -83,7 +83,7 @@
             Une fois que vous avez chargé votre illustration, elle s'affiche en dessous et vous avez la possibilité de la recadrer.
             Faites glisser un des bords ou un des coins du rectangle en pointillés.<br/>
             Le bouton &laquo; Centrer &raquo; réinitialise le cadre en le centrant et couvrant un maximum l'illustration.<br/>
-            Ce cadre vous garantit que votre illustration ne sera pas déformée si elle n'est n'a pas le même rapport largeur/hauteur qu'une illustration de carte Magic.
+            Ce cadre vous garantit que votre illustration ne sera pas déformée si elle n'a pas le même rapport largeur/hauteur qu'une illustration de carte Magic.
         </p>
     </div>
     
@@ -132,6 +132,24 @@
         </p>
         <p>
             Si vous voulez insérer un autre caractère spécial, il vous faudra le copier manuellement dans le champ en question. Cependant il se peut que ce caractère ne soit pas présent dans la police de caractères, faites donc attention.
+        </p>
+    </div>
+    
+    <h3 class="lined">Symboles d'édition</h3>
+    
+    <h3 class="help-title">Le Symbole d'Édition que ne souhaite utiliser n'est pas dans la liste</h3>
+    <div class="help-paragraph">
+        <p>
+            Les symboles d'édition les plus récents ne sont pas encore disponibles. Vous pouvez cependant tenter de le trouver quelque part sur le web et l'utiliser comme SE perso.
+        </p>
+    </div>
+    
+    <h3 class="help-title">Comment créer un Symbole d'Édition personnalisé ?</h3>
+    <div class="help-paragraph">
+        <p>
+            Il vous faudra vous munir d'un logiciel d'édition d'image comme Gimp ou Photoshop.<br/>
+            Une fois la forme de votre symbole tracée, il vous suffira de lui appliquer un contour et un dégradé afin de le faire ressembler à un véritable Symbole d'Édition.<br/>
+            Les couleurs utilisées pour les dégradés sont données dans les bases graphiques pour Gimp et Photoshop.
         </p>
     </div>
     
