@@ -22,9 +22,15 @@
                 <div class="fcm-preview-loading-icon"></div>
             </div>
         </div>
+        
+        <div class="fcm-preview-generation-time">
+            
+        </div>
+        
         <div class="fcm-preview-debug">
             
         </div>
+        
     </section>
     <div class="loading-wrapper">
         <div class="loading-icon"></div>

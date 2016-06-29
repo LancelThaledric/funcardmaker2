@@ -581,6 +581,14 @@ h1 .betabox{
     word-wrap: break-word;
     word-break: break-all;
 }
+.fcm-preview-generation-time{
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    text-align: center;
+    color: #aaa;
+    margin: 1rem;
+}
 
 
 /* Panels --------------------------------------------------------------------------------------------- */

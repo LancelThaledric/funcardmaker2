@@ -25,17 +25,31 @@ if(isset($_POST['method']) && !empty($_POST['method'])){
     }
 }
 
+$time = microtime(true);
+
 $funcard = new $all_types[$templateName]($_POST);
 $funcard->computeFilename();
 $funcard->filenameSpecialChars();
 
 $result = $funcard->render($method);
 
+$time = microtime(true) - $time;
+
+
 if(DEBUG) exit();
 
 if($method=='json'){
-    $image_b64 = base64_encode($result); 
-    echo $image_b64;
+    $image_b64 = base64_encode($result);
+    
+    $array = [
+        'image' => $image_b64,
+        'generationTime' => $time,
+        'width' => $funcard->getWidth(),
+        'height' => $funcard->getHeight()
+    ];
+    $output = json_readable_encode($array);
+    header('Content-Type: text/json; charset=utf-8');
+    echo $output;
 } elseif ($method=='download') {
     $computedname = $funcard->getFilename();
     header('Content-Type: image/png');

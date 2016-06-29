@@ -22,8 +22,7 @@ function ModernBasicTemplate(){
         existingPanels['illus-copy']
     ];
     
-    this.width = 791;
-    this.height = 1107;
+    this.resetSize();
     /*this.width = Math.floor(791./2.);
     this.height = Math.floor(1107./2.);*/
     this.illusWidth = 651;
@@ -31,5 +30,10 @@ function ModernBasicTemplate(){
     
 }
 ModernBasicTemplate.prototype = Object.create(Funcard.prototype);
+
+ModernBasicTemplate.prototype.resetSize = function(){
+    this.width = 791;
+    this.height = 1107;
+}
 
 existingTemplates['modern-basic'] = new ModernBasicTemplate();

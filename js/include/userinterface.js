@@ -11,6 +11,7 @@ var preview = $('.fcm-preview');
 var previewImage = $('.fcm-preview-image');
 var previewReloder = $('#fcm-preview-reload');
 var previewDebug = $('.fcm-preview-debug');
+var previewTime = $('.fcm-preview-generation-time');
 
 // focus element
 var focusElement = null;
@@ -193,9 +194,11 @@ function updatePreview(){
     
     updateFields(myFuncard);
     
+    myFuncard.resetSize();
+    
     showPreviewLoading();
-    preview.css('width', myFuncard.width);
-    preview.css('height', myFuncard.height);
+    //preview.css('width', myFuncard.width);
+    //preview.css('height', myFuncard.height);
     // CALL THE GENERATION !!!! HELL YEAH !!!!
     $.post( "generate.php", {
         //  Data to send to the generation algorithm
@@ -209,9 +212,16 @@ function updatePreview(){
         // success function
         if(DEBUG){
             previewDebug.html(data);
+        } else {
+            console.log(data);
+            preview.removeClass('nocard');
+            previewImage.css('background-image', 'url(data:image/png;base64,'+data.image+')');
+            previewTime.html('Généré en ' + data.generationTime.toFixed(3) + ' secondes.');
+            myFuncard.width = data.width;
+            myFuncard.height = data.height;
+            preview.css('width', myFuncard.width);
+            preview.css('height', myFuncard.height);
         }
-        preview.removeClass('nocard');
-        previewImage.css('background-image', 'url(data:image/png;base64,'+data+')');
         
     })
     .fail(function() {
