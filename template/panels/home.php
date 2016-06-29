@@ -1,5 +1,7 @@
 <section class="fcm-panel" id="fcm-panel-home">
-    <h2 class="home-title">Bienvenue sur le SMF Funcard Maker 2 !</h2>
+    <h2 class="home-title">Bienvenue sur le<br/>
+        <img src="design/img/title-small.png" alt="SMF Funcard Maker 2"/>
+    </h2>
     <p class="center">
         Enfin un outil flambant neuf pour créer facilement de belles funcards en HD !
     </p>

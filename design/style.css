@@ -1200,6 +1200,11 @@ label.large{
     font-size: 2em;
 }
 
+.home-title img{
+    display: inline-block;
+    margin-top: 1rem;
+}
+
 .center{
     text-align: center;
 }
