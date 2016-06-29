@@ -548,7 +548,10 @@ Panel.CONTAINER_ELEMENT.on('click', '.fcm-selector-clear-button', function(){
  * Télécharge le rendu final
  */
 Panel.CONTAINER_ELEMENT.on('click', '#fcm-download-jpg', function(){
-    if(!myFuncard) return;
+    if(!myFuncard){
+        alert('Vous ne voudriez pas créer une funcard, d\'abord ?');
+        return;
+    }
     
     updateFields(myFuncard);
     // CALL THE GENERATION !!!! HELL YEAH !!!!
@@ -565,7 +568,10 @@ Panel.CONTAINER_ELEMENT.on('click', '#fcm-download-jpg', function(){
 });
 
 Panel.CONTAINER_ELEMENT.on('click', '#fcm-download', function(){
-    if(!myFuncard) return;
+    if(!myFuncard){
+        alert('Vous ne voudriez pas créer une funcard, d\'abord ?');
+        return;
+    }
     
     updateFields(myFuncard);
     // CALL THE GENERATION !!!! HELL YEAH !!!!
