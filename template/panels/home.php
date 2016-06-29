@@ -14,13 +14,13 @@
             Il vous offrira un rendu Haute-Définition de votre funcard, ainsi qu'une version réduite, prête-à-poster sur le site de la SMF.
         </p>
         <p class="center"><strong>
-            Pour commencer, cliquer le bouton &laquo; Nouvelle carte &raquo; en haut, puis choisissez un Template.<br/>
+            Pour commencer à créer votre funcard, cliquer le bouton &laquo; Nouvelle carte &raquo; en haut, puis choisissez un Template.<br/>
         </strong></p>
     </div>
     
     
     <p class="narrowp">
-        Le SMF Funcard Maker 2 a pour ambition de porter les différentes bases graphiques pour Gimp et Photoshop sur une interface web, plus ergonomique, et accessible à tous.
+        Le SMF Funcard Maker 2 a pour ambition de porter les différentes bases graphiques pour Gimp et Photoshop sur une interface web, plus ergonomique et accessible à tous.
         Pour le moment très peu de Templates sont disponibles, mais d'autres s'ajouteront au fil du temps, et toujours en HD !
     </p>
     
@@ -32,7 +32,7 @@
         </p>
         <p class="narrowp">
             Si ce domaine vous intéresse, toute la communauté de funcardeurs vous recommande d'ouvrir Gimp ou Photoshop, de télécharger les bases graphiques et de vous lancer dans l'art de la funcard.
-            De nombreux tutoriels sont disponibles sur le web, et de nombreux tutoriels sont à venir à la Secte des Magiciens Fous.
+            De nombreux tutoriels sont disponibles sur le web, et de nombreux tutoriels sont à venir sur la Secte des Magiciens Fous.
         </p>
         <p class="narrowp">
             N'oubliez pas non plus que de nombreux funcardeurs sont prêts à vous aider pour la réalisation de vos funcards, que soit pour la partie graphique comme pour la formulation.
@@ -56,7 +56,7 @@
     
     <div class="fcm-panel-section" style="background:url('design/img/chandra.jpg') fixed; background-size:cover; text-shadow:#c74141 0px 0px 2px, #c74141 0px 0px 2px; border-top:solid 1px rgba(255,255,255,0.3);">
         <p class="center">
-            <em>&laquo; J'ai essayé le SMF Funcard Maker 2, et je dois avouer que ça fonctionne du feu de Dieu ! &raquo;</em><br/>
+            <em>&laquo; J'ai essayé le SMF Funcard Maker 2, et je dois avouer que ça marche du feu de Dieu ! &raquo;</em><br/>
             — Chandra Nalaàr
         </p>
     </div>

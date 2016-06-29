@@ -4,7 +4,7 @@
         Voici quelques outils qui pourraient vous aider dans la création de vos funcards
     </p>
     
-    <h3>SMF Slimcard</h3>
+    <h3>SMF Slimcard 2</h3>
     <p>
         SMF Slimcard vous permet de créer une miniature de votre funcard afin de la rendre assez petite pour pouvoir la poster sur le site de la SMF.
         Quand vous créez une funcard grâce au SMF Funcard Maker 2, vous pouvez enregistrer une version réduite de 150ko. Il s'agit du même procédé.
