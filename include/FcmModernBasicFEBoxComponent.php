@@ -91,7 +91,7 @@ class FcmModernBasicFEBoxComponent extends FcmFuncardComponent {
         $febox->newImage(
             $this->getFuncard()->xc($this->getParameter('textw')),
             $this->getFuncard()->yc($this->getParameter('texth')),
-            'transparent'
+            'transparent', 'miff'
         );
         
         // On découpe le texte (Hé oui, il faut gérer le cas des fucking étoiles...)

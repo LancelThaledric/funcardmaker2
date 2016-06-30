@@ -159,6 +159,7 @@ abstract class FcmFuncard extends FcmFcRender{
             $this->applyComponent($name);
         }
         
+        $this->getCanvas()->setImageFormat('png');
         return $this->getCanvas();
     }
     

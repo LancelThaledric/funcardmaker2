@@ -117,7 +117,7 @@ class FcmFcRender {
     public function init(){
         if($this->_canvas == null){
             $this->_canvas = new Imagick();
-            $this->_canvas->newImage($this->_width, $this->_height, 'transparent', 'png');
+            $this->_canvas->newImage($this->_width, $this->_height, 'transparent', 'miff');
             $this->_filename = 'image';
             $this->_extension = 'png';
         }
@@ -159,7 +159,7 @@ class FcmFcRender {
     //* Crée une image vierge de la taille du rendu, appelé un "calque"
     public function createLayer($fill = 'transparent'){
         $layer = new Imagick();
-        $layer->newImage($this->_width, $this->_height, $fill, 'png');
+        $layer->newImage($this->_width, $this->_height, $fill, 'miff');
         return $layer;
     }
     

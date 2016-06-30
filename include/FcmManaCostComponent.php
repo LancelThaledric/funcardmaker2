@@ -85,7 +85,7 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         if($this->_width == 0) return;
         
         $this->_imagick = new Imagick();
-        $this->_imagick->newImage($this->_width, $this->_metrics['characterHeight'] + 2 * self::EXTERNAL_PADDING, 'none');
+        $this->_imagick->newImage($this->_width, $this->_metrics['characterHeight'] + 2 * self::EXTERNAL_PADDING, 'none', 'miff');
     }
     
     private function computeWidth(){

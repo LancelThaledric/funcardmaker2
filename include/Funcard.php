@@ -164,7 +164,7 @@ abstract class Funcard{
         $white = new Imagick();
         $white->newImage($this->_canvas->getImageWidth(),
                          $this->_canvas->getImageHeight(),
-                         'white', 'jpg');
+                         'white', 'miff');
         $white->compositeImage($this->_canvas, Imagick::COMPOSITE_OVER, 0, 0);
         
         // ensuite il faut choisir la qualité de compression

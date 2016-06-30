@@ -178,7 +178,7 @@ class ModernBasic extends Funcard{
     
     public function render($method){
         
-        $this->getCanvas()->newImage($this->getWidth(), $this->getHeight(), 'transparent', 'png');
+        $this->getCanvas()->newImage($this->getWidth(), $this->getHeight(), 'transparent', 'miff');
         
         $this->drawBackground();
         
@@ -283,7 +283,7 @@ class ModernBasic extends Funcard{
         $capabox->newImage(
             $this->getXCoord($this->CAPABOX_BBOX['w']) * $this->TEXT_OVERSAMPLING,
             $this->getYCoord($this->CAPABOX_BBOX['h'] + 2) * $this->TEXT_OVERSAMPLING,     // on ajoute 2% de la hauteur de carte, sinon des fois lettres du bas sont coupées
-            'transparent'
+            'transparent', 'miff'
         );
         $this->_draw->push();
         $this->_draw->setFillColor('black');
@@ -350,7 +350,7 @@ class ModernBasic extends Funcard{
                 $capabox->newImage(
                     $this->getXCoord($this->CAPABOX_BBOX['w']) * $this->TEXT_OVERSAMPLING,
                     $this->getYCoord($this->CAPABOX_BBOX['h'] + 2) * $this->TEXT_OVERSAMPLING,     // on ajoute 2% de la hauteur de carte, sinon des fois lettres du bas sont coupées
-                    'transparent'
+                    'transparent', 'miff'
                 );
                 $fontsize -= (1. / $this->getFontSize(1));
                 $this->_draw->setFontSize($this->getFontSize($fontsize) * $this->TEXT_OVERSAMPLING);
@@ -534,7 +534,7 @@ class ModernBasic extends Funcard{
         $febox->newImage(
             $this->getXCoord($this->FEBOX_BBOX['w']),
             $this->getYCoord($this->FEBOX_BBOX['h']),
-            'transparent'
+            'transparent', 'miff'
         );
         $this->_draw->push();
         $this->_draw->setFillColor('black');
@@ -594,7 +594,7 @@ class ModernBasic extends Funcard{
         $cmbox->newImage(
             $this->getXCoord($this->CMBOX_BBOX['w']) * $this->TEXT_OVERSAMPLING,
             $this->getYCoord($this->CMBOX_BBOX['h']) * $this->TEXT_OVERSAMPLING,
-            'transparent'
+            'transparent', 'miff'
         );
         $this->_draw->push();
         

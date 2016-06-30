@@ -152,7 +152,7 @@ class FcmReady2PrintText{
      */
     public function render(){
         //var_dump($this->_nuggets);
-        $this->_imagick->newImage($this->_width, $this->_height + $this->_topBottomExternalPadding * 2, 'none');
+        $this->_imagick->newImage($this->_width, $this->_height + $this->_topBottomExternalPadding * 2, 'none', 'miff');
         $this->_imagick->setImageFormat('png');
         
         $this->_cursor = new FcmTextCursor();
