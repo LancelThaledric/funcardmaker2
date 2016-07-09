@@ -114,10 +114,10 @@ class FcmModernBasic extends FcmFuncard {
             ],
             'cm' => [
                 'x' => 723. / 791. * 100,
-                'y' => 75. / 1107. * 100,
+                'y' => 74. / 1107. * 100,
                 'size' => 44. / 36.,
                 'shadowx' => -1. / 791. * 100,
-                'shadowy' => 4. / 1107. * 100,
+                'shadowy' => 5. / 1107. * 100,
                 'largeManaOffset' => -4. / 1107. * 100
             ],
             'se' => [
