@@ -11,5 +11,11 @@
             <h4>Par Sovelis</h4>
         </button>
         
+        <button class="fcm-selector-button" data-value="old-basic">
+            <img src="resource/templateThumb/oldBasic.png" width="143" height="198" alt="OldBasic"/>
+            <h3>Old Basic</h3>
+            <h4>Par FirePinguinMaster</h4>
+        </button>
+        
     </div>
 </section>

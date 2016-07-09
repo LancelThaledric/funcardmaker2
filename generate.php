@@ -1,9 +1,11 @@
 <?php require_once('include/functions.php');
 
 require_once('include/FcmModernBasic.php');
+require_once('include/FcmOldBasic.php');
 
 $all_types = [
-    'modern-basic' => 'FcmModernBasic'
+    'modern-basic' => 'FcmModernBasic',
+    'old-basic' => 'FcmOldBasic'
 ];
 
 //var_dump($_POST);
