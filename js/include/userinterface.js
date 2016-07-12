@@ -503,6 +503,7 @@ Panel.CONTAINER_ELEMENT.on('click', '.fcm-duoselector .fcm-selector-button', fun
     var container = $(this).closest('.fcm-duoselector');
     var field = container.find('.fcm-selector-field');
     var str = '';
+    var separator = false;
     
     var checked = container.find('.fcm-selector-button.active');
     var nbchecked = checked.length;
@@ -524,10 +525,14 @@ Panel.CONTAINER_ELEMENT.on('click', '.fcm-duoselector .fcm-selector-button', fun
         $(this).addClass('active second');
     }
     
+    // On check quel est le séparateur
+    if(container.data('separator')) separator = container.data('separator');
+    
     // On calcule la valeur du champ
     var first = container.find('.fcm-selector-button.active.first');
     if(first.length) str += first.data('value');
     var second = container.find('.fcm-selector-button.active.second');
+    if(separator != false && first.length && second.length) str += separator;
     if(second.length) str += second.data('value');
     
     field.val(str);

@@ -56,7 +56,7 @@ function OldBasicTemplate(){
     this.template = 'old-basic';
     
     this.panels = [
-        existingPanels['modernbasicbackground'],
+        existingPanels['oldbasicbackground'],
         existingPanels['illustration'],
         existingPanels['titre-type'],
         existingPanels['cm'],

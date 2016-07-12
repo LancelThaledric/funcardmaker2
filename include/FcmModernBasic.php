@@ -154,7 +154,6 @@ class FcmModernBasic extends FcmFuncard {
     
     //* Liste d'écoute
     public function initListeningList(){
-        // TODO liste d'écoute pour les cartes modern-basic
         $this->_components['illus']->listen('color');
         $this->_components['illus']->listen('altcolor');
         $this->_components['copyright']->listen('color');
