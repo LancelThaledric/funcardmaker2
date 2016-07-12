@@ -100,6 +100,7 @@ class FcmOldBasic extends FcmFuncard {
     public function pushComponentsData(){
         // Fond généré
         $this->updateParameter('background', 'base-color', $this->getField('background-base'));
+        $this->updateParameter('background', 'capabox-color', $this->getField('background-capabox'));
         // Fond personnalisé
         $this->updateParameter('background', 'file', $this->getField('background-custom'));
     }

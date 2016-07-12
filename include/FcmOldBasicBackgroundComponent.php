@@ -32,6 +32,17 @@ class FcmOldBasicBackgroundComponent extends FcmBackgroundComponent {
             $base, Imagick::COMPOSITE_OVER, $x, $y
         );
         
+        // Etape 2 : la capabox !
+        $capabox = $this->getBackground2('capabox', $this->getParameter('capabox-color'));
+        if($capabox){
+            $x = $this->getFuncard()->xc($this->getParameter('capabox-x'));
+            $y = $this->getFuncard()->yc($this->getParameter('capabox-y'));
+
+            $this->getFuncard()->getCanvas()->compositeImage(
+                $capabox, Imagick::COMPOSITE_OVER, $x, $y
+            );
+        }
+        
         // Dernière étape, il faut calculer la couleur de l'illustrateur
         
         $ret = [];
@@ -53,6 +64,11 @@ class FcmOldBasicBackgroundComponent extends FcmBackgroundComponent {
         $this->setParameter('base-w', 705. / 787. * 100);
         $this->setParameter('base-h', 1005. / 1087. * 100);
         $this->setParameter('base-color', 'r');
+        $this->setParameter('capabox-x', 71. / 787. * 100);
+        $this->setParameter('capabox-y', 640. / 1087. * 100);
+        $this->setParameter('capabox-w', 646. / 787. * 100);
+        $this->setParameter('capabox-h', 336. / 1087. * 100);
+        $this->setParameter('capabox-color', '');
     }
     
     public function configure(){ return false; }

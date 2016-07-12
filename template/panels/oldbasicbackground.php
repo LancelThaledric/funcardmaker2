@@ -58,6 +58,67 @@
             </div>
         </div>
         
+        <div class="fcm-selector has-inner" id="fcm-background-capabox-selector" data-field="fcm-field-background-capabox" data-separator="/">
+            <h3 class="has-panel-top">Capabox</h3>
+            <div class="fcm-panel-top-toolbar">
+                <button class="fcm-toggle-button fcm-toggle-duoselector">
+                    <i class="fa fa-adjust fa-fw"></i>
+                    &nbsp; Hybride
+                </button>
+            </div>
+            <input type="hidden" class="fcm-selector-field"
+                   name="fcm-field-background-capabox"
+                   id="fcm-field-background-capabox"
+                   value="" />
+            <div class="fcm-selector-inner" id="fcm-background-capabox-grid">
+                <button class="fcm-selector-button" data-value="w" title="Blanc">
+                    <div class="fcm-color-button fcm-color-w"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="u" title="Bleu">
+                    <div class="fcm-color-button fcm-color-u"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="b" title="Noir">
+                    <div class="fcm-color-button fcm-color-b"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="r" title="Rouge">
+                    <div class="fcm-color-button fcm-color-r"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="g" title="Vert">
+                    <div class="fcm-color-button fcm-color-g"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="m" title="Multicolore">
+                    <div class="fcm-color-button fcm-color-m"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="a" title="Artefact">
+                    <div class="fcm-color-button fcm-color-a"></div>
+                </button>
+                <span class="line-break"></span>
+                <button class="fcm-selector-button" data-value="lw" title="Terrain Blanc">
+                    <div class="fcm-color-button fcm-color-w fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="lu" title="Terrain Bleu">
+                    <div class="fcm-color-button fcm-color-u fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="lb" title="Terrain Noir">
+                    <div class="fcm-color-button fcm-color-b fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="lr" title="Terrain Rouge">
+                    <div class="fcm-color-button fcm-color-r fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="lg" title="Terrain Vert">
+                    <div class="fcm-color-button fcm-color-g fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-button" data-value="lm" title="Terrain Multicolore">
+                    <div class="fcm-color-button fcm-color-m fcm-color-land"></div>
+                </button>
+                <button class="fcm-selector-clear-button active" title="Boîtes auto">
+                    <div class="fcm-square-cross"><i class="fa fa-times"></i></div>
+                </button>
+            </div>
+        </div>
+        
+        <span class="line-break"></span>
+        
         <div class="fcm-background-uploader">
             <h3>Fond personnel</h3>
             <form id="fcm-form-custom-background" method="post" action="upload.php" enctype="multipart/form-data">
