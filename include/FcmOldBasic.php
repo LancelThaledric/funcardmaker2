@@ -62,7 +62,7 @@ class FcmOldBasic extends FcmFuncard {
     //* Components
     public function initComponents(){
         $this->_components = [
-            
+            'illustration' => new FcmIllustrationComponent($this, -1)
         ];
         
         // Gestion du fond
@@ -79,7 +79,12 @@ class FcmOldBasic extends FcmFuncard {
     //* Parameters par défaut
     public function initDefaultParameters(){
         $this->_defaultParameters = [
-            
+            'illustration' => [
+                'x' => 93. / 787. * 100,
+                'y' => 106. / 1087. * 100,
+                'w' => 602. / 787. * 100,
+                'h' => 485. / 1087. * 100
+            ],
         ];
         
         // Bordure uniquement si fond real
@@ -103,6 +108,12 @@ class FcmOldBasic extends FcmFuncard {
         $this->updateParameter('background', 'capabox-color', $this->getField('background-capabox'));
         // Fond personnalisé
         $this->updateParameter('background', 'file', $this->getField('background-custom'));
+        // Illustration
+        $this->updateParameter('illustration', 'file', $this->getField('illustration'));
+        $this->updateParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->updateParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->updateParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->updateParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
     }
     
     //* Dernières vérificatiosn avant l'inition
