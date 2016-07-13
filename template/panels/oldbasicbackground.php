@@ -111,7 +111,7 @@
                 <button class="fcm-selector-button" data-value="lm" title="Terrain Multicolore">
                     <div class="fcm-color-button fcm-color-m fcm-color-land"></div>
                 </button>
-                <button class="fcm-selector-clear-button active" title="Boîtes auto">
+                <button class="fcm-selector-clear-button active" title="Capabox auto">
                     <div class="fcm-square-cross"><i class="fa fa-times"></i></div>
                 </button>
             </div>
