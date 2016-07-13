@@ -116,9 +116,12 @@ abstract class FcmBackgroundComponent extends FcmFuncardComponent {
     //* Le séparateur pour les fonds hybride est le symbole slash "/".
     public function getBackground2($name, $colors){
         // On sépare les couleurs en array
-        $colors = explode('/', $colors, 3);
+        $nbColors = 0;
+        if(!empty($colors)){
+            $colors = explode('/', $colors, 3);
+            $nbColors = count($colors);
+        }
         
-        $nbColors = count($colors);
         // On n'est valide que si on a une lettre ou deux
         if($nbColors < 1 || $nbColors > 2) return null;
         

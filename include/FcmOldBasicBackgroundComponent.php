@@ -34,6 +34,7 @@ class FcmOldBasicBackgroundComponent extends FcmBackgroundComponent {
         
         // Etape 2 : la capabox !
         $capabox = $this->getBackground2('capabox', $this->getParameter('capabox-color'));
+
         if($capabox){
             $x = $this->getFuncard()->xc($this->getParameter('capabox-x'));
             $y = $this->getFuncard()->yc($this->getParameter('capabox-y'));

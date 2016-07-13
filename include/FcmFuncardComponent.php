@@ -28,6 +28,7 @@ abstract class FcmFuncardComponent {
         self::$fontManager->setFont('mplantin', realpath('resource/font/mplantin.ttf'));
         self::$fontManager->setFont('mplantin-italic', realpath('resource/font/mplantin-italic.ttf'));
         self::$fontManager->setFont('magicsymbols', realpath('resource/font/magic-symbols-2008.ttf'));
+        self::$fontManager->setFont('magicmedieval', realpath('resource/font/magic-medieval.ttf'));
     }
     
     //* La funcard
