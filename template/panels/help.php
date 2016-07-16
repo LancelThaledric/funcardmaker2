@@ -193,7 +193,7 @@
     <h3 class="lined">Tout ce qui est écrit ici ne m'aide pas vraiment...</h3>
     <p>
         Cette page d'aide ne vous aide pas assez ?<br/>
-        Si la réponse à votre problème ne se situe pas sur cette page, je vous invite à aller poster un message sur le forum de la SMF, dans ce sujet dédié au SMF Funcard Maker 2 (aussi accessible grâce au menu en haut).<br/>
+        Si la réponse à votre problème ne se situe pas sur cette page, je vous invite à aller poster un message sur le forum de la SMF, dans <a href="http://www.smfcorp.net/forum/post-4146-1-le-smf-funcard-maker-2.html" title="Sujet de discussion sur le SMFCorp" target="_blank">ce sujet dédié au SMF Funcard Maker 2</a> (aussi accessible grâce au menu en haut).<br/>
     </p>
     
 </section>
