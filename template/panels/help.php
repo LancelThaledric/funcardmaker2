@@ -109,7 +109,7 @@
     <div class="help-paragraph">
         <p>
             La création de fond personnels n'est pas encore disponible dans le SMF Funcard Maker 2 (C'est prévu, mais il y a plus urgent).<br/>
-            Utilisez votre logiciel de traitement d'image préféré (Photoshop, Gimp, Paint <i>(hum...)</i> ) et utilisez des bases disponibles <a href="http://www.smfcorp.net/forum/post-1700-1-tout-pour-le-funcardeur.html" title="Tout pour le Funcardeur ! - SMFCorp">ici, sur le forum de SMFCorp</a>.
+            Utilisez votre logiciel de traitement d'image préféré (Photoshop, Gimp, Paint <i>(hum...)</i> ) et utilisez des bases disponibles <a href="http://www.smfcorp.net/forum/post-1700-1-tout-pour-le-funcardeur.html" title="Tout pour le Funcardeur ! - SMFCorp" target="_blank">ici, sur le forum de SMFCorp</a>.
         </p>
         <p>
             Si vous souhaitez créer un fond perso à partir de fonds officiels, la meilleure technique consiste à utiliser le SMF Funcard Maker 2 afin de générer une carte entièrement vide avec le fond que vous voulez, puis de télécharger le rendu. Modifiez-le comme vous voulez, puis utilisez-le comme fond perso dans votre SMF Funcard Maker favori.
