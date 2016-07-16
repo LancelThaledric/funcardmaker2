@@ -54,7 +54,7 @@
         Le but du SMF Funcard Maker 2 est de porter les bases graphiques pour Gimp et Photoshop sur une interface Web accessible à tous, afin que les funcardeurs non-initiés aux techniques graphiques ne soient plus désavantagés.
     </p>
     
-    <div class="fcm-panel-section" style="background:url('design/img/chandra.jpg') fixed; background-size:cover; text-shadow:#c74141 0px 0px 2px, #c74141 0px 0px 2px; border-top:solid 1px rgba(255,255,255,0.3);">
+    <div class="fcm-panel-section" style="background:url('design/img/Chandra.jpg') fixed; background-size:cover; text-shadow:#c74141 0px 0px 2px, #c74141 0px 0px 2px; border-top:solid 1px rgba(255,255,255,0.3);">
         <p class="center">
             <em>&laquo; J'ai essayé le SMF Funcard Maker 2, et je dois avouer que ça marche du feu de Dieu ! &raquo;</em><br/>
             — Chandra Nalaàr
