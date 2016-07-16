@@ -69,8 +69,8 @@
             Dans tous les cas <strong>ne mettez jamais votre nom</strong> en tant qu'illustrateur, sauf si vous êtes effectivmeent l'illustrateur.<br/>
         </p>
         <p>
-            <a href="https://images.google.com/">Google Images</a> propose de lancer une recherche à partir d'une image. Glissez votre fichier image dans le champ de recherche et il trouvera toutes les images semblables.<br/>
-            <a href="https://www.tineye.com/">Tineye</a> est un autre moteur de recherche qui propose ce service.
+            <a href="https://images.google.com/" target="_blank">Google Images</a> propose de lancer une recherche à partir d'une image. Glissez votre fichier image dans le champ de recherche et il trouvera toutes les images semblables.<br/>
+            <a href="https://www.tineye.com/" target="_blank">Tineye</a> est un autre moteur de recherche qui propose ce service.
         </p>
         <p>
             Sinon, l'avantage de chercher ses illustrations sur DeviantArt est que l'illustrateur figure sur la page de l'image et toute sa gallerie est accessible d'un seul clic.
