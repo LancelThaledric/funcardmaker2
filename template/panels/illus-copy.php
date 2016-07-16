@@ -22,6 +22,7 @@
             <button id="button-copyright-char-amp" class="single-inserter" data-insert="&amp;">&amp;</button>
             <button id="button-copyright-char-copy" class="single-inserter" data-insert="&copy;">&copy;</button>
             <button id="button-copyright-char-dash" class="single-inserter" data-insert="&#8212;">&#8212;</button>
+            <button id="button-capa-char-bullet" class="single-inserter" data-insert="&bull;">&bull;</button>
         </div>
     </div>
 </section>

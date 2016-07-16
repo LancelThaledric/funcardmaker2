@@ -16,6 +16,7 @@
             <button id="button-titre-type-char-oelig" class="single-inserter" data-insert="&#339;">&#339;</button>
             <button id="button-titre-type-char-amp" class="single-inserter" data-insert="&amp;">&amp;</button>
             <button id="button-titre-type-char-dash" class="single-inserter" data-insert="&#8212;">&#8212;</button>
+            <button id="button-capa-char-bullet" class="single-inserter" data-insert="&bull;">&bull;</button>
         </div>
     </div>
 </section>
