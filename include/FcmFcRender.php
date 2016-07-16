@@ -133,7 +133,7 @@ class FcmFcRender {
         $this->_canvas->resizeImage(self::THUMBNAIL_SIZE_X, 0,
                                     Imagick::FILTER_LANCZOS, 1, false);
         $this->_canvas->setImageBackgroundColor('white');
-        $this->_canvas->setImageAlphaChannel(imagick::ALPHACHANNEL_REMOVE);
+        $this->_canvas->setImageAlphaChannel(imagick::ALPHACHANNEL_TRANSPARENT + 2); // Imagick::ALPHACHANNEL_REMOVE n'existe pas dans toutes les versions
         $this->_canvas->mergeImageLayers(imagick::LAYERMETHOD_FLATTEN);
         
         // ensuite il faut choisir la qualité de compression
