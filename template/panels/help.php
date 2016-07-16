@@ -42,10 +42,10 @@
             Voici quelques sites sur lesquels vous pouvez hébergeur votre carte :
         </p>
         <ul>
-            <li><a href="http://www.noelshack.com/">NoelShack</a> est un hébergeur d'images édité par l'Odyssée Interactive, également éditeur de Jeuxvideo.com<br/>
+            <li><a href="http://www.noelshack.com/" target="_blank">NoelShack</a> est un hébergeur d'images édité par l'Odyssée Interactive, également éditeur de Jeuxvideo.com<br/>
             L'avantage de l'utiliser est que vos images ne seront pas effacées au bout d'un certain temps, contrairement à beaucoup d'autres hébergeurs.</li>
-            <li><a href="http://www.deviantart.com/">DeviantArt</a> est plus qu'un hébergeur, c'est une galerie en ligne. Créez-y un compte (gratuit) et rendez vos funcards publiques sur le site de DeviantArt. N'oubliez jamais de créditer l'illustrateur et toutes les ressources utlisées dans le commentaire lorsque vous uploadez quelque chose sur DeviantArt.</li>
-            <li><a href="http://www.hostingpics.net/">HostingPics</a> est un autre hébergeur d'images. Sa FAQ précise que les images hébergées le sont indéfiniment. À vérifier.</li>
+            <li><a href="http://www.deviantart.com/" target="_blank">DeviantArt</a> est plus qu'un hébergeur, c'est une galerie en ligne. Créez-y un compte (gratuit) et rendez vos funcards publiques sur le site de DeviantArt. N'oubliez jamais de créditer l'illustrateur et toutes les ressources utlisées dans le commentaire lorsque vous uploadez quelque chose sur DeviantArt.</li>
+            <li><a href="http://www.hostingpics.net/" target="_blank">HostingPics</a> est un autre hébergeur d'images. Sa FAQ précise que les images hébergées le sont indéfiniment. À vérifier.</li>
         </ul>
     </div>
     
