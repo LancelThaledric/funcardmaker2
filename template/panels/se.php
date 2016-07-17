@@ -537,6 +537,11 @@
                         <img src="" alt="Prévisualisation" class="file-preview" id="fcm-se-file-preview"/>
                     </div>
                 </div>
+                
+                <p class="center">
+                    Votre symbole d'extension doit être sur fond transparent.<br/>
+                    Il ne doit pas y avoir de marges autour de votre image.
+                </p>
 
                 <input type="hidden" class="file-field" id="fcm-field-se-custom" name="fcm-field-se-custom" value="" />
             </form>
