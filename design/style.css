@@ -303,16 +303,6 @@ header{
     -ms-flex: auto 1 1;
     flex: auto 1 1;
 }
-#main-menu.active{
-    position: absolute;
-    top: 3rem;
-    left: 0;
-    z-index: 100;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
 header>*, #main-menu>*{
     display: -webkit-box;
     display: -webkit-flex;
@@ -1244,4 +1234,14 @@ label.large{
     #menu-toggle{
         display: inherit;
     }
+    #main-menu.active{
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    z-index: 100;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
 }
