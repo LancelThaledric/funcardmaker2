@@ -531,6 +531,11 @@
                     <input type="file" class="fcm-media" id="fcm-file-se" name="fcm-file-media" accept="image/*">
                 </div>
                 
+                <p class="center">
+                    Votre symbole d'extension doit être sur fond transparent.<br/>
+                    Il ne doit pas y avoir de marges autour de votre image.
+                </p>
+                
                 <div class="input-container large file-preview-wrapper">
                     <div class="file-error"></div>
                     <div class="file-preview-inner-wrapper">
