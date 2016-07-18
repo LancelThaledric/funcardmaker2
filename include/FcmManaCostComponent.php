@@ -49,14 +49,16 @@ class FcmManaCostComponent extends FcmFuncardComponent {
             $yoffset += $this->getFuncard()->xc($this->getParameter('largeManaOffset'));
         
         // On calcule et on plaque l'ombre
-        $this->_imagickShadow = clone $this->_imagick;
-        $this->_imagickShadow->thresholdimage(1 * Imagick::getQuantum(), Imagick::CHANNEL_ALL);
-        
-        $this->getFuncard()->getCanvas()->compositeImage(
-            $this->_imagickShadow, Imagick::COMPOSITE_OVER,
-            $this->getFuncard()->xc($this->getParameter('x')) - $this->_width + $this->getFuncard()->xc($this->getParameter('shadowx')),
-            $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING + $yoffset + $this->getFuncard()->xc($this->getParameter('shadowy'))
-        );
+        if($this->getParameter('shadowx') != 0 && $this->getParameter('shadowx') != 0){
+            $this->_imagickShadow = clone $this->_imagick;
+            $this->_imagickShadow->thresholdimage(1 * Imagick::getQuantum(), Imagick::CHANNEL_ALL);
+
+            $this->getFuncard()->getCanvas()->compositeImage(
+                $this->_imagickShadow, Imagick::COMPOSITE_OVER,
+                $this->getFuncard()->xc($this->getParameter('x')) - $this->_width + $this->getFuncard()->xc($this->getParameter('shadowx')),
+                $this->getFuncard()->yc($this->getParameter('y')) - self::EXTERNAL_PADDING + $yoffset + $this->getFuncard()->xc($this->getParameter('shadowy'))
+            );
+        }
         
         // On plaque le rendu sur l'image de la funcard
         $this->getFuncard()->getCanvas()->compositeImage(

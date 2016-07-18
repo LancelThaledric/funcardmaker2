@@ -66,7 +66,7 @@
         <p>
             Il arrive qu'en naviguant sur le web on trouve une magnifique illustration mais pas son auteur.<br/>
             Il faut alors effectuer des recherches complémentaires afin de tenter de le retrouver.<br/>
-            Dans tous les cas <strong>ne mettez jamais votre nom</strong> en tant qu'illustrateur, sauf si vous êtes effectivmeent l'illustrateur.<br/>
+            Dans tous les cas <strong>ne mettez jamais votre nom</strong> en tant qu'illustrateur, sauf si vous êtes effectivement l'illustrateur.<br/>
         </p>
         <p>
             <a href="https://images.google.com/" target="_blank">Google Images</a> propose de lancer une recherche à partir d'une image. Glissez votre fichier image dans le champ de recherche et il trouvera toutes les images semblables.<br/>

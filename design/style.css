@@ -783,6 +783,14 @@ label.large{
     margin: 0 4px;
 }
 
+.line-break{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    margin: 0 !important;
+}
+
 /* Selector -------------------------------------------------------------------------------- */
 
 .fcm-selector,
@@ -961,6 +969,8 @@ label.large{
 .fcm-color-c{ box-shadow: rgba(255,255,255,0.2) 0px 0px 0px 2px inset;}
 .fcm-color-l{ background: #9d8e6e;}
 
+.fcm-color-land{ box-shadow: #9d8e6e 0px 0px 0px 8px inset; }
+
 /*============================================================================================================== */
 /* Chapter 4 : Particular Panels Elements ==================================================================================== */
 /*============================================================================================================== */
@@ -1103,7 +1113,8 @@ label.large{
 
 /* Modern Basic background selector ---------------------------------------------------------------------------- */
 
-#fcm-panel-modernbasicbackground .fcm-columns>*{
+#fcm-panel-modernbasicbackground .fcm-columns>*,
+#fcm-panel-oldbasicbackground .fcm-columns>*{
     margin: 2rem;
 }
 

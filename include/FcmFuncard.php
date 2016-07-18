@@ -177,7 +177,10 @@ abstract class FcmFuncard extends FcmFcRender{
             // Mais au moins le scrit plante pas s'il y a une connerie
             // au niveau des paramètres des components
             // Et puis on innone pas le code de try{} 
-            if(DEBUG) echo $e->getMessage();
+            if(DEBUG){
+                echo $e->getMessage(), '<br/>';
+                debug_print_backtrace();
+            }
         }
     }
     
