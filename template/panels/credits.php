@@ -15,6 +15,7 @@
     <h3 class="lined">Templates adaptés</h3>
     <ul class="credits-list">
         <li>Modern Basic Real par <strong>Sovelis</strong></li>
+        <li>7th Edition par <strong>FirePinguinMaster</strong></li>
     </ul>
     
     <h3 class="lined">Symboles d'édition</h3>
