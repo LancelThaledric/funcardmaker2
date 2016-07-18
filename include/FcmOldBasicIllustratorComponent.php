@@ -1,11 +1,11 @@
 <?php
 
-require_once('include/FcmFuncardComponent.php');
+require_once('include/FcmSingleLineComponent.php');
 
 /**
  * Component affichant une ligne de texte (Titre, type, etc.)
  *
- * Parameters : 
+ * Parameters (from SingleLine) : 
  * - x : position x
  * - y : position y
  * - color : text color
@@ -15,7 +15,7 @@ require_once('include/FcmFuncardComponent.php');
  * - align : aligmement : 'left', 'right' or 'center'. Default left.
  */
 
-class FcmSingleLineComponent extends FcmFuncardComponent {
+class FcmOldBasicIllustratorComponent extends FcmSingleLineComponent {
     
     // self::$draw est disponible par héritage
     
@@ -29,25 +29,9 @@ class FcmSingleLineComponent extends FcmFuncardComponent {
         
         self::$draw->push();
         
-        self::$draw->setFillColor($this->getParameter('color'));
-        self::$draw->setFont(self::$fontManager->getFont($this->getParameter('font')));
-        self::$draw->setFontSize($this->getFuncard()->fsc($this->getParameter('size')));
+        $this->setParameter('text', 'Illus. '.$this->getParameter('text'));
         
-        $align = $this->getParameter('align');
-        if($align != 'left' && $align != 'right' && $align != 'center')
-            $align = 'left';
-        if($align == 'right')
-            self::$draw->setTextAlignment(imagick::ALIGN_RIGHT);
-        elseif($align == 'center')
-            self::$draw->setTextAlignment(imagick::ALIGN_CENTER);
-        
-        $this->getFuncard()->getCanvas()->annotateImage(
-            self::$draw,
-            $this->getFuncard()->xc($this->getParameter('x')),
-            $this->getFuncard()->yc($this->getParameter('y')),
-            0,
-            $this->getParameter('text')
-        );
+        parent::apply();
         
         self::$draw->pop();
     }

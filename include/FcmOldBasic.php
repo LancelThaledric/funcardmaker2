@@ -10,6 +10,8 @@ require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmCapaboxComponent.php');
+require_once('include/FcmOldBasicIllustratorComponent.php');
+require_once('include/FcmOldBasicIllustratorShadowComponent.php');
 
 //* Template Moderne Basique
 
@@ -72,7 +74,12 @@ class FcmOldBasic extends FcmFuncard {
             'titleshadow' => new FcmSingleLineShadowComponent($this, 50),
             'typeshadow' => new FcmSingleLineShadowComponent($this, 50),
             'cm' => new FcmManaCostComponent($this, 50),
-            'capabox' => new FcmCapaboxComponent($this, 50)
+            'capabox' => new FcmCapaboxComponent($this, 50),
+            'fe' => new FcmSingleLineComponent($this, 100),
+            'feshadow' => new FcmSingleLineComponent($this, 50),
+            'illus' => new FcmOldBasicIllustratorComponent($this, 100),
+            'illusshadow' => new FcmOldBasicIllustratorShadowComponent($this, 50),
+            'copyright' => new FcmSingleLineComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -96,22 +103,22 @@ class FcmOldBasic extends FcmFuncard {
                 'h' => 485. / 1087. * 100
             ],
             'title' => [
-                'x' => (91. / 787.) * 100,
-                'y' => (85. / 1087.) * 100,
+                'x' => 91. / 787. * 100,
+                'y' => 85. / 1087. * 100,
                 'size' => 45. / 36.,
                 'color' => 'white',
                 'font' => 'magicmedieval'
             ],
             'type' => [
-                'x' => (81. / 787.) * 100,
-                'y' => (638. / 1087.) * 100,
+                'x' => 81. / 787. * 100,
+                'y' => 638. / 1087. * 100,
                 'size' => 36. / 36.,
                 'color' => 'white',
                 'font' => 'mplantin'
             ],
             'titleshadow' => [
-                'x' => (92. / 787.) * 100,
-                'y' => (86. / 1087.) * 100,
+                'x' => 92. / 787. * 100,
+                'y' => 86. / 1087. * 100,
                 'size' => 45. / 36.,
                 'color' => 'rgba(0,0,0,0.4)',
                 'font' => 'magicmedieval',
@@ -119,8 +126,8 @@ class FcmOldBasic extends FcmFuncard {
                 'blur' => 0
             ],
             'typeshadow' => [
-                'x' => (82. / 787.) * 100,
-                'y' => (639. / 1087.) * 100,
+                'x' => 82. / 787. * 100,
+                'y' => 639. / 1087. * 100,
                 'size' => 36. / 36.,
                 'color' => 'rgba(0,0,0,0.4)',
                 'font' => 'mplantin',
@@ -141,7 +148,49 @@ class FcmOldBasic extends FcmFuncard {
                 'w' => 588. / 787. * 100,
                 'h' => 285. / 1087. * 100,
                 'fontsize' => 39. / 36.
-            ]
+            ],
+            'fe' => [
+                'x' => 719. / 787. * 100,
+                'y' => 1020. / 1087. * 100,
+                'size' => 49. / 36.,
+                'color' => 'white',
+                'font' => 'plantin-bold',
+                'align' => 'right'
+            ],
+            'feshadow' => [
+                'x' => 722. / 787. * 100,
+                'y' => 1022. / 1087. * 100,
+                'size' => 49. / 36.,
+                'color' => 'rgba(0,0,0,0.8)',
+                'font' => 'plantin-bold',
+                'align' => 'right'
+            ],
+            'illus' => [
+                'x' => 390. / 787. * 100,
+                'y' => 1003. / 1087. * 100,
+                'size' => 31. / 36.,
+                'color' => 'white',
+                'font' => 'mplantin',
+                'align' => 'center'
+            ],
+            'illusshadow' => [
+                'x' => 391. / 787. * 100,
+                'y' => 1004. / 1087. * 100,
+                'size' => 31. / 36.,
+                'color' => 'rgba(0,0,0,0.4)',
+                'font' => 'mplantin',
+                'align' => 'center',
+                'strokewidth' => 1. / 36.,
+                'blur' => 0
+            ],
+            'copyright' => [
+                'x' => 391. / 787. * 100,
+                'y' => 1025. / 1087. * 100,
+                'size' => 18. / 36.,
+                'color' => 'white',
+                'font' => 'mplantin',
+                'align' => 'center'
+            ],
         ];
         
         // Bordure uniquement si fond real
@@ -154,8 +203,7 @@ class FcmOldBasic extends FcmFuncard {
     
     //* Liste d'écoute
     public function initListeningList(){
-        // TODO liste d'écoute pour les cartes old-basic
-        
+        $this->_components['copyright']->listen('color');
     }
     
     //* Envoie les champs aux components
@@ -181,6 +229,14 @@ class FcmOldBasic extends FcmFuncard {
         // Capacité / TA
         $this->updateParameter('capabox', 'textcapa', $this->getField('capa'));
         $this->updateParameter('capabox', 'textta', $this->getField('ta'));
+        // F/E
+        $this->updateParameter('fe', 'text', $this->getField('fe'));
+        $this->updateParameter('feshadow', 'text', $this->getField('fe'));
+        // Illustrator
+        $this->updateParameter('illus', 'text', $this->getField('illustrator'));
+        $this->updateParameter('illusshadow', 'text', $this->getField('illustrator'));
+        // Copyright
+        $this->updateParameter('copyright', 'text', $this->getField('copyright'));
     }
     
     //* Dernières vérificatiosn avant l'inition
