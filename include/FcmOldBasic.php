@@ -9,6 +9,7 @@ require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
 require_once('include/FcmManaCostComponent.php');
+require_once('include/FcmCapaboxComponent.php');
 
 //* Template Moderne Basique
 
@@ -70,7 +71,8 @@ class FcmOldBasic extends FcmFuncard {
             'type' => new FcmSingleLineComponent($this, 100),
             'titleshadow' => new FcmSingleLineShadowComponent($this, 50),
             'typeshadow' => new FcmSingleLineShadowComponent($this, 50),
-            'cm' => new FcmManaCostComponent($this, 50)
+            'cm' => new FcmManaCostComponent($this, 50),
+            'capabox' => new FcmCapaboxComponent($this, 50)
         ];
         
         // Gestion du fond
@@ -132,6 +134,13 @@ class FcmOldBasic extends FcmFuncard {
                 'shadowx' => 0, // Pas d'ombre
                 'shadowy' => 0,
                 'largeManaOffset' => 0
+            ],
+            'capabox' => [
+                'x' => 100. / 787. * 100,
+                'y' => 666. / 1087. * 100,
+                'w' => 588. / 787. * 100,
+                'h' => 285. / 1087. * 100,
+                'fontsize' => 39. / 36.
             ]
         ];
         
@@ -169,6 +178,9 @@ class FcmOldBasic extends FcmFuncard {
         $this->updateParameter('typeshadow', 'text', $this->getField('type'));
         // Coût de mana
         $this->updateParameter('cm', 'text', $this->getField('cm'));
+        // Capacité / TA
+        $this->updateParameter('capabox', 'textcapa', $this->getField('capa'));
+        $this->updateParameter('capabox', 'textta', $this->getField('ta'));
     }
     
     //* Dernières vérificatiosn avant l'inition
