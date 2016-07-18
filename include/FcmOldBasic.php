@@ -8,6 +8,7 @@ require_once('include/FcmOldBasicBackgroundComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
+require_once('include/FcmManaCostComponent.php');
 
 //* Template Moderne Basique
 
@@ -68,7 +69,8 @@ class FcmOldBasic extends FcmFuncard {
             'title' => new FcmSingleLineComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
             'titleshadow' => new FcmSingleLineShadowComponent($this, 50),
-            'typeshadow' => new FcmSingleLineShadowComponent($this, 50)
+            'typeshadow' => new FcmSingleLineShadowComponent($this, 50),
+            'cm' => new FcmManaCostComponent($this, 50)
         ];
         
         // Gestion du fond
@@ -122,6 +124,14 @@ class FcmOldBasic extends FcmFuncard {
                 'font' => 'mplantin',
                 'strokewidth' => 1. / 36.,
                 'blur' => 0
+            ],
+            'cm' => [
+                'x' => 726. / 787. * 100,
+                'y' => 49. / 1087. * 100,
+                'size' => 49. / 36.,
+                'shadowx' => 0, // Pas d'ombre
+                'shadowy' => 0,
+                'largeManaOffset' => 0
             ]
         ];
         
@@ -157,6 +167,8 @@ class FcmOldBasic extends FcmFuncard {
         $this->updateParameter('type', 'text', $this->getField('type'));
         $this->updateParameter('titleshadow', 'text', $this->getField('title'));
         $this->updateParameter('typeshadow', 'text', $this->getField('type'));
+        // Coût de mana
+        $this->updateParameter('cm', 'text', $this->getField('cm'));
     }
     
     //* Dernières vérificatiosn avant l'inition
