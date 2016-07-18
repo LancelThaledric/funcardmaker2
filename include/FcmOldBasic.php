@@ -12,6 +12,7 @@ require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmCapaboxComponent.php');
 require_once('include/FcmOldBasicIllustratorComponent.php');
 require_once('include/FcmOldBasicIllustratorShadowComponent.php');
+require_once('include/FcmExtensionSymbolComponent.php');
 
 //* Template Moderne Basique
 
@@ -79,7 +80,8 @@ class FcmOldBasic extends FcmFuncard {
             'feshadow' => new FcmSingleLineComponent($this, 50),
             'illus' => new FcmOldBasicIllustratorComponent($this, 100),
             'illusshadow' => new FcmOldBasicIllustratorShadowComponent($this, 50),
-            'copyright' => new FcmSingleLineComponent($this, 100)
+            'copyright' => new FcmSingleLineComponent($this, 100),
+            'se' => new FcmExtensionSymbolComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -191,6 +193,11 @@ class FcmOldBasic extends FcmFuncard {
                 'font' => 'mplantin',
                 'align' => 'center'
             ],
+            'se' => [
+                'x' => 701. / 787. * 100,
+                'y' => 603. / 1087. * 100,
+                'h' => 43. / 1087. * 100
+            ]
         ];
         
         // Bordure uniquement si fond real
@@ -237,6 +244,10 @@ class FcmOldBasic extends FcmFuncard {
         $this->updateParameter('illusshadow', 'text', $this->getField('illustrator'));
         // Copyright
         $this->updateParameter('copyright', 'text', $this->getField('copyright'));
+        // Extension symbol
+        $this->updateParameter('se', 'name', $this->getField('se-extension'));
+        $this->updateParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->updateParameter('se', 'file', $this->getField('se-custom'));
     }
     
     //* Dernières vérificatiosn avant l'inition
