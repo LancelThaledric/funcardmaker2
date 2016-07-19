@@ -72,7 +72,6 @@ Panel.prototype.activate = function(){
  * Certains panneaux, comme celui de l'illustration, ont besoin d'effectuer un tache lors de la désactivation.
  */
 Panel.prototype.deactivate = function(){
-    Panel.TEMPLATE_MENU_ELEMENT.append('<li><a href="#" data-panel="'+this.name+'">'+this.title+'</li>');
     this.onDeactivate();
 }
 
