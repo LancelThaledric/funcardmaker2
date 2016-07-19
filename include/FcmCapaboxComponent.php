@@ -16,6 +16,7 @@ require_once('include/FcmMultiLineComponent.php');
  * - textta : ambient text to display
  * - fontcapa : font to use for capacity text
  * - fontta : font to use for ambient text and italic capacity
+ * - title : card title to replace ~this~ tags
  */
 
 class FcmCapaboxComponent extends FcmFuncardComponent {
@@ -75,6 +76,7 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $this->setParameter('textta', '');
         $this->setParameter('fontcapa', 'mplantin');
         $this->setParameter('fontta', 'mplantin-italic');
+        $this->setParameter('title', '');
         
     }
     
@@ -82,6 +84,13 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         
         // C'est lors de la configuration qu'on va calculer les tailles de polices et prérendre le texte.
         // Le apply() ne se charge que de l'affichage et de la fusion des calques.
+        
+        // On remplace les tags ~this~ par le titre de la cate
+        $title = $this->getParameter('title');
+        if(!empty($title)){
+            $this->setParameter('textcapa', str_replace('~this~', $title, $this->getParameter('textcapa')));
+            $this->setParameter('textta', str_replace('~this~', $title, $this->getParameter('textta')));
+        }
         
         // On fait hériter les paramètres aux components fils
         
