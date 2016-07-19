@@ -35,6 +35,11 @@ Panel.prototype.onActivate = function(){
     // À redéfinir
 }
 
+// Appelé quand le panneau est déchargé
+Panel.prototype.onDeactivate = function(){
+    // À redéfinir
+}
+
 /**
  * Affiche le panneau et met son lien du menu en surbrillance
  */
@@ -60,6 +65,15 @@ Panel.prototype.hide = function(){
 Panel.prototype.activate = function(){
     Panel.TEMPLATE_MENU_ELEMENT.append('<li><a href="#" data-panel="'+this.name+'">'+this.title+'</li>');
     this.onActivate();
+}
+
+/**
+ * Appelle la fonction de désactivation du panneaux.
+ * Certains panneaux, comme celui de l'illustration, ont besoin d'effectuer un tache lors de la désactivation.
+ */
+Panel.prototype.deactivate = function(){
+    Panel.TEMPLATE_MENU_ELEMENT.append('<li><a href="#" data-panel="'+this.name+'">'+this.title+'</li>');
+    this.onDeactivate();
 }
 
 
@@ -88,6 +102,14 @@ IllustrationPanel.prototype.onBlur = function(){
     if(this.cropSelector != null){
         this.cropSelector.setOptions({show:false, hide:true});
         this.cropSelector.update();
+    }
+}
+
+IllustrationPanel.prototype.onDeactivate = function(){
+    // Gestion du plugin ImgAreaSelect
+    //console.log('illustration onBlur');
+    if(this.cropSelector != null){
+        this.cropSelector.remove();
     }
 }
 

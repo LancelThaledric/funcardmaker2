@@ -126,6 +126,13 @@ function clearPanels(){
  * Show Panels : Affiche les panneaux chargés
  */
 function showPanels(funcard, data){
+    // On désactive les anciens panneaux s'ils existent
+    if(funcard != null){
+        for(var panel of funcard.panels){
+            panel.deactivate();
+        }
+    }
+    
     // On ajoute les panneaux chargés
     Panel.TEMPLATE_CONTAINER_ELEMENT.html(data);
     // On active les panneaux (ça les ajoute dans le menu notamment)
