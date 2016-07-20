@@ -285,6 +285,7 @@ existingPanels['done'] = new Panel('done', 'Terminé !');
 // Sections de génération de fonds
 existingPanels['modernbasicbackground'] = new ModernBasicBackgroundPanel('modernbasicbackground', 'Fond de carte');
 existingPanels['oldbasicbackground'] = new ModernBasicBackgroundPanel('oldbasicbackground', 'Fond de carte');
+existingPanels['modernplaneswalkerbackground'] = new ModernBasicBackgroundPanel('modernplaneswalkerbackground', 'Fond de carte');
 
 // Sections de fabrication de carte
 existingPanels['illustration'] = new IllustrationPanel('illustration', 'Illustration');

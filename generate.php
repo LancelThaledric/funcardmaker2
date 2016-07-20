@@ -2,10 +2,12 @@
 
 require_once('include/FcmModernBasic.php');
 require_once('include/FcmOldBasic.php');
+require_once('include/FcmModernPlaneswalker3.php');
 
 $all_types = [
     'modern-basic' => 'FcmModernBasic',
-    'old-basic' => 'FcmOldBasic'
+    'old-basic' => 'FcmOldBasic',
+    'modern-planeswalker3' => 'FcmModernPlaneswalker3'
 ];
 
 //var_dump($_POST);
@@ -16,7 +18,7 @@ if(!isset($_POST['template'])){
 }
 $templateName = $_POST['template'];
 if(!isset($all_types[$templateName])){
-    exit('Unknonw template name');
+    exit('Unknown template name');
 }
 
 // Get output method

@@ -213,7 +213,7 @@ function updatePreview(){
         if(DEBUG){
             previewDebug.html(data);
         } else {
-            //console.log(data);
+            console.log(data);
             preview.removeClass('nocard');
             previewImage.css('background-image', 'url(data:image/png;base64,'+data.image+')');
             previewTime.html('Généré en ' + data.generationTime.toFixed(3) + ' secondes.');
