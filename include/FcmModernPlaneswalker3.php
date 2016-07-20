@@ -3,7 +3,7 @@
 require_once('include/FcmFuncard.php');
 
 require_once('include/FcmFuncardComponent.php');
-require_once('include/FcmBorderComponent.php');
+require_once('include/FcmModernPlaneswalker3BorderComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -69,7 +69,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             $this->_components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
             //$this->_components['background'] = new FcmModernBasicBackgroundComponent($this, 0);
-            $this->_components['border'] = new FcmBorderComponent($this, 1);
+            $this->_components['border'] = new FcmModernPlaneswalker3BorderComponent($this, 1);
         }
         
     }

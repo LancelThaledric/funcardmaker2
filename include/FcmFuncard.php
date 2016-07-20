@@ -222,4 +222,32 @@ abstract class FcmFuncard extends FcmFcRender{
             }
         }
     }
+    
+    //* Charge une image de ressource à la bonne taille
+    public function loadResource($type, $subtype, $name, $sizex = 0, $sizey = 0){
+        
+        // Par défaut la ressource fera la taille de la carte
+        if($sizex == 0) $sizex = $this->getWidth();
+        if($sizey == 0) $sizey = $this->getHeight();
+        
+        // On détermine le chemin de fichier
+        $filepath = 'resource/'.$type.'/'.$this->_templateName.'/';
+        if($subtype !== null && !empty($subtype))
+            $filepath .= $subtype.'/';
+        $filepath .= $name;
+        
+        // On charge l'image
+        $image = new Imagick(realpath($filepath));
+        
+        // On redimmensionne la resource si nécessaire
+        $imagewidth = $image->getImageWidth();
+        $imageheight = $image->getImageHeight();
+        
+        if($imagewidth != $sizex || $imageheight != $sizey){
+            $image->resizeImage($sizex, $sizey, Imagick::FILTER_TRIANGLE, 1, false);
+        }
+        
+        return $image;
+        
+    }
 }
