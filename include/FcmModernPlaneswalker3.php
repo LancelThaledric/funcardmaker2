@@ -4,6 +4,7 @@ require_once('include/FcmFuncard.php');
 
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmModernPlaneswalker3BorderComponent.php');
+require_once('include/FcmModernPlaneswalker3TextureComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -53,7 +54,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     public function initDefaultFields(){
         $this->_defaults = [
             'border' => 'black',
-            'background-base' => 'r',
+            'background-texture' => 'r',
         ];
     }
     
@@ -68,7 +69,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         if($this->_customBackground){
             $this->_components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            //$this->_components['background'] = new FcmModernBasicBackgroundComponent($this, 0);
+            $this->_components['background'] = new FcmModernPlaneswalker3TextureComponent($this, 0);
             $this->_components['border'] = new FcmModernPlaneswalker3BorderComponent($this, 1);
         }
         
@@ -78,6 +79,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     public function initDefaultParameters(){
         $this->_defaultParameters = [
             'border' => [],
+            'background' => [],
         ];
     }
     
@@ -87,7 +89,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     
     //* Envoie les champs aux components
     public function pushComponentsData(){
-        
+        // Fond généré
+        $this->updateParameter('background', 'texture-color', $this->getField('background-texture'));
+        // Fond personnalisé
+        $this->updateParameter('background', 'file', $this->getField('background-custom'));
     }
     
     //* Dernières vérificatiosn avant l'inition
