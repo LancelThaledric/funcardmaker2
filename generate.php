@@ -31,11 +31,21 @@ if(isset($_POST['method']) && !empty($_POST['method'])){
 
 $time = microtime(true);
 
-$funcard = new $all_types[$templateName]($_POST);
-$funcard->computeFilename();
-$funcard->filenameSpecialChars();
+try{
+    
+    $funcard = new $all_types[$templateName]($_POST);
+    $funcard->computeFilename();
+    $funcard->filenameSpecialChars();
+    
+    $result = $funcard->render($method);
+    
+} catch (Exception $e){
+    if(DEBUG){
+        echo $e->getMessage(), '<br/>';
+        debug_print_backtrace();
+    }
+}
 
-$result = $funcard->render($method);
 
 $time = microtime(true) - $time;
 
