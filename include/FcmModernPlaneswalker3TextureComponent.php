@@ -31,16 +31,6 @@ class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundComponent {
             $base, Imagick::COMPOSITE_OVER, $x, $y
         );
         
-        // Dernière étape : il faut calculer la couleur la febox
-        
-        $ret = substr($this->getParameter('texture-color'), -1, 1);
-        
-        $ret = [
-            'edging' => ['edging-color' => $ret]
-        ];
-        
-        return $ret;
-        
     }
     
     public function setDefaultParameters(){
@@ -51,5 +41,12 @@ class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundComponent {
         $this->setParameter('texture-color', 'r');
     }
     
-    public function configure(){ return false; }
+    public function configure(){ 
+        // On repaorte la couleur sur le liseré
+        $ret = [
+            'edging' => ['name' => $this->getParameter('texture-color')]
+        ];
+        
+        return $ret;
+    }
 }

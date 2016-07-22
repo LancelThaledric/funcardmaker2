@@ -6,6 +6,7 @@ require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmModernPlaneswalker3BorderComponent.php');
 require_once('include/FcmModernPlaneswalker3TextureComponent.php');
 require_once('include/FcmModernPlaneswalker3EdgingComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -60,7 +61,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
             $components['background'] = new FcmModernPlaneswalker3TextureComponent($this, 0);
-            $components['edging'] = new FcmModernPlaneswalker3EdgingComponent($this, 5);
+            $components['edging'] = new FcmBackgroundLayerComponent($this, 5);
             $components['border'] = new FcmModernPlaneswalker3BorderComponent($this, 1);
         }
         
@@ -77,6 +78,13 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         self::$_defaultParameters = [
             'border' => [],
             'background' => [],
+            'edging' => [
+                'x' => 44. / 791. * 100,
+                'y' => 44. / 1107. * 100,
+                'w' => 706. / 791. * 100,
+                'h' => 988. / 1107. * 100,
+                'type' => 'edging'
+            ]
         ];
     }
     
@@ -84,7 +92,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     * LISTENING LIST
     ************************************************************************/
     public function initListeningList(){
-        $this->getComponent('edging')->listen('edging-color');
+        $this->getComponent('edging')->listen('name');
     }
     
     /***********************************************************************
@@ -94,7 +102,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     public function pushComponentsData(){
         // Fond généré
         $this->pushParameter('background', 'texture-color', $this->getField('background-texture'));
-        $this->pushParameter('edging', 'edging-color', $this->getField('background-edging'));
+        $this->pushParameter('edging', 'name', $this->getField('background-edging'));
         // Fond personnalisé
         $this->pushParameter('background', 'file', $this->getField('background-custom'));
     }
