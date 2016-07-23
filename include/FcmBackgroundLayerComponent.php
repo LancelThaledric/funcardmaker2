@@ -9,6 +9,7 @@ require_once('include/FcmFuncardComponent.php');
  * - x, y, w, h : bounding box of the layer
  * - category : ressource category. Default is "background" (Yes, it's the component name) 
  * - type : folder name of the resource in the template resource folder.
+ * - method : sub-folder name of the mask folder. Can be "vertical", "horizontal", "radial", etc.
  * - name : name/color of the resource, without extension. For hybridation, use the "/" separator
  * - extension : extension of the resource. Default is "png". (Keep png, please.)
  */
@@ -41,7 +42,7 @@ class FcmBackgroundLayerComponent extends FcmFuncardComponent {
         $this->_nbColors = 0;
         $name = $this->getParameter('name');
         if(!empty($name)){
-            $this->_colors = explode('/', $name, 6);
+            $this->_colors = explode('/', $name, 21);
             $this->_nbColors = count($this->_colors);
         }
         
@@ -93,7 +94,9 @@ class FcmBackgroundLayerComponent extends FcmFuncardComponent {
     //* Charge le masque de calque numéro $num
     public function loadMask($num){
         $mask = $this->getFuncard()->loadResource(
-            'background', 'mask', $this->_nbColors . '-' . $num . '.png'
+            'background',
+            'mask/' . $this->getParameter('method'),
+            $this->_nbColors . '-' . $num . '.png'
         );
         return $mask;
     }

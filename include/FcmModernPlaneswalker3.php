@@ -77,13 +77,16 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     public static function staticInitDefaultParameters(){
         self::$_defaultParameters = [
             'border' => [],
-            'background' => [],
+            'background' => [
+                'method' => 'horizontal'
+            ],
             'edging' => [
                 'x' => 44. / 791. * 100,
                 'y' => 44. / 1107. * 100,
                 'w' => 706. / 791. * 100,
                 'h' => 988. / 1107. * 100,
-                'type' => 'edging'
+                'type' => 'edging',
+                'method' => 'radial'
             ]
         ];
     }
@@ -101,7 +104,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     //* Envoie les champs aux components
     public function pushComponentsData(){
         // Fond généré
-        $this->pushParameter('background', 'texture-color', $this->getField('background-texture'));
+        $this->pushParameter('background', 'name', $this->getField('background-texture'));
         $this->pushParameter('edging', 'name', $this->getField('background-edging'));
         // Fond personnalisé
         $this->pushParameter('background', 'file', $this->getField('background-custom'));

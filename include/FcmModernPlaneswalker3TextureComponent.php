@@ -1,16 +1,14 @@
 <?php
 
-require_once('include/FcmBackgroundComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 
 /**
  * Component affichant le fond de la carte
  * 
- * Parameters :
- * - texture-x, texture-y, texture-w, texture-h : géométrie de la base
- * - color : lettre correspondant à la couleur de la base (ou deux lettres pour hybride)
+ * Parameters (same as FcmBackgroundLayerComponent)
  */
 
-class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundComponent {
+class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundLayerComponent {
     
     // self::$draw est disponible par héritage
     
@@ -18,33 +16,21 @@ class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundComponent {
         parent::__construct($funcard, $priority);
     }
     
-    public function apply(){
-        
-        // Etape 1 : la texture !
-        $base = $this->getBackground('texture', $this->getParameter('texture-color'));
-        if(!$base) return;
-        
-        $x = $this->getFuncard()->xc($this->getParameter('texture-x'));
-        $y = $this->getFuncard()->yc($this->getParameter('texture-y'));
-        
-        $this->getFuncard()->getCanvas()->compositeImage(
-            $base, Imagick::COMPOSITE_OVER, $x, $y
-        );
-        
-    }
-    
     public function setDefaultParameters(){
-        $this->setParameter('texture-x', 42. / 791. * 100);
-        $this->setParameter('texture-y', 44. / 1107. * 100);
-        $this->setParameter('texture-w', 707. / 791. * 100);
-        $this->setParameter('texture-h', 1021. / 1107. * 100);
-        $this->setParameter('texture-color', 'r');
+        parent::setDefaultParameters();
+        $this->setParameter('x', 42. / 791. * 100);
+        $this->setParameter('y', 44. / 1107. * 100);
+        $this->setParameter('w', 707. / 791. * 100);
+        $this->setParameter('h', 1021. / 1107. * 100);
+        $this->setParameter('type', 'texture');
+        $this->setParameter('name', 'r');
     }
     
     public function configure(){ 
+        parent::configure();
         // On repaorte la couleur sur le liseré
         $ret = [
-            'edging' => ['name' => $this->getParameter('texture-color')]
+            'edging' => ['name' => $this->getParameter('name')]
         ];
         
         return $ret;
