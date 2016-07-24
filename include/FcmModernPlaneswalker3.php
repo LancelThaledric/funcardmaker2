@@ -8,6 +8,7 @@ require_once('include/FcmModernPlaneswalker3TextureComponent.php');
 require_once('include/FcmModernPlaneswalker3EdgingComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmSingleLineComponent.php');
+require_once('include/FcmManaCostComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -54,7 +55,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     public function initComponents(){
         $components = [
             'title' => new FcmSingleLineComponent($this, 100),
-            'type' => new FcmSingleLineComponent($this, 100)
+            'type' => new FcmSingleLineComponent($this, 100),
+            'cm' => new FcmManaCostComponent($this, 100),
         ];
         
         // Gestion du fond
@@ -114,7 +116,15 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'x' => 82. / 791. * 100,
                 'y' => 680. / 1107. * 100,
                 'size' => 40. / 36.,
-            ]
+            ],
+            'cm' => [
+                'x' => 725. / 791. * 100,
+                'y' => 59. / 1107. * 100,
+                'size' => 44. / 36.,
+                'shadowx' => -1. / 791. * 100,
+                'shadowy' => 5. / 1107. * 100,
+                'largeManaOffset' => -4. / 1107. * 100
+            ],
         ];
     }
     
@@ -143,6 +153,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         // Titre et type
         $this->pushParameter('title', 'text', $this->getField('title'));
         $this->pushParameter('type', 'text', $this->getField('type'));
+        // Mana cost
+        $this->pushParameter('cm', 'text', $this->getField('cm'));
     }
     
     /***********************************************************************
