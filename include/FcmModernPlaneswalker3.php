@@ -62,6 +62,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         } else {
             $components['background'] = new FcmModernPlaneswalker3TextureComponent($this, 0);
             $components['edging'] = new FcmBackgroundLayerComponent($this, 5);
+            $components['titlebox'] = new FcmBackgroundLayerComponent($this, 10);
+            $components['typebox'] = new FcmBackgroundLayerComponent($this, 10);
             $components['border'] = new FcmModernPlaneswalker3BorderComponent($this, 1);
         }
         
@@ -86,7 +88,20 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'w' => 706. / 791. * 100,
                 'h' => 988. / 1107. * 100,
                 'type' => 'edging',
-                'method' => 'radial'
+            ],
+            'titlebox' => [
+                'x' => 57. / 791. * 100,
+                'y' => 49. / 1107. * 100,
+                'w' => 679. / 791. * 100,
+                'h' => 58. / 1107. * 100,
+                'type' => 'titlebox',
+            ],
+            'typebox' => [
+                'x' => 57. / 791. * 100,
+                'y' => 641. / 1107. * 100,
+                'w' => 679. / 791. * 100,
+                'h' => 54. / 1107. * 100,
+                'type' => 'typebox',
             ]
         ];
     }
@@ -96,6 +111,9 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     ************************************************************************/
     public function initListeningList(){
         $this->getComponent('edging')->listen('name');
+        $this->getComponent('edging')->listen('method');
+        $this->getComponent('titlebox')->listen('method');
+        $this->getComponent('typebox')->listen('method');
     }
     
     /***********************************************************************
@@ -106,6 +124,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         // Fond généré
         $this->pushParameter('background', 'name', $this->getField('background-texture'));
         $this->pushParameter('edging', 'name', $this->getField('background-edging'));
+        $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
+        $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
         // Fond personnalisé
         $this->pushParameter('background', 'file', $this->getField('background-custom'));
     }

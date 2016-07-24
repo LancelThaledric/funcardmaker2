@@ -28,9 +28,18 @@ class FcmModernPlaneswalker3TextureComponent extends FcmBackgroundLayerComponent
     
     public function configure(){ 
         parent::configure();
-        // On repaorte la couleur sur le liseré
+        // On reporte la couleur sur le liseré
         $ret = [
-            'edging' => ['name' => $this->getParameter('name')]
+            'edging' => [
+                'name' => $this->getParameter('name'),
+                'method' => $this->getParameter('method')
+            ],
+            'titlebox' => [
+                'method' => $this->getParameter('method')
+            ],
+            'typebox' => [
+                'method' => $this->getParameter('method')
+            ]
         ];
         
         return $ret;
