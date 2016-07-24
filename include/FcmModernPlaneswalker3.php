@@ -7,6 +7,7 @@ require_once('include/FcmModernPlaneswalker3BorderComponent.php');
 require_once('include/FcmModernPlaneswalker3TextureComponent.php');
 require_once('include/FcmModernPlaneswalker3EdgingComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
+require_once('include/FcmSingleLineComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -52,7 +53,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     ************************************************************************/
     public function initComponents(){
         $components = [
-            
+            'title' => new FcmSingleLineComponent($this, 100),
+            'type' => new FcmSingleLineComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -102,6 +104,16 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'w' => 679. / 791. * 100,
                 'h' => 54. / 1107. * 100,
                 'type' => 'typebox',
+            ],
+            'title' => [
+                'x' => 73. / 791. * 100,
+                'y' => 93. / 1107. * 100,
+                'size' => 48. / 36.,
+            ],
+            'type' => [
+                'x' => 82. / 791. * 100,
+                'y' => 680. / 1107. * 100,
+                'size' => 40. / 36.,
             ]
         ];
     }
@@ -128,6 +140,9 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
         // Fond personnalisé
         $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        // Titre et type
+        $this->pushParameter('title', 'text', $this->getField('title'));
+        $this->pushParameter('type', 'text', $this->getField('type'));
     }
     
     /***********************************************************************

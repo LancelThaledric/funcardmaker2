@@ -39,6 +39,8 @@ class FcmBackgroundLayerComponent extends FcmFuncardComponent {
     
     public function configure(){ 
         // 1 : On sépare les différentes couleurs
+        if(!$this->hasParameter('name')) return;
+        
         $this->_nbColors = 0;
         $name = $this->getParameter('name');
         if(!empty($name)){
