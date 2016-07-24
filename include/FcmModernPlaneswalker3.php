@@ -9,6 +9,7 @@ require_once('include/FcmModernPlaneswalker3EdgingComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmManaCostComponent.php');
+require_once('include/FcmExtensionSymbolComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -57,6 +58,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'title' => new FcmSingleLineComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 100),
+            'se' => new FcmExtensionSymbolComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -125,6 +127,11 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'shadowy' => 5. / 1107. * 100,
                 'largeManaOffset' => -4. / 1107. * 100
             ],
+            'se' => [
+                'x' => 718. / 791. * 100,
+                'y' => 647. / 1107. * 100,
+                'h' => 42. / 1107. * 100
+            ]
         ];
     }
     
@@ -155,6 +162,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('type', 'text', $this->getField('type'));
         // Mana cost
         $this->pushParameter('cm', 'text', $this->getField('cm'));
+        // Extension symbol
+        $this->pushParameter('se', 'name', $this->getField('se-extension'));
+        $this->pushParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->pushParameter('se', 'file', $this->getField('se-custom'));
     }
     
     /***********************************************************************
