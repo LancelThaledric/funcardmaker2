@@ -24,7 +24,8 @@
 	opacity: 0.5;
 }
 
-.imgareaselect-handle {
+.imgareaselect-handle,
+*[class$=imgareaselect-handle]{
     background-color: #fff;
     border: solid 1px #000;
     filter: alpha(opacity=50);

@@ -105,7 +105,7 @@ function ModernPlaneswalker3Template(){
     
     this.panels = [
         existingPanels['modernplaneswalkerbackground'],
-        existingPanels['illustration'],
+        existingPanels['mpw3-illustration'],
         existingPanels['titre-type'],
         existingPanels['cm'],
         existingPanels['capa'],
@@ -117,8 +117,8 @@ function ModernPlaneswalker3Template(){
     this.resetSize();
     /*this.width = Math.floor(791./2.);
     this.height = Math.floor(1107./2.);*/
-    this.illusWidth = 651; // TODO fixer valeur
-    this.illusHeight = 480; // TODO fixer valeur
+    this.illusWidth = 665;  // Bounding box of illus-mask
+    this.illusHeight = 890;
     
 }
 ModernPlaneswalker3Template.prototype = Object.create(Funcard.prototype);
