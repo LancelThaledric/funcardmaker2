@@ -82,8 +82,6 @@ IllustrationPanel.prototype.onFocus = function(){
         this.cropSelector.setOptions({show:true, hide:false});
         this.cropSelector.update();
     }
-    
-    console.log('normal');
 }
 
 IllustrationPanel.prototype.onBlur = function(){
@@ -98,6 +96,7 @@ IllustrationPanel.prototype.onBlur = function(){
 IllustrationPanel.prototype.onActivate = function(){
     
     var varthis = this;
+    console.log(varthis);
     
     Panel.CONTAINER_ELEMENT.on('uploadSuccess', '#fcm-form-illustration', function(){
         varthis.onImageLoad();
@@ -196,6 +195,10 @@ function ModernPW3IllustrationPanel(n, t){
 }
 ModernPW3IllustrationPanel.prototype = Object.create(IllustrationPanel.prototype);
 
+ModernPW3IllustrationPanel.prototype.onActivate = function(){
+    IllustrationPanel.prototype.onActivate.call(this);
+}
+
 ModernPW3IllustrationPanel.prototype.centerImage = function(){
     IllustrationPanel.prototype.centerImage.call(this);
     
@@ -203,9 +206,9 @@ ModernPW3IllustrationPanel.prototype.centerImage = function(){
         this.cropSelector.setOptions({classPrefix:'mpw3-imgareaselect', handles:true});
         this.cropSelector.update();
     }
+    
+    console.log(this);
 }
-
-
 
 
 
@@ -403,7 +406,7 @@ existingPanels['modernplaneswalkerbackground'] = new ModernBasicBackgroundPanel(
 
 // Sections de fabrication de carte
 existingPanels['illustration'] = new IllustrationPanel('illustration', 'Illustration');
-existingPanels['mpw3-illustration'] = new ModernPW3IllustrationPanel('illustration', 'Illustration');
+existingPanels['mpw3-illustration'] = new ModernPW3IllustrationPanel('mpw3-illustration', 'Illustration');
 existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');

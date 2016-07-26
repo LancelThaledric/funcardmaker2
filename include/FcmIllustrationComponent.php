@@ -18,7 +18,7 @@ class FcmIllustrationComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
-    private $_illus;
+    protected $_illus;
     
     public function __construct($funcard, $priority = 0) {
         parent::__construct($funcard, $priority);

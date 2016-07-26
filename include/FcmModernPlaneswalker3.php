@@ -10,6 +10,7 @@ require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
+require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -58,7 +59,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'title' => new FcmSingleLineComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 100),
-            'se' => new FcmExtensionSymbolComponent($this, 100)
+            'se' => new FcmExtensionSymbolComponent($this, 100),
+            'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -131,6 +133,12 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'x' => 718. / 791. * 100,
                 'y' => 647. / 1107. * 100,
                 'h' => 42. / 1107. * 100
+            ],
+            'illustration' => [
+                'x' => 64. / 791. * 100,
+                'y' => 113. / 1107. * 100,
+                'w' => 665. / 791. * 100,
+                'h' => 890. / 1107. * 100
             ]
         ];
     }
@@ -166,6 +174,12 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('se', 'name', $this->getField('se-extension'));
         $this->pushParameter('se', 'rarity', $this->getField('se-rarity'));
         $this->pushParameter('se', 'file', $this->getField('se-custom'));
+        // Illustration
+        $this->pushParameter('illustration', 'file', $this->getField('illustration'));
+        $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->pushParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->pushParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->pushParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
     }
     
     /***********************************************************************
