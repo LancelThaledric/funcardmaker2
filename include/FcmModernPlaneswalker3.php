@@ -11,6 +11,7 @@ require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
+require_once('include/FcmImageComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -60,7 +61,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'type' => new FcmSingleLineComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 100),
             'se' => new FcmExtensionSymbolComponent($this, 100),
-            'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 100)
+            'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 50),
+            'illustration-frame' => new FcmImageComponent($this, 70),
+            'capabox-frame' => new FcmImageComponent($this, 70),
+            'capabox-background' => new FcmImageComponent($this, 60)
         ];
         
         // Gestion du fond
@@ -139,6 +143,30 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'y' => 113. / 1107. * 100,
                 'w' => 665. / 791. * 100,
                 'h' => 890. / 1107. * 100
+            ],
+            'illustration-frame' => [
+                'x' => 63. / 791. * 100,
+                'y' => 112. / 1107. * 100,
+                'w' => 667. / 791. * 100,
+                'h' => 522. / 1107. * 100,
+                'category' => 'background',
+                'name' => 'illus-frame'
+            ],
+            'capabox-frame' => [
+                'x' => 104. / 791. * 100,
+                'y' => 702. / 1107. * 100,
+                'w' => 620. / 791. * 100,
+                'h' => 302. / 1107. * 100,
+                'category' => 'background',
+                'name' => 'capabox-frame'
+            ],
+            'capabox-background' => [
+                'x' => 105. / 791. * 100,
+                'y' => 703. / 1107. * 100,
+                'w' => 618. / 791. * 100,
+                'h' => 300. / 1107. * 100,
+                'category' => 'background',
+                'name' => 'capabox-background'
             ]
         ];
     }
