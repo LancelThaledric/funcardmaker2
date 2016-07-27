@@ -31,8 +31,8 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
     
     public static function static_init(){
         self::$OFFSETS_Y = [
-            'up' => 0.6363,
-            'down' => 0.4935,
+            'up' => 49. / 77.,
+            'down' => 38. / 77.,
             'none' => 0.5846,
             'base' => 0.7671
         ];
@@ -119,7 +119,9 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
             $this->getFuncard()->yc($y) - $this->_resource->getImageHeight() * self::$OFFSETS_Y[$this->getParameter('direction')]
         );
         
-        if(strlen($this->getParameter('text')) > 1) $y += self::$BASE_OFFSET_Y_MULTICHAR;
+        if($this->getParameter('direction') == 'base'
+           && strlen($this->getParameter('text')) > 1)
+            $y += self::$BASE_OFFSET_Y_MULTICHAR;
         
         $this->getFuncard()->getCanvas()->annotateImage(
             self::$draw,
