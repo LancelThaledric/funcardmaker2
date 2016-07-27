@@ -655,6 +655,7 @@ input[type="text"].large{
 textarea{
     display: block;
     padding: 1em;
+    height: 6em;
     background: rgba(0,0,0,0.2);
     -webkit-transition: background-color ease 0.2s;
     transition: background-color ease 0.2s;
@@ -666,7 +667,6 @@ textarea:focus{
 textarea.large{
     min-height: 12em;
 }
-
 
 /* Buttons -------------------------------------------------------------------------------------------- */
 
@@ -912,6 +912,45 @@ label.large{
 .fcm-color-l{ background: #9d8e6e;}
 
 .fcm-color-land{ box-shadow: #9d8e6e 0px 0px 0px 8px inset; }
+
+/* Planeswalkers -------------------------------------------------------------------------------*/
+
+.planeswalker-capa-container{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.planeswalker-capa-container .planeswalker-capa-cost-container{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1 0 2em;
+    -webkit-box-flex: 1;
+    flex: 1 0 2em;
+}
+
+.planeswalker-capa-container .planeswalker-capa-cost-container:after{
+    content: ":";
+    margin-right: 8px;
+    font-size: 2em;
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+
+.planeswalker-capa-container .planeswalker-capa-cost{
+    font-size: 2em;
+    text-align: center;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    margin-right: 8px;
+}
+
+.planeswalker-capa-container .planeswalker-capa-text{
+    -webkit-box-flex: 9;
+    -ms-flex: 9;
+    flex: 9;
+}
 
 /*============================================================================================================== */
 /* Chapter 4 : Particular Panels Elements ==================================================================================== */

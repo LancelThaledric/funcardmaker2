@@ -410,6 +410,7 @@ existingPanels['mpw3-illustration'] = new ModernPW3IllustrationPanel('mpw3-illus
 existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');
+existingPanels['mpw3-capa'] = new Panel('mpw3-capa', 'Capacité<br/>Texte d\'ambiance');
 existingPanels['fe'] = new Panel('fe', 'Force / Endurance');
 existingPanels['se'] = new ExtensionSymbolPanel('se', 'Symbole d\'extension');
 existingPanels['illus-copy'] = new Panel('illus-copy', 'Illustrateur<br/>Copyright');
