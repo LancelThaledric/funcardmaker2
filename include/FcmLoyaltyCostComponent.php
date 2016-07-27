@@ -21,22 +21,32 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
     
     // self::$draw est disponible par héritage
     
-    public static $OFFSETS = null;
-    public static $OFFSETX = 0.5288;
+    public static $OFFSETS_Y = null;
+    public static $OFFSETS_X = null;
     
     public static $DOTS_OFFSET_X = null;
     public static $DOTS_OFFSET_Y = null;
     
+    public static $BASE_OFFSET_Y_MULTICHAR = null;
+    
     public static function static_init(){
-        self::$OFFSETS = [
+        self::$OFFSETS_Y = [
             'up' => 0.6363,
             'down' => 0.4935,
             'none' => 0.5846,
-            'base' => 0.6233
+            'base' => 0.7671
+        ];
+        self::$OFFSETS_X = [
+            'up' => 0.5288,
+            'down' => 0.5288,
+            'none' => 0.5288,
+            'base' => 0.5217
         ];
         
         self::$DOTS_OFFSET_X = 64. / 1107. * 100;
         self::$DOTS_OFFSET_Y = 0;
+        
+        self::$BASE_OFFSET_Y_MULTICHAR = -3. / 1107. * 100;
     }
     
     
@@ -99,17 +109,22 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
         self::$draw->setFontSize($this->getFuncard()->fsc($this->getParameter('fontsize')));
         self::$draw->setTextAlignment(imagick::ALIGN_CENTER);
         
+        $x = $this->getParameter('x');
+        $y = $this->getParameter('y');
+        
         $this->getFuncard()->getCanvas()->compositeImage(
             $this->_resource,
             Imagick::COMPOSITE_OVER,
-            $this->getFuncard()->xc($this->getParameter('x')) - $this->_resource->getImageWidth() * self::$OFFSETX,
-            $this->getFuncard()->yc($this->getParameter('y')) - $this->_resource->getImageHeight() * self::$OFFSETS[$this->getParameter('direction')]
+            $this->getFuncard()->xc($x) - $this->_resource->getImageWidth() * self::$OFFSETS_X[$this->getParameter('direction')],
+            $this->getFuncard()->yc($y) - $this->_resource->getImageHeight() * self::$OFFSETS_Y[$this->getParameter('direction')]
         );
+        
+        if(strlen($this->getParameter('text')) > 1) $y += self::$BASE_OFFSET_Y_MULTICHAR;
         
         $this->getFuncard()->getCanvas()->annotateImage(
             self::$draw,
-            $this->getFuncard()->xc($this->getParameter('x')),
-            $this->getFuncard()->yc($this->getParameter('y')),
+            $this->getFuncard()->xc($x),
+            $this->getFuncard()->yc($y),
             0,
             $this->getParameter('text')
         );

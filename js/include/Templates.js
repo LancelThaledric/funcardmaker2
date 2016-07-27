@@ -109,7 +109,7 @@ function ModernPlaneswalker3Template(){
         existingPanels['titre-type'],
         existingPanels['cm'],
         existingPanels['mpw3-capa'],
-        existingPanels['fe'],
+        existingPanels['loyalty'],
         existingPanels['se'],
         existingPanels['illus-copy']
     ];

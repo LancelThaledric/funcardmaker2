@@ -68,7 +68,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'capabox-background' => new FcmImageComponent($this, 60),
             'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
-            'loyalty3' => new FcmLoyaltyCostComponent($this, 100)
+            'loyalty3' => new FcmLoyaltyCostComponent($this, 100),
+            'loyalty-base' => new FcmLoyaltyCostComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -186,6 +187,14 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'x' => 89. / 791. * 100,
                 'y' => 954. / 1107. * 100,
                 'fontsize' => 32. / 36.
+            ],
+            'loyalty-base' => [
+                'x' => 691. / 791. * 100,
+                'y' => 1029. / 1107. * 100,
+                'fontsize' => 46. / 36.,
+                'imagewidth' => 115. / 791. * 100,
+                'direction' => 'base',
+                'dots' => false
             ]
         ];
     }
@@ -231,6 +240,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('loyalty1', 'text', $this->getField('capa1-cost'));
         $this->pushParameter('loyalty2', 'text', $this->getField('capa2-cost'));
         $this->pushParameter('loyalty3', 'text', $this->getField('capa3-cost'));
+        $this->pushParameter('loyalty-base', 'text', $this->getField('loyalty-base'));
     }
     
     /***********************************************************************
