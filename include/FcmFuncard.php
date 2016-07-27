@@ -480,8 +480,12 @@ abstract class FcmFuncard extends FcmFcRender{
     public function loadResource($type, $subtype, $name, $sizex = 0, $sizey = 0){
         
         // Par défaut la ressource fera la taille de la carte
-        if($sizex == 0) $sizex = $this->getWidth();
-        if($sizey == 0) $sizey = $this->getHeight();
+        if($sizex === 0) $sizex = $this->getWidth();
+        if($sizey === 0) $sizey = $this->getHeight();
+        
+        // Si le width ou height est auto, on let ensuite à 0 (signifie auto pour Imagick)
+        if($sizex === 'auto') $sizex = 0;
+        if($sizey === 'auto') $sizey = 0;
         
         // On détermine le chemin de fichier
         $filepath = 'resource/'.$type.'/'.$this->getTemplateName().'/';

@@ -12,6 +12,7 @@ require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
 require_once('include/FcmImageComponent.php');
+require_once('include/FcmLoyaltyCostComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -64,7 +65,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 50),
             'illustration-frame' => new FcmImageComponent($this, 70),
             'capabox-frame' => new FcmImageComponent($this, 70),
-            'capabox-background' => new FcmImageComponent($this, 60)
+            'capabox-background' => new FcmImageComponent($this, 60),
+            'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
+            'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
+            'loyalty3' => new FcmLoyaltyCostComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -167,6 +171,21 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'h' => 300. / 1107. * 100,
                 'category' => 'background',
                 'name' => 'capabox-background'
+            ],
+            'loyalty1' => [
+                'x' => 89. / 791. * 100,
+                'y' => 759. / 1107. * 100,
+                'fontsize' => 32. / 36.
+            ],
+            'loyalty2' => [
+                'x' => 89. / 791. * 100,
+                'y' => 859. / 1107. * 100,
+                'fontsize' => 32. / 36.
+            ],
+            'loyalty3' => [
+                'x' => 89. / 791. * 100,
+                'y' => 954. / 1107. * 100,
+                'fontsize' => 32. / 36.
             ]
         ];
     }
@@ -208,6 +227,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
         $this->pushParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
         $this->pushParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        // Loyalties
+        $this->pushParameter('loyalty1', 'text', $this->getField('capa1-cost'));
+        $this->pushParameter('loyalty2', 'text', $this->getField('capa2-cost'));
+        $this->pushParameter('loyalty3', 'text', $this->getField('capa3-cost'));
     }
     
     /***********************************************************************
