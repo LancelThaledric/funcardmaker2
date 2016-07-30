@@ -1,7 +1,7 @@
 <?php
 
 define('DEBUG', false);
-ini_set('xdebug.var_display_max_depth', 5);
+ini_set('xdebug.var_display_max_depth', 3);
 
 /**
  * Retourne la taille maximum d'upload en octets

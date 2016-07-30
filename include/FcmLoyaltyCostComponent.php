@@ -26,6 +26,7 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
     
     public static $DOTS_OFFSET_X = null;
     public static $DOTS_OFFSET_Y = null;
+    public static $DOTS_SIZE = null;
     
     public static $BASE_OFFSET_Y_MULTICHAR = null;
     
@@ -43,8 +44,9 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
             'base' => 60. / 115.
         ];
         
-        self::$DOTS_OFFSET_X = 64. / 1107. * 100;
+        self::$DOTS_OFFSET_X = 74. / 1107. * 100;
         self::$DOTS_OFFSET_Y = 0;
+        self::$DOTS_SIZE = 42. / 36.;
         
         self::$BASE_OFFSET_Y_MULTICHAR = -3. / 1107. * 100;
     }
@@ -89,7 +91,7 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
             $this->_dotsComponent->setParameter('x', $x);
             $this->_dotsComponent->setParameter('y', $y);
             $this->_dotsComponent->setParameter('color', 'black');
-            $this->_dotsComponent->setParameter('size', 46. / 36. );
+            $this->_dotsComponent->setParameter('size', self::$DOTS_SIZE);
             $this->_dotsComponent->setParameter('text', ':');
             $this->_dotsComponent->setParameter('font', 'mplantin');
             

@@ -13,6 +13,7 @@ require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
 require_once('include/FcmImageComponent.php');
 require_once('include/FcmLoyaltyCostComponent.php');
+require_once('include/FcmMultiCapaboxComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -69,7 +70,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty3' => new FcmLoyaltyCostComponent($this, 100),
-            'loyalty-base' => new FcmLoyaltyCostComponent($this, 100)
+            'loyalty-base' => new FcmLoyaltyCostComponent($this, 100),
+            'capabox' => new FcmMultiCapaboxComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -195,7 +197,23 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'imagewidth' => 115. / 791. * 100,
                 'direction' => 'base',
                 'dots' => false
-            ]
+            ],
+            'capabox' => [
+                'x1' => 154. / 791. * 100,
+                'y1' => 713. / 1107. * 100,
+                'w1' => 559. / 791. * 100,
+                'h1' => 80. / 1107. * 100,
+                
+                'x2' => 154. / 791. * 100,
+                'y2' => 808. / 1107. * 100,
+                'w2' => 559. / 791. * 100,
+                'h2' => 85. / 1107. * 100,
+                
+                'x3' => 154. / 791. * 100,
+                'y3' => 905. / 1107. * 100,
+                'w3' => 559. / 791. * 100,
+                'h3' => 93. / 1107. * 100,
+            ],
         ];
     }
     
@@ -241,6 +259,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('loyalty2', 'text', $this->getField('capa2-cost'));
         $this->pushParameter('loyalty3', 'text', $this->getField('capa3-cost'));
         $this->pushParameter('loyalty-base', 'text', $this->getField('loyalty-base'));
+        // Capacités
+        $this->pushParameter('capabox', 'text1', $this->getField('capa1'));
+        $this->pushParameter('capabox', 'text2', $this->getField('capa2'));
+        $this->pushParameter('capabox', 'text3', $this->getField('capa3'));
     }
     
     /***********************************************************************
