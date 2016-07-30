@@ -14,6 +14,7 @@ require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
 require_once('include/FcmImageComponent.php');
 require_once('include/FcmLoyaltyCostComponent.php');
 require_once('include/FcmMultiCapaboxComponent.php');
+require_once('include/FcmModernPlaneswalker3IllustratorComponent.php');
 
 //* Template Moderne Planeswalker 3 capacités
 
@@ -71,7 +72,9 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty3' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty-base' => new FcmLoyaltyCostComponent($this, 100),
-            'capabox' => new FcmMultiCapaboxComponent($this, 100)
+            'capabox' => new FcmMultiCapaboxComponent($this, 100),
+            'illus' => new FcmModernPlaneswalker3IllustratorComponent($this, 100),
+            'copyright' => new FcmSingleLineComponent($this, 100)
         ];
         
         // Gestion du fond
@@ -214,6 +217,22 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'w3' => 559. / 791. * 100,
                 'h3' => 93. / 1107. * 100,
             ],
+            'illus' => [
+                'x' => 395. / 791. * 100,
+                'y' => 1039. / 1107. * 100,
+                'size' => 29. / 36.,
+                'brushsize' => 26. / 36.,
+                'color' => 'white',
+                'altcolor' => 'none'
+            ],
+            'copyright' => [
+                'x' => 395. / 791. * 100,
+                'y' => 1060. / 1107. * 100,
+                'size' => 18. / 36.,
+                'color' => 'white',
+                'font' => 'mplantin',
+                'align' => 'center'
+            ]
         ];
     }
     
@@ -263,6 +282,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->pushParameter('capabox', 'text1', $this->getField('capa1'));
         $this->pushParameter('capabox', 'text2', $this->getField('capa2'));
         $this->pushParameter('capabox', 'text3', $this->getField('capa3'));
+        // Illustrator
+        $this->pushParameter('illus', 'text', $this->getField('illustrator'));
+        // Copyright
+        $this->pushParameter('copyright', 'text', $this->getField('copyright'));
     }
     
     /***********************************************************************
