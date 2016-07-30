@@ -240,10 +240,12 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     * LISTENING LIST
     ************************************************************************/
     public function initListeningList(){
-        $this->getComponent('edging')->listen('name');
-        $this->getComponent('edging')->listen('method');
-        $this->getComponent('titlebox')->listen('method');
-        $this->getComponent('typebox')->listen('method');
+        if(!$this->_customBackground){
+            $this->getComponent('edging')->listen('name');
+            $this->getComponent('edging')->listen('method');
+            $this->getComponent('titlebox')->listen('method');
+            $this->getComponent('typebox')->listen('method');
+        }
     }
     
     /***********************************************************************
@@ -251,13 +253,19 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     ************************************************************************/
     //* Envoie les champs aux components
     public function pushComponentsData(){
-        // Fond généré
-        $this->pushParameter('background', 'name', $this->getField('background-texture'));
-        $this->pushParameter('edging', 'name', $this->getField('background-edging'));
-        $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
-        $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
+        
         // Fond personnalisé
-        $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        if($this->_customBackground){
+            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        }
+        // Fond généré
+        else{
+            $this->pushParameter('background', 'name', $this->getField('background-texture'));
+            $this->pushParameter('edging', 'name', $this->getField('background-edging'));
+            $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
+            $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
+        }
+        
         // Titre et type
         $this->pushParameter('title', 'text', $this->getField('title'));
         $this->pushParameter('type', 'text', $this->getField('type'));
