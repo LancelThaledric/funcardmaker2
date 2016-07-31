@@ -5,7 +5,7 @@ require_once('include/FcmFuncard.php');
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmBorderComponent.php');
-require_once('include/FcmModernBasicBackgroundComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmIllustrationComponent.php');
 require_once('include/FcmCapaboxComponent.php');
@@ -76,8 +76,11 @@ class FcmModernBasic extends FcmFuncard {
         if($this->_customBackground){
             $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            $components['background'] = new FcmModernBasicBackgroundComponent($this, 0);
-            $components['border'] = new FcmBorderComponent($this, 1);
+            $components['background'] = new FcmBackgroundLayerComponent($this, 0);
+            $components['edging'] = new FcmBackgroundLayerComponent($this, 1);
+            $components['titlebox'] = new FcmBackgroundLayerComponent($this, 2);
+            $components['typebox'] = new FcmBackgroundLayerComponent($this, 2);
+            $components['border'] = new FcmBorderComponent($this, 10);
         }
         
         // On envoie tout à la funcard
@@ -91,6 +94,36 @@ class FcmModernBasic extends FcmFuncard {
     protected static $_defaultParameters = [];
     public static function staticInitDefaultParameters(){
         self::$_defaultParameters = [
+            'border' => [],
+            'background' => [
+                'method' => 'radial',
+                'type' => 'base',
+                'x' => 41. / 791. * 100,
+                'y' => 41. / 1107. * 100,
+                'w' => 709. / 791. * 100,
+                'h' => 1025. / 1107. * 100,
+            ],
+            'edging' => [
+                'x' => 50. / 791. * 100,
+                'y' => 55. / 1107. * 100,
+                'w' => 691. / 791. * 100,
+                'h' => 946. / 1107. * 100,
+                'type' => 'edging'
+            ],
+            'titlebox' => [
+                'x' => 56. / 791. * 100,
+                'y' => 61. / 1107. * 100,
+                'w' => 679. / 791. * 100,
+                'h' => 64. / 1107. * 100,
+                'type' => 'titlebox'
+            ],
+            'typebox' => [
+                'x' => 60. / 791. * 100,
+                'y' => 621. / 1107. * 100,
+                'w' => 671. / 791. * 100,
+                'h' => 62. / 1107. * 100,
+                'type' => 'typebox'
+            ],
             'title' => [
                 'x' => 73. / 791. * 100,
                 'y' => 108. / 1107. * 100,
@@ -101,7 +134,6 @@ class FcmModernBasic extends FcmFuncard {
                 'y' => 664. / 1107. * 100,
                 'size' => 40. / 36.
             ],
-            'border' => [],
             'capabox' => [
                 'x' => 79. / 791. * 100,
                 'y' => 700. / 1107. * 100,
@@ -163,15 +195,22 @@ class FcmModernBasic extends FcmFuncard {
     ************************************************************************/
     //* Envoie les champs aux components en tant que paramètres
     public function pushComponentsData(){
+        
+        // Fond personnalisé
+        if($this->_customBackground){
+            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        }
+        // Fond généré
+        else {
+            $this->pushParameter('background', 'name', $this->getField('background-base'));
+            $this->pushParameter('edging', 'name', $this->getField('background-edging'));
+            $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
+            $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
+        }
+        
         // Titre et type
         $this->pushParameter('title', 'text', $this->getField('title'));
         $this->pushParameter('type', 'text', $this->getField('type'));
-        // Fond généré
-        $this->pushParameter('background', 'base-color', $this->getField('background-base'));
-        $this->pushParameter('background', 'edging-color', $this->getField('background-edging'));
-        $this->pushParameter('background', 'box-color', $this->getField('background-boxes'));
-        // Fond personnalisé
-        $this->pushParameter('background', 'file', $this->getField('background-custom'));
         // Illustration
         $this->pushParameter('illustration', 'file', $this->getField('illustration'));
         $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
