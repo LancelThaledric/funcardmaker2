@@ -96,7 +96,7 @@ class FcmModernBasic extends FcmFuncard {
         self::$_defaultParameters = [
             'border' => [],
             'background' => [
-                'method' => 'radial',
+                'method' => 'horizontal',
                 'type' => 'base',
                 'x' => 41. / 791. * 100,
                 'y' => 41. / 1107. * 100,

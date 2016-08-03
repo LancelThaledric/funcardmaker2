@@ -5,7 +5,6 @@ require_once('include/FcmFuncard.php');
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmModernPlaneswalker3BorderComponent.php');
 require_once('include/FcmModernPlaneswalker3TextureComponent.php');
-require_once('include/FcmModernPlaneswalker3EdgingComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmManaCostComponent.php');
@@ -66,8 +65,6 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             'se' => new FcmExtensionSymbolComponent($this, 100),
             'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 50),
             'illustration-frame' => new FcmImageComponent($this, 70),
-            'capabox-frame' => new FcmImageComponent($this, 70),
-            'capabox-background' => new FcmImageComponent($this, 60),
             'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty3' => new FcmLoyaltyCostComponent($this, 100),
@@ -87,6 +84,8 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             $components['titlebox'] = new FcmBackgroundLayerComponent($this, 10);
             $components['typebox'] = new FcmBackgroundLayerComponent($this, 10);
             $components['border'] = new FcmModernPlaneswalker3BorderComponent($this, 1);
+            $components['capabox-frame'] = new FcmImageComponent($this, 70);
+            $components['capabox-background'] = new FcmImageComponent($this, 60);
         }
         
         // On envoie tout à la funcard

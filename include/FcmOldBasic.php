@@ -4,7 +4,7 @@ require_once('include/FcmFuncard.php');
 
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmBorderComponent.php');
-require_once('include/FcmOldBasicBackgroundComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
@@ -80,8 +80,9 @@ class FcmOldBasic extends FcmFuncard {
         if($this->_customBackground){
             $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            $components['background'] = new FcmOldBasicBackgroundComponent($this, 0);
-            $components['border'] = new FcmBorderComponent($this, 1);
+            $components['background'] = new FcmBackgroundLayerComponent($this, 0);
+            $components['capabackground'] = new FcmBackgroundLayerComponent($this, 1);
+            $components['border'] = new FcmBorderComponent($this, 10);
         }
         
         // On envoie tout à la funcard
@@ -95,6 +96,22 @@ class FcmOldBasic extends FcmFuncard {
     protected static $_defaultParameters = [];
     public static function staticInitDefaultParameters(){
         self::$_defaultParameters = [
+            'background' => [
+                'x' => 41. / 787. * 100,
+                'y' => 41. / 1087. * 100,
+                'w' => 705. / 787. * 100,
+                'h' => 1005. / 1087. * 100,
+                'type' => 'base',
+                'method' => 'horizontal'
+            ],
+            'capabackground' => [
+                'x' => 71. / 787. * 100,
+                'y' => 640. / 1087. * 100,
+                'w' => 646. / 787. * 100,
+                'h' => 336. / 1087. * 100,
+                'type' => 'capabox',
+                'method' => 'horizontal'
+            ],
             'illustration' => [
                 'x' => 93. / 787. * 100,
                 'y' => 106. / 1087. * 100,
@@ -215,11 +232,17 @@ class FcmOldBasic extends FcmFuncard {
     
     //* Envoie les champs aux components
     public function pushComponentsData(){
-        // Fond généré
-        $this->pushParameter('background', 'base-color', $this->getField('background-base'));
-        $this->pushParameter('background', 'capabox-color', $this->getField('background-capabox'));
+        
         // Fond personnalisé
-        $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        if($this->_customBackground){
+            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+        }
+        // Fond généré
+        else {
+            $this->pushParameter('background', 'name', $this->getField('background-base'));
+            $this->pushParameter('capabackground', 'name', $this->getField('background-capabox'));
+        }
+
         // Illustration
         $this->pushParameter('illustration', 'file', $this->getField('illustration'));
         $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
