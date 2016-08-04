@@ -259,7 +259,7 @@ class FcmOldBasic extends FcmFuncard {
         // Capacité / TA
         $this->userParameter('capabox', 'textcapa', $this->getField('capa'));
         $this->userParameter('capabox', 'textta', $this->getField('ta'));
-        $this->updateParameter('capabox', 'title', $this->getField('title'));
+        $this->userParameter('capabox', 'title', $this->getField('title'));
         // F/E
         $this->userParameter('fe', 'text', $this->getField('fe'));
         $this->userParameter('feshadow', 'text', $this->getField('fe'));

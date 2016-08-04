@@ -224,7 +224,7 @@ class FcmModernBasic extends FcmFuncard {
         // Capacité / TA
         $this->userParameter('capabox', 'textcapa', $this->getField('capa'));
         $this->userParameter('capabox', 'textta', $this->getField('ta'));
-        $this->updateParameter('capabox', 'title', $this->getField('title'));
+        $this->userParameter('capabox', 'title', $this->getField('title'));
         // Mana cost
         $this->userParameter('cm', 'text', $this->getField('cm'));
         // Extension symbol
