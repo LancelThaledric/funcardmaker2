@@ -17,5 +17,13 @@
             <h4>Par FirePinguinMaster</h4>
         </button>
         
+        <span class="line-break"></span>
+        
+        <button class="fcm-selector-button" data-value="modern-planeswalker3">
+            <img src="resource/templateThumb/modernPlaneswalker3.png" width="143" height="200" alt="ModernPlaneswalker3"/>
+            <h3>Modern Planeswalker 3 capacités</h3>
+            <h4>Par Sovelis &amp; Pleykorn</h4>
+        </button>
+        
     </div>
 </section>

@@ -2,7 +2,7 @@
     <h2>Le fond de carte</h2>
     <div class="fcm-columns">
     
-        <div class="fcm-selector has-inner" id="fcm-background-base-selector" data-field="fcm-field-background-base">
+        <div class="fcm-selector has-inner" id="fcm-background-base-selector" data-field="fcm-field-background-base" data-separator="/">
             <h3 class="has-panel-top">Base</h3>
             <div class="fcm-panel-top-toolbar">
                 <button class="fcm-toggle-button fcm-toggle-duoselector">
@@ -45,7 +45,7 @@
             </div>
         </div>
         
-        <div class="fcm-selector has-inner" id="fcm-background-edging-selector" data-field="fcm-field-background-edging">
+        <div class="fcm-selector has-inner" id="fcm-background-edging-selector" data-field="fcm-field-background-edging" data-separator="/">
             <h3 class="has-panel-top">Liseré</h3>
             <div class="fcm-panel-top-toolbar">
                 <button class="fcm-toggle-button fcm-toggle-duoselector">
@@ -88,7 +88,7 @@
             </div>
         </div>
         
-        <div class="fcm-selector has-inner" id="fcm-background-boxes-selector" data-field="fcm-field-background-boxes">
+        <div class="fcm-selector has-inner" id="fcm-background-boxes-selector" data-field="fcm-field-background-boxes" data-separator="/">
             <h3 class="has-panel-top">Boîtes</h3>
             <div class="fcm-panel-top-toolbar">
                 <button class="fcm-toggle-button fcm-toggle-duoselector">

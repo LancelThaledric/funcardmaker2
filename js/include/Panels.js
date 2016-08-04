@@ -5,6 +5,7 @@
 function Panel(n, t){
     this.name = n;
     this.title = t;
+    this.element = null;
 }
 
 Panel.ID_PREFIX = 'fcm-panel-';
@@ -64,6 +65,7 @@ Panel.prototype.hide = function(){
  */
 Panel.prototype.activate = function(){
     Panel.TEMPLATE_MENU_ELEMENT.append('<li><a href="#" data-panel="'+this.name+'">'+this.title+'</li>');
+    this.element = $('#'+Panel.ID_PREFIX+this.name);
     this.onActivate();
 }
 
@@ -111,8 +113,122 @@ IllustrationPanel.prototype.onDeactivate = function(){
         this.cropSelector.remove();
     }
 }
+IllustrationPanel.prototype.onActivate = function(){
+    
+    var varthis = this;
+    console.log(varthis);
+    
+    Panel.CONTAINER_ELEMENT.on('uploadSuccess', '#fcm-form-illustration', function(){
+        varthis.onImageLoad();
+    });
+    
+    Panel.CONTAINER_ELEMENT.on('uploadFailure', '#fcm-form-illustration', function(){
+        varthis.onImageUnload();
+    });
+    
+    Panel.CONTAINER_ELEMENT.on('click', '#fcm-illsutration-center-viewport', function(){
+        varthis.centerImage();
+        return false;
+    });
+}
+
+IllustrationPanel.prototype.onImageLoad = function(){
+    var image = this.element.find('.file-preview');
+    var centerbutton = this.element.find('#fcm-illsutration-center-viewport');
+    centerbutton.addClass('active');
+    image.load(function(){
+        // init imgAreaSelect
+        centerbutton.trigger('click');
+    });
+}
+
+IllustrationPanel.prototype.onImageUnload = function(){
+    var image = this.element.find('.file-preview');
+    var centerbutton = this.element.find('#fcm-illsutration-center-viewport');
+    centerbutton.removeClass('active');
+    image.imgAreaSelect({remove:true});
+}
+
+IllustrationPanel.prototype.centerImage = function(){
+    
+    // init imgAreaSelect
+    var form = this.element.find('form');
+    var image = form.find('.file-preview');
+    var axis = true;    // true = X(portait), false = Y(paysage)
+    if(image.width() / image.height() > myFuncard.illusWidth / myFuncard.illusHeight)
+        axis = false;
+    //console.log(axis);
+
+    var cx1 = 0, cx2 = 0, cy1 = 0, cy2 = 0;
+
+    if(axis){
+        cx2 = image.width();
+        var height = image.width() / (myFuncard.illusWidth / myFuncard.illusHeight);
+        //console.log('height:', height);
+        cy1 = (image.height() - height) / 2;
+        cy2 = cy1 + height;
+    } else {
+        var width = image.height() * (myFuncard.illusWidth / myFuncard.illusHeight);
+        //console.log('width:', width);
+        cx1 = (image.width() - width) / 2;
+        cx2 = cx1 + width;
+        cy2 = image.height();
+    }
+    
+    form.find('#fcm-field-illuscrop-x').val('');
+    form.find('#fcm-field-illuscrop-y').val('');
+    form.find('#fcm-field-illuscrop-w').val('');
+    form.find('#fcm-field-illuscrop-h').val('');
+
+    //console.log(cx1, cy1, cx2, cy2);
+    
+    this.cropSelector = image.imgAreaSelect({
+        instance: true,
+        handles: true,
+        persistent: true,
+        aspectRatio: myFuncard.illusWidth + ':' + myFuncard.illusHeight,
+        x1: cx1,
+        y1: cy1,
+        x2: cx2,
+        y2: cy2,
+        onSelectEnd: function (img, selection) {
+            img = $(img);
+            var px = selection.x1 / img.width();
+            var py = selection.y1 / img.height();
+            var pw = selection.width / img.width();
+            var ph = selection.height / img.height();
+            form.find('#fcm-field-illuscrop-x').val(px*100);
+            form.find('#fcm-field-illuscrop-y').val(py*100);
+            form.find('#fcm-field-illuscrop-w').val(pw*100);
+            form.find('#fcm-field-illuscrop-h').val(ph*100);
+        }
+
+    });
+    
+}
 
 
+
+
+function ModernPW3IllustrationPanel(n, t){
+    IllustrationPanel.call(this, n, t);
+}
+ModernPW3IllustrationPanel.prototype = Object.create(IllustrationPanel.prototype);
+
+ModernPW3IllustrationPanel.prototype.onActivate = function(){
+    IllustrationPanel.prototype.onActivate.call(this);
+}
+
+ModernPW3IllustrationPanel.prototype.centerImage = function(){
+    IllustrationPanel.prototype.centerImage.call(this);
+    
+    if(this.cropSelector != null){
+        this.cropSelector.setOptions({classPrefix:'mpw3-imgareaselect', handles:true});
+        this.cropSelector.update();
+    }
+    
+    console.log(this);
+}
 
 
 
@@ -306,13 +422,17 @@ existingPanels['done'] = new Panel('done', 'Terminé !');
 // Sections de génération de fonds
 existingPanels['modernbasicbackground'] = new ModernBasicBackgroundPanel('modernbasicbackground', 'Fond de carte');
 existingPanels['oldbasicbackground'] = new ModernBasicBackgroundPanel('oldbasicbackground', 'Fond de carte');
+existingPanels['modernplaneswalkerbackground'] = new ModernBasicBackgroundPanel('modernplaneswalkerbackground', 'Fond de carte');
 
 // Sections de fabrication de carte
 existingPanels['illustration'] = new IllustrationPanel('illustration', 'Illustration');
+existingPanels['mpw3-illustration'] = new ModernPW3IllustrationPanel('mpw3-illustration', 'Illustration');
 existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');
+existingPanels['mpw3-capa'] = new Panel('mpw3-capa', 'Capacité<br/>Texte d\'ambiance');
 existingPanels['fe'] = new Panel('fe', 'Force / Endurance');
+existingPanels['loyalty'] = new Panel('loyalty', 'Loyauté de base');
 existingPanels['se'] = new ExtensionSymbolPanel('se', 'Symbole d\'extension');
 existingPanels['illus-copy'] = new Panel('illus-copy', 'Illustrateur<br/>Copyright');
 

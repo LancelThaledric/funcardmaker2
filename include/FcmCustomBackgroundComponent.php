@@ -1,6 +1,6 @@
 <?php
 
-require_once('include/FcmBackgroundComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 
 /**
  * Component affichant un fond de carte uploadé par l'utilisateur
@@ -9,7 +9,7 @@ require_once('include/FcmBackgroundComponent.php');
  * - file : url du fichier uploadé
  */
 
-class FcmCustomBackgroundComponent extends FcmBackgroundComponent {
+class FcmCustomBackgroundComponent extends FcmBackgroundLayerComponent {
     
     // self::$draw est disponible par héritage
     

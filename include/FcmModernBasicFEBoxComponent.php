@@ -6,7 +6,6 @@ require_once('include/FcmFuncardComponent.php');
  * Component affichant la boite de F/E et la FE
  * 
  * Parameters :
- * - x, y, w, h : géométrie de la boite
  * - color : lettre correspondant à la couleur de la boite
  * - textx, texty, textw, texth : géométrie de la boîte de texte. Le texte sera centré.
  * - text-color : couleur utilisée pour le texte
@@ -37,17 +36,6 @@ class FcmModernBasicFEBoxComponent extends FcmFuncardComponent {
         // Draw the box
         
         //var_dump($this->getParameter('color'));
-        
-        if(!empty($this->getParameter('color'))){
-            $boximage = $this->loadBoxImage($this->getParameter('color'));
-            if($boximage->getNumberImages() != 0){
-                $this->getFuncard()->getCanvas()->compositeImage(
-                    $boximage, Imagick::COMPOSITE_OVER,
-                    $this->getFuncard()->xc($this->getParameter('x')),
-                    $this->getFuncard()->yc($this->getParameter('y'))
-                );
-            }
-        }
 
         // Draw the text
         
@@ -63,25 +51,6 @@ class FcmModernBasicFEBoxComponent extends FcmFuncardComponent {
         $this->setParameter('font', 'matrix-smallcaps');
         $this->setParameter('fontsize', 48. / 36.);
         $this->setParameter('color', '');
-    }
-    
-    private function loadBoxImage($color){
-        $template = $this->getFuncard()->getTemplateName(); // 'moder-basic'
-        $filepath = 'resource/febox/' . $template . '/' . $color . '.png';
-        $image = new Imagick(realpath($filepath));
-        
-        // On resize si necessaire
-        $imagewidth = $image->getImageWidth();
-        $imageheight = $image->getImageHeight();
-        
-        $bwidth = $this->getFuncard()->xc($this->getParameter('w'));
-        $bheight = $this->getFuncard()->yc($this->getParameter('h'));
-        
-        if($imagewidth != $bwidth || $imageheight != $bheight){
-            $image->resizeImage($bwidth, $bheight, Imagick::FILTER_TRIANGLE, 1, false);
-        }
-        
-        return $image;
     }
     
     private function drawFEText(){

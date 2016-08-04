@@ -4,7 +4,7 @@ require_once('include/FcmFuncard.php');
 
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmBorderComponent.php');
-require_once('include/FcmOldBasicBackgroundComponent.php');
+require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
@@ -14,61 +14,52 @@ require_once('include/FcmOldBasicIllustratorComponent.php');
 require_once('include/FcmOldBasicIllustratorShadowComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 
-//* Template Moderne Basique
+//* Template Old Basic
 
 class FcmOldBasic extends FcmFuncard {
     
-    //* Nom du template
-    const TEMPLATE_NAME = 'old-basic';
+    //* Constructeur
+    public function __construct($data = null){
+        parent::__construct(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT, $data);
+    }
     
-    //* Taille par défault
+    /***********************************************************************
+    * NOM DU TEMPLATE
+    ************************************************************************/
+    protected static $_templateName = 'old-basic';
+    
+    /***********************************************************************
+    * TAILLE DU TEMPLATE
+    ************************************************************************/
     const DEFAULT_WIDTH = 787;
     const DEFAULT_HEIGHT = 1087;
     
-    //* fond perso ?
-    private $_customBackground = false;
-    
-    //* Constructeur
-    public function __construct($data = null, $init = true){
-        parent::__construct(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT, false, $data);
-        $this->setTemplateName(self::TEMPLATE_NAME);
-        
-        //fiels
-        $this->initDefaultFields();
-        $this->setDefaults();
-        $this->import($data);
-        
-        //components
-        $this->initComponents();
-        $this->pushComponentsData();
-        
-        //component parameters
-        $this->initDefaultParameters();
-        $this->setDefaultParameters();
-        
-        $this->initListeningList();
-        //var_dump($this->_fields);
-
-        $this->beforeInit();
-        
-        $this->init();
-        
-        $this->configureComponents();
-        
-        //var_dump($this);
-    }
-    
+    /***********************************************************************
+    * FIELDS
+    ************************************************************************/
     //* Champs par défaut
-    public function initDefaultFields(){
-        $this->_defaults = [
+    protected static $_defaultFields = [];
+    public static function staticInitDefaultFields(){
+        self::$_defaultFields = [
             'border' => 'black',
             'background-base' => 'r',
         ];
     }
     
-    //* Components
+    /***********************************************************************
+    * VARIABLES MEMBRES ADDITIONELLES
+    ************************************************************************/
+    
+    //* fond perso ?
+    private $_customBackground = false;
+    
+    
+    /***********************************************************************
+    * COMPONENTS
+    ************************************************************************/
     public function initComponents(){
-        $this->_components = [
+        
+        $components = [
             'illustration' => new FcmIllustrationComponent($this, -1),
             'title' => new FcmSingleLineComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
@@ -87,17 +78,40 @@ class FcmOldBasic extends FcmFuncard {
         // Gestion du fond
         $this->_customBackground = $this->hasField('background-custom');
         if($this->_customBackground){
-            $this->_components['background'] = new FcmCustomBackgroundComponent($this, 0);
+            $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            $this->_components['background'] = new FcmOldBasicBackgroundComponent($this, 0);
-            $this->_components['border'] = new FcmBorderComponent($this, 1);
+            $components['background'] = new FcmBackgroundLayerComponent($this, 0);
+            $components['capabackground'] = new FcmBackgroundLayerComponent($this, 1);
+            $components['border'] = new FcmBorderComponent($this, 10);
         }
         
+        // On envoie tout à la funcard
+        $this->resetComponents($components);
     }
     
+    /***********************************************************************
+    * PARAMETERS
+    ************************************************************************/
     //* Parameters par défaut
-    public function initDefaultParameters(){
-        $this->_defaultParameters = [
+    protected static $_defaultParameters = [];
+    public static function staticInitDefaultParameters(){
+        self::$_defaultParameters = [
+            'background' => [
+                'x' => 41. / 787. * 100,
+                'y' => 41. / 1087. * 100,
+                'w' => 705. / 787. * 100,
+                'h' => 1005. / 1087. * 100,
+                'type' => 'base',
+                'method' => 'horizontal'
+            ],
+            'capabackground' => [
+                'x' => 71. / 787. * 100,
+                'y' => 640. / 1087. * 100,
+                'w' => 646. / 787. * 100,
+                'h' => 336. / 1087. * 100,
+                'type' => 'capabox',
+                'method' => 'horizontal'
+            ],
             'illustration' => [
                 'x' => 93. / 787. * 100,
                 'y' => 106. / 1087. * 100,
@@ -197,65 +211,80 @@ class FcmOldBasic extends FcmFuncard {
                 'x' => 701. / 787. * 100,
                 'y' => 603. / 1087. * 100,
                 'h' => 43. / 1087. * 100
+            ],
+            'border' => [
+                'thickness' => 41. / 787. * 100
             ]
         ];
         
-        // Bordure uniquement si fond real
-        if(!$this->_customBackground){
-            $this->_defaultParameters['border'] = [
-                'thickness' => 41. / 787. * 100
-            ];
-        }
     }
     
-    //* Liste d'écoute
+    /***********************************************************************
+    * LISTENING LIST
+    ************************************************************************/
     public function initListeningList(){
-        $this->_components['copyright']->listen('color');
+        $this->getComponent('copyright')->listen('color');
     }
+    
+    /***********************************************************************
+    * PUSH COMPONENTS DATA
+    ************************************************************************/
     
     //* Envoie les champs aux components
     public function pushComponentsData(){
-        // Fond généré
-        $this->updateParameter('background', 'base-color', $this->getField('background-base'));
-        $this->updateParameter('background', 'capabox-color', $this->getField('background-capabox'));
+        
         // Fond personnalisé
-        $this->updateParameter('background', 'file', $this->getField('background-custom'));
+        if($this->_customBackground){
+            $this->userParameter('background', 'file', $this->getField('background-custom'));
+        }
+        // Fond généré
+        else {
+            $this->userParameter('background', 'name', $this->getField('background-base'));
+            $this->userParameter('capabackground', 'name', $this->getField('background-capabox'));
+        }
+
         // Illustration
-        $this->updateParameter('illustration', 'file', $this->getField('illustration'));
-        $this->updateParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
-        $this->updateParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
-        $this->updateParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
-        $this->updateParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        $this->userParameter('illustration', 'file', $this->getField('illustration'));
+        $this->userParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->userParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->userParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->userParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
         // Titre et type
-        $this->updateParameter('title', 'text', $this->getField('title'));
-        $this->updateParameter('type', 'text', $this->getField('type'));
-        $this->updateParameter('titleshadow', 'text', $this->getField('title'));
-        $this->updateParameter('typeshadow', 'text', $this->getField('type'));
+        $this->userParameter('title', 'text', $this->getField('title'));
+        $this->userParameter('type', 'text', $this->getField('type'));
+        $this->userParameter('titleshadow', 'text', $this->getField('title'));
+        $this->userParameter('typeshadow', 'text', $this->getField('type'));
         // Coût de mana
-        $this->updateParameter('cm', 'text', $this->getField('cm'));
+        $this->userParameter('cm', 'text', $this->getField('cm'));
         // Capacité / TA
-        $this->updateParameter('capabox', 'textcapa', $this->getField('capa'));
-        $this->updateParameter('capabox', 'textta', $this->getField('ta'));
+        $this->userParameter('capabox', 'textcapa', $this->getField('capa'));
+        $this->userParameter('capabox', 'textta', $this->getField('ta'));
         $this->updateParameter('capabox', 'title', $this->getField('title'));
         // F/E
-        $this->updateParameter('fe', 'text', $this->getField('fe'));
-        $this->updateParameter('feshadow', 'text', $this->getField('fe'));
+        $this->userParameter('fe', 'text', $this->getField('fe'));
+        $this->userParameter('feshadow', 'text', $this->getField('fe'));
         // Illustrator
-        $this->updateParameter('illus', 'text', $this->getField('illustrator'));
-        $this->updateParameter('illusshadow', 'text', $this->getField('illustrator'));
+        $this->userParameter('illus', 'text', $this->getField('illustrator'));
+        $this->userParameter('illusshadow', 'text', $this->getField('illustrator'));
         // Copyright
-        $this->updateParameter('copyright', 'text', $this->getField('copyright'));
+        $this->userParameter('copyright', 'text', $this->getField('copyright'));
         // Extension symbol
-        $this->updateParameter('se', 'name', $this->getField('se-extension'));
-        $this->updateParameter('se', 'rarity', $this->getField('se-rarity'));
-        $this->updateParameter('se', 'file', $this->getField('se-custom'));
+        $this->userParameter('se', 'name', $this->getField('se-extension'));
+        $this->userParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->userParameter('se', 'file', $this->getField('se-custom'));
     }
     
+    /***********************************************************************
+    * BEFORE INIT
+    ************************************************************************/
     //* Dernières vérificatiosn avant l'inition
     public function beforeInit(){
         // Dans le cas du fond personnalisé, il faut précharger l'image pour connaître la taille du canvas
         if($this->_customBackground){
-            $this->_components['background']->loadImage();
+            $this->getComponent('background')->loadImage();
         }
     }
 }
+
+FcmOldBasic::staticInitDefaultFields();
+FcmOldBasic::staticInitDefaultParameters();

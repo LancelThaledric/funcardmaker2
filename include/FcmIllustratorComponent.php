@@ -29,7 +29,6 @@ class FcmIllustratorComponent extends FcmFuncardComponent {
     }
     
     public function apply(){
-        //var_dump($this);
         if(empty($this->getParameter('text'))) return;
         
         self::$draw->push();
