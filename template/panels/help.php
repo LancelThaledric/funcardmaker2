@@ -101,7 +101,7 @@
     <h3 class="help-title">Est-ce possible de faire un fond hybride à trois couleurs ?</h3>
     <div class="help-paragraph">
         <p>
-            L'hybridation à plus de deux couleurs n'existe pas sur les cartes officielles. Ce n'est pas prévu dans le SMF Funcard Maker 2, pour le moment.
+            Pas pour le moment. Il sera bientôt possible de faire hybrider chaque élément du fond avec 2, 3, 4 ou 5 couleurs dans différentes directions. Soyez patients ! ;)
         </p>
     </div>
     

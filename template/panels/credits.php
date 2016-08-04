@@ -16,6 +16,7 @@
     <ul class="credits-list">
         <li>Modern Basic Real par <strong>Sovelis</strong></li>
         <li>7th Edition par <strong>FirePinguinMaster</strong></li>
+        <li>Design Planeswalker par <strong>Sovelis</strong> &amp; <strong>Pleykorn</strong></li>
     </ul>
     
     <h3 class="lined">Symboles d'édition</h3>
@@ -30,7 +31,8 @@
     
     <h3 class="lined">Technologie</h3>
     <p>
-        <strong>ImageMagick<sup>&reg;</sup></strong> et son portage PHP Imagick.
+        <strong>ImageMagick<sup>&reg;</sup></strong> et son portage PHP Imagick.<br/>
+        Le plugin JQuery <strong>imgAreaSelect</strong>.
     </p>
     
     <h3 class="lined">Sans oublier...</h3>

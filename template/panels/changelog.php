@@ -1,6 +1,12 @@
 <section class="fcm-panel" id="fcm-panel-changelog">
     <h2>Historique des versions</h2>
     
+    <h3 class="lined">v0.3</h3>
+    <ul class="credits-list">
+        <li>Nouveau moteur de rendu de fonds de cartes</li>
+        <li>Adaptation du Template Modern Planeswalker 3 capacités par Sovelis &amp; Pleykorn</li>
+    </ul>
+    
     <h3 class="lined">v0.2</h3>
     <p>v0.2.1</p>
     <ul class="credits-list">
