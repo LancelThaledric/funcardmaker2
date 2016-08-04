@@ -12,6 +12,7 @@ require_once('include/FcmMultiLineComponent.php');
  * - fontsize : font size in em basesize
  * - fontcapa : font to use for capacity text
  * - fontta : font to use for ambient text and italic capacity
+ * - title : title of the card (to replace ~this~ tags)
  */
 
 class FcmMultiCapaboxComponent extends FcmFuncardComponent {
@@ -31,6 +32,8 @@ class FcmMultiCapaboxComponent extends FcmFuncardComponent {
     }
     
     public function configure(){
+        
+        $title = $this->getParameter('title');
         
         // Etape 1, on compte et crée le nb de cases à créer
         // $n numéro du component 1..n
@@ -52,6 +55,16 @@ class FcmMultiCapaboxComponent extends FcmFuncardComponent {
             $this->_capaComponents[$this->_nbComponents]->setParameter('fontItalic', $this->getParameter('fontta'));
             
             $this->_capaComponents[$this->_nbComponents]->setParameter('text', $this->getParameter('text'.$n));
+            // On remplace les tags ~this~ par le titre de la cate
+            if(!empty($title)){
+                $this->_capaComponents[$this->_nbComponents]->setParameter(
+                    'text', str_replace(
+                        '~this~', $title,
+                        $this->_capaComponents[$this->_nbComponents]->getParameter('text')
+                    )
+                );
+            }
+            
             $this->_capaComponents[$this->_nbComponents]->setParameter('x', $this->getParameter('x'.$n));
             $this->_capaComponents[$this->_nbComponents]->setParameter('w', $this->getParameter('w'.$n));
             // le Y et H restent à calculer.
@@ -60,6 +73,7 @@ class FcmMultiCapaboxComponent extends FcmFuncardComponent {
             // On sauvegarde toutefois la hauteur maximum atteignable pour chaque case.
             $this->_expectedHeights[$this->_nbComponents] = $this->getFuncard()->yc($this->getParameter('h'.$n));
             $this->_totalHeights[$this->_nbComponents] = 0;
+            
         }
         
         // C'est lors de la configuration qu'on va calculer les tailles de polices et prérendre le texte.
@@ -117,6 +131,7 @@ class FcmMultiCapaboxComponent extends FcmFuncardComponent {
         $this->setParameter('textta', '');
         $this->setParameter('fontcapa', 'mplantin');
         $this->setParameter('fontta', 'mplantin-italic');
+        $this->setParameter('title', '');
         
     }
                                                        

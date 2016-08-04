@@ -290,6 +290,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         $this->userParameter('capabox', 'text1', $this->getField('capa1'));
         $this->userParameter('capabox', 'text2', $this->getField('capa2'));
         $this->userParameter('capabox', 'text3', $this->getField('capa3'));
+        $this->userParameter('capabox', 'title', $this->getField('title'));
         // Illustrator
         $this->userParameter('illus', 'text', $this->getField('illustrator'));
         // Copyright

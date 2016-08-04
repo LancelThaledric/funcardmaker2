@@ -40,6 +40,8 @@
 
             <div class="input-toolbar" id="fcm-capa-ta-italic-toolbar">
                 <button id="button-capa-i" class="double-inserter" data-insert='["<i>", "</i>"]'><i class="fa fa-italic fa-fw"></i><i>Italique</i></button>
+                <span class="separator"></span>
+                <button id="button-capa-this"  class="single-inserter" data-insert="~this~">Titre de la carte</button>
             </div>
             
             <div class="input-toolbar" id="fcm-capa-ta-chars-toolbar">
