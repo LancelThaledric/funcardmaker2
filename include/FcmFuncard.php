@@ -222,6 +222,16 @@ abstract class FcmFuncard extends FcmFcRender{
         $this->getComponent($componentName)->pushParameter($parameter, $value);
     }
     
+    //* Modifie la valeur du paramètre $parameter du component $componentName, sauf si la valeur est indéfinie.
+    //* De plus, cette fonction verrouille la valeur du paramètre.
+    public function userParameter($componentName, $parameter, $value, $safe = true){
+        if(!$this->hasComponent($componentName)){
+            if ($safe) throw new ErrorException('userParameter() : Missing component "'.$componentName.'".', E_USER_WARNING);
+            else return;
+        }
+        $this->getComponent($componentName)->userParameter($parameter, $value);
+    }
+    
     //* Modifie la valeur du paramètre $parameter du component $componentName, seulement si le paramètre existe.
     public function updateParameter($componentName, $parameter, $value, $safe = true){
         if(!$this->hasComponent($componentName)){
@@ -237,6 +247,7 @@ abstract class FcmFuncard extends FcmFcRender{
             if ($safe) throw new ErrorException('createParameter() : Missing component "'.$componentName.'".', E_USER_WARNING);
             else return;
         }
+        var_dump('create '.$componentName.' : '.$parameter.' = '.$value);
         $this->getComponent($componentName)->createParameter($parameter, $value);
     }
     
@@ -300,6 +311,7 @@ abstract class FcmFuncard extends FcmFcRender{
             foreach($options as $comp => $array){
                 foreach($array as $key => $value){
                     if($this->getComponent($comp) !== null && $this->getComponent($comp)->listens($key)){
+                        var_dump($comp, $key, $value);
                         $this->createParameter($comp, $key, $value);
                     }
                 }
@@ -375,7 +387,7 @@ abstract class FcmFuncard extends FcmFcRender{
         try{
             $options = $this->_components[$name]->configure();
             // configure() a renvoyé un set d'options à mettre à jour
-            $this->createListenedParameters($options);
+            $this->setListenedParameters($options);
             
         } catch (Exception $e){
             if(DEBUG){
@@ -398,7 +410,7 @@ abstract class FcmFuncard extends FcmFcRender{
         try{
             $options = $this->_components[$name]->apply();
             // apply() a renvoyé un set d'options à mettre à jour
-            $this->createListenedParameters($options);
+            $this->setListenedParameters($options);
             
         } catch (Exception $e){
             if(DEBUG){

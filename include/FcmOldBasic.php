@@ -235,42 +235,42 @@ class FcmOldBasic extends FcmFuncard {
         
         // Fond personnalisé
         if($this->_customBackground){
-            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+            $this->userParameter('background', 'file', $this->getField('background-custom'));
         }
         // Fond généré
         else {
-            $this->pushParameter('background', 'name', $this->getField('background-base'));
-            $this->pushParameter('capabackground', 'name', $this->getField('background-capabox'));
+            $this->userParameter('background', 'name', $this->getField('background-base'));
+            $this->userParameter('capabackground', 'name', $this->getField('background-capabox'));
         }
 
         // Illustration
-        $this->pushParameter('illustration', 'file', $this->getField('illustration'));
-        $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
-        $this->pushParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
-        $this->pushParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
-        $this->pushParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        $this->userParameter('illustration', 'file', $this->getField('illustration'));
+        $this->userParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->userParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->userParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->userParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
         // Titre et type
-        $this->pushParameter('title', 'text', $this->getField('title'));
-        $this->pushParameter('type', 'text', $this->getField('type'));
-        $this->pushParameter('titleshadow', 'text', $this->getField('title'));
-        $this->pushParameter('typeshadow', 'text', $this->getField('type'));
+        $this->userParameter('title', 'text', $this->getField('title'));
+        $this->userParameter('type', 'text', $this->getField('type'));
+        $this->userParameter('titleshadow', 'text', $this->getField('title'));
+        $this->userParameter('typeshadow', 'text', $this->getField('type'));
         // Coût de mana
-        $this->pushParameter('cm', 'text', $this->getField('cm'));
+        $this->userParameter('cm', 'text', $this->getField('cm'));
         // Capacité / TA
-        $this->pushParameter('capabox', 'textcapa', $this->getField('capa'));
-        $this->pushParameter('capabox', 'textta', $this->getField('ta'));
+        $this->userParameter('capabox', 'textcapa', $this->getField('capa'));
+        $this->userParameter('capabox', 'textta', $this->getField('ta'));
         // F/E
-        $this->pushParameter('fe', 'text', $this->getField('fe'));
-        $this->pushParameter('feshadow', 'text', $this->getField('fe'));
+        $this->userParameter('fe', 'text', $this->getField('fe'));
+        $this->userParameter('feshadow', 'text', $this->getField('fe'));
         // Illustrator
-        $this->pushParameter('illus', 'text', $this->getField('illustrator'));
-        $this->pushParameter('illusshadow', 'text', $this->getField('illustrator'));
+        $this->userParameter('illus', 'text', $this->getField('illustrator'));
+        $this->userParameter('illusshadow', 'text', $this->getField('illustrator'));
         // Copyright
-        $this->pushParameter('copyright', 'text', $this->getField('copyright'));
+        $this->userParameter('copyright', 'text', $this->getField('copyright'));
         // Extension symbol
-        $this->pushParameter('se', 'name', $this->getField('se-extension'));
-        $this->pushParameter('se', 'rarity', $this->getField('se-rarity'));
-        $this->pushParameter('se', 'file', $this->getField('se-custom'));
+        $this->userParameter('se', 'name', $this->getField('se-extension'));
+        $this->userParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->userParameter('se', 'file', $this->getField('se-custom'));
     }
     
     /***********************************************************************

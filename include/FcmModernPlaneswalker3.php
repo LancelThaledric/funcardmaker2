@@ -240,6 +240,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     ************************************************************************/
     public function initListeningList(){
         if(!$this->_customBackground){
+            // Prononcé par FcmModernPlaneswalker3TextureComponent
             $this->getComponent('edging')->listen('name');
             $this->getComponent('edging')->listen('method');
             $this->getComponent('titlebox')->listen('method');
@@ -255,44 +256,44 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
         
         // Fond personnalisé
         if($this->_customBackground){
-            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+            $this->userParameter('background', 'file', $this->getField('background-custom'));
         }
         // Fond généré
         else{
-            $this->pushParameter('background', 'name', $this->getField('background-texture'));
-            $this->pushParameter('edging', 'name', $this->getField('background-edging'));
-            $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
-            $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
+            $this->userParameter('background', 'name', $this->getField('background-texture'));
+            $this->userParameter('edging', 'name', $this->getField('background-edging'));
+            $this->userParameter('titlebox', 'name', $this->getField('background-boxes'));
+            $this->userParameter('typebox', 'name', $this->getField('background-boxes'));
         }
         
         // Titre et type
-        $this->pushParameter('title', 'text', $this->getField('title'));
-        $this->pushParameter('type', 'text', $this->getField('type'));
+        $this->userParameter('title', 'text', $this->getField('title'));
+        $this->userParameter('type', 'text', $this->getField('type'));
         // Mana cost
-        $this->pushParameter('cm', 'text', $this->getField('cm'));
+        $this->userParameter('cm', 'text', $this->getField('cm'));
         // Extension symbol
-        $this->pushParameter('se', 'name', $this->getField('se-extension'));
-        $this->pushParameter('se', 'rarity', $this->getField('se-rarity'));
-        $this->pushParameter('se', 'file', $this->getField('se-custom'));
+        $this->userParameter('se', 'name', $this->getField('se-extension'));
+        $this->userParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->userParameter('se', 'file', $this->getField('se-custom'));
         // Illustration
-        $this->pushParameter('illustration', 'file', $this->getField('illustration'));
-        $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
-        $this->pushParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
-        $this->pushParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
-        $this->pushParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        $this->userParameter('illustration', 'file', $this->getField('illustration'));
+        $this->userParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->userParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->userParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->userParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
         // Loyalties
-        $this->pushParameter('loyalty1', 'text', $this->getField('capa1-cost'));
-        $this->pushParameter('loyalty2', 'text', $this->getField('capa2-cost'));
-        $this->pushParameter('loyalty3', 'text', $this->getField('capa3-cost'));
-        $this->pushParameter('loyalty-base', 'text', $this->getField('loyalty-base'));
+        $this->userParameter('loyalty1', 'text', $this->getField('capa1-cost'));
+        $this->userParameter('loyalty2', 'text', $this->getField('capa2-cost'));
+        $this->userParameter('loyalty3', 'text', $this->getField('capa3-cost'));
+        $this->userParameter('loyalty-base', 'text', $this->getField('loyalty-base'));
         // Capacités
-        $this->pushParameter('capabox', 'text1', $this->getField('capa1'));
-        $this->pushParameter('capabox', 'text2', $this->getField('capa2'));
-        $this->pushParameter('capabox', 'text3', $this->getField('capa3'));
+        $this->userParameter('capabox', 'text1', $this->getField('capa1'));
+        $this->userParameter('capabox', 'text2', $this->getField('capa2'));
+        $this->userParameter('capabox', 'text3', $this->getField('capa3'));
         // Illustrator
-        $this->pushParameter('illus', 'text', $this->getField('illustrator'));
+        $this->userParameter('illus', 'text', $this->getField('illustrator'));
         // Copyright
-        $this->pushParameter('copyright', 'text', $this->getField('copyright'));
+        $this->userParameter('copyright', 'text', $this->getField('copyright'));
     }
     
     /***********************************************************************

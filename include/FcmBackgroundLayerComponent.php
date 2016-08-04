@@ -71,6 +71,8 @@ class FcmBackgroundLayerComponent extends FcmFuncardComponent {
     
     public function isMonocolor(){ return $this->_nbColors == 1; }
     
+    public function getColorArray() { return $this->_colors; }
+    
     //* Calcule le rendu hybride des ressources chargées
     public function hybridation(){
         

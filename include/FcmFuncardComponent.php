@@ -39,6 +39,9 @@ abstract class FcmFuncardComponent {
     //* Liste des paramètres du component
     private $_parameters;
     
+    //* Liste des paramètres user-defined (ils ne pourront plus être changés)
+    private $_lockedParameters;
+    
     //* Retourne la valeur du paramètre $name s'il existe. Sinon émet une exception.
     public function getParameter($name) {
         if(!$this->hasParameter($name))
@@ -48,23 +51,36 @@ abstract class FcmFuncardComponent {
     
     //* Crée ou modifie le paramètre $name avec la valeur $value.
     public function setParameter($name, $value){
+        if($this->isLocked($name)) return;
         $this->_parameters[$name] = $value;
     }
     
     //* Crée ou modifie le paramètre $name avec la valeur $value, à moins que $value soit indéfinie (ou null).
     public function pushParameter($name, $value){
+        if($this->isLocked($name)) return;
         if(isset($value))
             $this->_parameters[$name] = $value;
     }
     
+    //* Créé ou modifie le paramètre, à moins que $value soit vide.
+    //* Le paramètre est ainsi verrouillé si la valeur a bien ét créée/modifiée.
+    public function userParameter($name, $value){
+        if(isset($value)){
+            $this->_parameters[$name] = $value;
+            $this->lockParameter($name);
+        }
+    }
+    
     //* Modifie le paramètre $name avec la valeur $value. Ne fait rien si le paramètre n'est pas déjà défini.
     public function updateParameter($name, $value){
+        if($this->isLocked($name)) return;
         if($this->hasParameter($name))
             $this->_parameters[$name] = $value;
     }
     
     //* Créé ou modifie les paramètres. $params est de la forme [nomParamètre => valeur].
     public function setParameters($params){
+        if($this->isLocked($name)) return;
         foreach($params as $key => $value){
             $this->setParameter($key, $value);
         }
@@ -80,6 +96,15 @@ abstract class FcmFuncardComponent {
         if(!$this->hasParameter($name) || empty($this->getParameter($name)))
             $this->_parameters[$name] = $value;
     }
+    
+    //* Verrouille le paramètre. Ainsi il ne pourra plus être modifié sauf par userParameter().
+    public function lockParameter($name){ $this->lockedParameters[$name] = true; }
+    
+    //* Déverrouille le paramètre.
+    public function unlockParameter($name){ unset($this->lockedParameters[$name]); }
+    
+    //* Renvoie si le paramètre est verrouillé
+    public function isLocked($name){ return isset($this->lockedParameters[$name]); }
     
     //* Priorité - le plus faible est le plus prioritaire (en bas de la pile des calques)
     private $_priority;
@@ -110,6 +135,7 @@ abstract class FcmFuncardComponent {
     //* Constructeur
     public function __construct($funcard, $priority = 0){
         $this->_parameters = [];
+        $this->_lockedParameters = [];
         $this->_priority = $priority;
         $this->_listenlist = [];
         $this->setDefaultParameters();

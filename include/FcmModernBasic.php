@@ -13,6 +13,8 @@ require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmIllustratorComponent.php');
 require_once('include/FcmModernBasicFEBoxComponent.php');
+require_once('include/FcmModernBasicBackgroundBaseComponent.php');
+require_once('include/FcmModernBasicBackgroundFeboxComponent.php');
 
 //* Template Modern Basic
 
@@ -76,10 +78,11 @@ class FcmModernBasic extends FcmFuncard {
         if($this->_customBackground){
             $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            $components['background'] = new FcmBackgroundLayerComponent($this, 0);
+            $components['background'] = new FcmModernBasicBackgroundBaseComponent($this, 0);
             $components['edging'] = new FcmBackgroundLayerComponent($this, 1);
             $components['titlebox'] = new FcmBackgroundLayerComponent($this, 2);
             $components['typebox'] = new FcmBackgroundLayerComponent($this, 2);
+            $components['febox'] = new FcmModernBasicBackgroundFeboxComponent($this, 2);
             $components['border'] = new FcmBorderComponent($this, 10);
         }
         
@@ -96,33 +99,34 @@ class FcmModernBasic extends FcmFuncard {
         self::$_defaultParameters = [
             'border' => [],
             'background' => [
-                'method' => 'horizontal',
-                'type' => 'base',
-                'x' => 41. / 791. * 100,
-                'y' => 41. / 1107. * 100,
-                'w' => 709. / 791. * 100,
-                'h' => 1025. / 1107. * 100,
+                'method' => 'horizontal'
             ],
             'edging' => [
                 'x' => 50. / 791. * 100,
                 'y' => 55. / 1107. * 100,
                 'w' => 691. / 791. * 100,
                 'h' => 946. / 1107. * 100,
-                'type' => 'edging'
+                'type' => 'edging',
+                'method' => 'horizontal'
             ],
             'titlebox' => [
                 'x' => 56. / 791. * 100,
                 'y' => 61. / 1107. * 100,
                 'w' => 679. / 791. * 100,
                 'h' => 64. / 1107. * 100,
-                'type' => 'titlebox'
+                'type' => 'titlebox',
+                'method' => 'horizontal'
             ],
             'typebox' => [
                 'x' => 60. / 791. * 100,
                 'y' => 621. / 1107. * 100,
                 'w' => 671. / 791. * 100,
                 'h' => 62. / 1107. * 100,
-                'type' => 'typebox'
+                'type' => 'typebox',
+                'method' => 'horizontal'
+            ],
+            'febox' => [
+                'method' => 'horizontal'
             ],
             'title' => [
                 'x' => 73. / 791. * 100,
@@ -168,10 +172,6 @@ class FcmModernBasic extends FcmFuncard {
                 'font' => 'mplantin'
             ],
             'fe' => [
-                'x' => 570. / 791. * 100,
-                'y' => 973. / 1107. * 100,
-                'w' => 173. / 791. * 100,
-                'h' => 93. / 1107. * 100,
                 'textx' => 588. / 791. * 100,
                 'texty' => 981. / 1107. * 100,
                 'textw' => 145. / 791. * 100,
@@ -184,10 +184,14 @@ class FcmModernBasic extends FcmFuncard {
     * LISTENING LIST
     ************************************************************************/
     public function initListeningList(){
-        $this->getComponent('illus')->listen('color');
-        $this->getComponent('illus')->listen('altcolor');
-        $this->getComponent('copyright')->listen('color');
-        $this->getComponent('fe')->listen('color');
+        
+        // Uniquement pour fond généré
+        if(!$this->_customBackground){
+            // Prononcé par FcmModernBasicBackgroundBaseComponent
+            $this->getComponent('illus')->listen('color');
+            $this->getComponent('illus')->listen('altcolor');
+            $this->getComponent('copyright')->listen('color');
+        }
     }
     
     /***********************************************************************
@@ -198,40 +202,49 @@ class FcmModernBasic extends FcmFuncard {
         
         // Fond personnalisé
         if($this->_customBackground){
-            $this->pushParameter('background', 'file', $this->getField('background-custom'));
+            $this->userParameter('background', 'file', $this->getField('background-custom'));
         }
         // Fond généré
         else {
-            $this->pushParameter('background', 'name', $this->getField('background-base'));
-            $this->pushParameter('edging', 'name', $this->getField('background-edging'));
-            $this->pushParameter('titlebox', 'name', $this->getField('background-boxes'));
-            $this->pushParameter('typebox', 'name', $this->getField('background-boxes'));
+            $this->userParameter('background', 'name', $this->getField('background-base'));
+            $this->userParameter('edging', 'name', $this->getField('background-edging'));
+            $this->userParameter('titlebox', 'name', $this->getField('background-boxes'));
+            $this->userParameter('typebox', 'name', $this->getField('background-boxes'));
         }
         
         // Titre et type
-        $this->pushParameter('title', 'text', $this->getField('title'));
-        $this->pushParameter('type', 'text', $this->getField('type'));
+        $this->userParameter('title', 'text', $this->getField('title'));
+        $this->userParameter('type', 'text', $this->getField('type'));
         // Illustration
-        $this->pushParameter('illustration', 'file', $this->getField('illustration'));
-        $this->pushParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
-        $this->pushParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
-        $this->pushParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
-        $this->pushParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
+        $this->userParameter('illustration', 'file', $this->getField('illustration'));
+        $this->userParameter('illustration', 'crop-x', $this->getField('illuscrop-x'));
+        $this->userParameter('illustration', 'crop-y', $this->getField('illuscrop-y'));
+        $this->userParameter('illustration', 'crop-w', $this->getField('illuscrop-w'));
+        $this->userParameter('illustration', 'crop-h', $this->getField('illuscrop-h'));
         // Capacité / TA
-        $this->pushParameter('capabox', 'textcapa', $this->getField('capa'));
-        $this->pushParameter('capabox', 'textta', $this->getField('ta'));
+        $this->userParameter('capabox', 'textcapa', $this->getField('capa'));
+        $this->userParameter('capabox', 'textta', $this->getField('ta'));
         // Mana cost
-        $this->pushParameter('cm', 'text', $this->getField('cm'));
+        $this->userParameter('cm', 'text', $this->getField('cm'));
         // Extension symbol
-        $this->pushParameter('se', 'name', $this->getField('se-extension'));
-        $this->pushParameter('se', 'rarity', $this->getField('se-rarity'));
-        $this->pushParameter('se', 'file', $this->getField('se-custom'));
+        $this->userParameter('se', 'name', $this->getField('se-extension'));
+        $this->userParameter('se', 'rarity', $this->getField('se-rarity'));
+        $this->userParameter('se', 'file', $this->getField('se-custom'));
         // Illustrator
-        $this->pushParameter('illus', 'text', $this->getField('illustrator'));
+        $this->userParameter('illus', 'text', $this->getField('illustrator'));
         // Copyright
-        $this->pushParameter('copyright', 'text', $this->getField('copyright'));
+        $this->userParameter('copyright', 'text', $this->getField('copyright'));
         // F/E
-        $this->pushParameter('fe', 'text', $this->getField('fe'));
+        $this->userParameter('fe', 'text', $this->getField('fe'));
+        if(!$this->_customBackground){
+            $this->userParameter('febox', 'name', $this->getField('background-base'));
+            $this->userParameter('febox', 'name', $this->getField('background-edging'));
+            $this->userParameter('febox', 'name', $this->getField('background-boxes'));
+            //$this->userParameter('febox', 'name', $this->getField('background-febox'));
+        }
+        if(empty($this->getField('fe'))){ // On masque la Febox si on n'a pas rentré de F/E
+            $this->userParameter('febox', 'visible', false);
+        }
     }
     
     /***********************************************************************
