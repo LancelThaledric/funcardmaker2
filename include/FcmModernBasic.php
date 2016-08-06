@@ -241,7 +241,7 @@ class FcmModernBasic extends FcmFuncard {
             $this->userParameter('febox', 'name', $this->getField('background-base'));
             $this->userParameter('febox', 'name', $this->getField('background-edging'));
             $this->userParameter('febox', 'name', $this->getField('background-boxes'));
-            //$this->userParameter('febox', 'name', $this->getField('background-febox'));
+            $this->userParameter('febox', 'name', $this->getField('background-febox'));
         }
         if(empty($this->getField('fe'))){ // On masque la Febox si on n'a pas rentré de F/E
             $this->userParameter('febox', 'visible', false);

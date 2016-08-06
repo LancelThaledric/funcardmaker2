@@ -1091,7 +1091,8 @@ label.large{
 
 #fcm-panel-modernbasicbackground .fcm-columns>*,
 #fcm-panel-oldbasicbackground .fcm-columns>*,
-#fcm-panel-modernplaneswalkerbackground .fcm-columns>*{
+#fcm-panel-modernplaneswalkerbackground .fcm-columns>*,
+#fcm-panel-modernbasicfe .fcm-columns>*{
     margin: 2rem;
 }
 

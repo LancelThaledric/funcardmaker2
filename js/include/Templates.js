@@ -17,7 +17,7 @@ function ModernBasicTemplate(){
         existingPanels['titre-type'],
         existingPanels['cm'],
         existingPanels['capa'],
-        existingPanels['fe'],
+        existingPanels['modernbasicfe'],
         existingPanels['se'],
         existingPanels['illus-copy']
     ];
