@@ -85,6 +85,9 @@
                         <button class="fcm-selector-button" data-value="base/m15" title="Magic 2015">
                             <img src="resource/seThumb/base/m15-c.png" alt="m15"/>
                         </button>
+                        <button class="fcm-selector-button" data-value="base/magic-origins" title="Magic Origines">
+                            <img src="resource/seThumb/base/magic-origins-c.png" alt="magic-origins"/>
+                        </button>
                     </div>
                     
                     <h4>Premières extensions</h4>
@@ -359,6 +362,19 @@
                         </button>
                         <button class="fcm-selector-button" data-value="theros/journey-into-nyx" title="Incursion dans Nyx">
                             <img src="resource/seThumb/theros/journey-into-nyx-c.png" alt="journey-into-nyx"/>
+                        </button>
+                    </div>
+                    
+                    <h4>Les Khans de Tarkir</h4>
+                    <div class="fcm-se-grid">
+                        <button class="fcm-selector-button" data-value="khans-of-tarkir/khans-of-tarkir" title="Les Khans de Tarkir">
+                            <img src="resource/seThumb/khans-of-tarkir/khans-of-tarkir-c.png" alt="khans-of-tarkir"/>
+                        </button>
+                        <button class="fcm-selector-button" data-value="khans-of-tarkir/fate-reforged" title="Destin reforgé">
+                            <img src="resource/seThumb/khans-of-tarkir/fate-reforged-c.png" alt="fate-reforged"/>
+                        </button>
+                        <button class="fcm-selector-button" data-value="khans-of-tarkir/dragons-of-tarkir" title="Les Dragons de Tarkir">
+                            <img src="resource/seThumb/khans-of-tarkir/dragons-of-tarkir-c.png" alt="dragons-of-tarkir"/>
                         </button>
                     </div>
                     
