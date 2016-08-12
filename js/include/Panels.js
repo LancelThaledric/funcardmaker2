@@ -90,7 +90,6 @@ IllustrationPanel.prototype = Object.create(Panel.prototype);
 
 IllustrationPanel.prototype.onFocus = function(){
     // Gestion du plugin ImgAreaSelect
-    //console.log('illustration onFocus');
     if(this.cropSelector != null){
         this.cropSelector.setOptions({show:true, hide:false});
         this.cropSelector.update();
@@ -99,7 +98,6 @@ IllustrationPanel.prototype.onFocus = function(){
 
 IllustrationPanel.prototype.onBlur = function(){
     // Gestion du plugin ImgAreaSelect
-    //console.log('illustration onBlur');
     if(this.cropSelector != null){
         this.cropSelector.setOptions({show:false, hide:true});
         this.cropSelector.update();
@@ -108,7 +106,6 @@ IllustrationPanel.prototype.onBlur = function(){
 
 IllustrationPanel.prototype.onDeactivate = function(){
     // Gestion du plugin ImgAreaSelect
-    //console.log('illustration onBlur');
     if(this.cropSelector != null){
         this.cropSelector.remove();
     }
@@ -116,7 +113,6 @@ IllustrationPanel.prototype.onDeactivate = function(){
 IllustrationPanel.prototype.onActivate = function(){
     
     var varthis = this;
-    console.log(varthis);
     
     Panel.CONTAINER_ELEMENT.on('uploadSuccess', '#fcm-form-illustration', function(){
         varthis.onImageLoad();
@@ -157,19 +153,16 @@ IllustrationPanel.prototype.centerImage = function(){
     var axis = true;    // true = X(portait), false = Y(paysage)
     if(image.width() / image.height() > myFuncard.illusWidth / myFuncard.illusHeight)
         axis = false;
-    //console.log(axis);
 
     var cx1 = 0, cx2 = 0, cy1 = 0, cy2 = 0;
 
     if(axis){
         cx2 = image.width();
         var height = image.width() / (myFuncard.illusWidth / myFuncard.illusHeight);
-        //console.log('height:', height);
         cy1 = (image.height() - height) / 2;
         cy2 = cy1 + height;
     } else {
         var width = image.height() * (myFuncard.illusWidth / myFuncard.illusHeight);
-        //console.log('width:', width);
         cx1 = (image.width() - width) / 2;
         cx2 = cx1 + width;
         cy2 = image.height();
@@ -179,8 +172,6 @@ IllustrationPanel.prototype.centerImage = function(){
     form.find('#fcm-field-illuscrop-y').val('');
     form.find('#fcm-field-illuscrop-w').val('');
     form.find('#fcm-field-illuscrop-h').val('');
-
-    //console.log(cx1, cy1, cx2, cy2);
     
     this.cropSelector = image.imgAreaSelect({
         instance: true,
@@ -227,7 +218,6 @@ ModernPW3IllustrationPanel.prototype.centerImage = function(){
         this.cropSelector.update();
     }
     
-    console.log(this);
 }
 
 

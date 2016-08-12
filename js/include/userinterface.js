@@ -231,8 +231,10 @@ function updatePreview(){
         }
         
     })
-    .fail(function() {
-        alert( "error" );
+    .fail(function(xhr) {
+        if(!isUserAborted(xhr)){
+            alert( "error" );
+        }
     })
     .always(function(){
         hidePreviewLoading();
@@ -242,6 +244,10 @@ function updatePreview(){
 }
 
 previewReloder.click(updatePreview);
+
+function isUserAborted(xhr) {
+  return !xhr.getAllResponseHeaders();
+}
 
 
 /**
