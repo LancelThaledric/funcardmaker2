@@ -82,6 +82,7 @@ class FcmOldBasic extends FcmFuncard {
         } else {
             $components['background'] = new FcmBackgroundLayerComponent($this, 0);
             $components['capabackground'] = new FcmBackgroundLayerComponent($this, 1);
+            $components['capaborder'] = new FcmBackgroundLayerComponent($this, 2);
             $components['border'] = new FcmBorderComponent($this, 10);
         }
         
@@ -110,6 +111,14 @@ class FcmOldBasic extends FcmFuncard {
                 'w' => 646. / 787. * 100,
                 'h' => 336. / 1087. * 100,
                 'type' => 'capabox',
+                'method' => 'horizontal'
+            ],
+            'capaborder' => [
+                'x' => 71. / 787. * 100,
+                'y' => 640. / 1087. * 100,
+                'w' => 646. / 787. * 100,
+                'h' => 336. / 1087. * 100,
+                'type' => 'capaborder',
                 'method' => 'horizontal'
             ],
             'illustration' => [
@@ -241,6 +250,7 @@ class FcmOldBasic extends FcmFuncard {
         else {
             $this->userParameter('background', 'name', $this->getField('background-base'));
             $this->userParameter('capabackground', 'name', $this->getField('background-capabox'));
+            $this->userParameter('capaborder', 'name', $this->getField('background-capaborder'));
         }
 
         // Illustration
