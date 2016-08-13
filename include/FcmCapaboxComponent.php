@@ -86,18 +86,21 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         // Le apply() ne se charge que de l'affichage et de la fusion des calques.
         
         // On remplace les tags ~this~ par le titre de la cate
+        
         $title = $this->getParameter('title');
+        $textcapa = $this->getParameter('textcapa');
+        $textta = $this->getParameter('textta');
         if(!empty($title)){
-            $this->setParameter('textcapa', str_replace('~this~', $title, $this->getParameter('textcapa')));
-            $this->setParameter('textta', str_replace('~this~', $title, $this->getParameter('textta')));
+            $textcapa = str_replace('~this~', $title, $textcapa);
+            $textta = str_replace('~this~', $title, $textta);
         }
         
         // On fait hériter les paramètres aux components fils
         
         $this->_capaComponent->setParameter('font', $this->getParameter('fontcapa'));
         $this->_capaComponent->setParameter('fontItalic', $this->getParameter('fontta'));
-        $this->_capaComponent->setParameter('text', $this->getParameter('textcapa'));
-        $this->_taComponent->setParameter('text', $this->getParameter('textta'));
+        $this->_capaComponent->setParameter('text', $textcapa);
+        $this->_taComponent->setParameter('text', $textta);
         $this->_capaComponent->setParameter('x', $this->getParameter('x'));
         $this->_capaComponent->setParameter('w', $this->getParameter('w'));
         
@@ -110,7 +113,6 @@ class FcmCapaboxComponent extends FcmFuncardComponent {
         $this->fuseCapaTa();
         
         $this->computeOptimalFontSize();
-        //var_dump($this->_capaComponent);
         
         return false;
     
