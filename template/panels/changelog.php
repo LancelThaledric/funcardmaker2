@@ -2,6 +2,14 @@
     <h2>Historique des versions</h2>
     
     <h3 class="lined">v0.3</h3>
+    <p>v0.3.1</p>
+    <ul class="credits-list">
+        <li>Nouveaux Symboles d'Extension : Magic Origins, Bloc Khans of Tarkir.</li>
+        <li>Choix indépendant de la couleur de la boîte de F/E sur le template Modern Basic.</li>
+        <li>Old Basic - Choix de la bordure de la capabox</li>
+    </ul>
+    
+    <p>v0.3.0</p>
     <ul class="credits-list">
         <li>Nouveau moteur de rendu de fonds de cartes</li>
         <li>Adaptation du Template Modern Planeswalker 3 capacités par Sovelis &amp; Pleykorn</li>
