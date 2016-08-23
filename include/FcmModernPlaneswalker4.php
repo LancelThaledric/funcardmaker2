@@ -132,7 +132,7 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
             ],
             'type' => [
                 'x' => 82. / 791. * 100,
-                'y' => 680. / 1107. * 100,
+                'y' => 590. / 1107. * 100,
                 'size' => 40. / 36.,
             ],
             'cm' => [
@@ -145,7 +145,7 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
             ],
             'se' => [
                 'x' => 718. / 791. * 100,
-                'y' => 647. / 1107. * 100,
+                'y' => 557. / 1107. * 100,
                 'h' => 42. / 1107. * 100
             ],
             'illustration' => [
