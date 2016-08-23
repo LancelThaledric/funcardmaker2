@@ -3,11 +3,13 @@
 require_once('include/FcmModernBasic.php');
 require_once('include/FcmOldBasic.php');
 require_once('include/FcmModernPlaneswalker3.php');
+require_once('include/FcmModernPlaneswalker4.php');
 
 $all_types = [
     'modern-basic' => 'FcmModernBasic',
     'old-basic' => 'FcmOldBasic',
-    'modern-planeswalker3' => 'FcmModernPlaneswalker3'
+    'modern-planeswalker3' => 'FcmModernPlaneswalker3',
+    'modern-planeswalker4' => 'FcmModernPlaneswalker4'
 ];
 
 //var_dump($_POST);

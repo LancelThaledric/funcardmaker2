@@ -22,7 +22,13 @@
         <button class="fcm-selector-button" data-value="modern-planeswalker3">
             <img src="resource/templateThumb/modernPlaneswalker3.png" width="143" height="200" alt="ModernPlaneswalker3"/>
             <h3>Modern Planeswalker 3 capacités</h3>
-            <h4>Par Sovelis &amp; Pleykorn</h4>
+            <h4>Par Sovelis</h4>
+        </button>
+        
+        <button class="fcm-selector-button" data-value="modern-planeswalker4">
+            <img src="resource/templateThumb/modernPlaneswalker4.png" width="143" height="200" alt="ModernPlaneswalker4"/>
+            <h3>Modern Planeswalker 4 capacités</h3>
+            <h4>Par Sovelis &amp; Thaledric</h4>
         </button>
         
     </div>
