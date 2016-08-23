@@ -68,6 +68,7 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
             'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty2' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty3' => new FcmLoyaltyCostComponent($this, 100),
+            'loyalty4' => new FcmLoyaltyCostComponent($this, 100),
             'loyalty-base' => new FcmLoyaltyCostComponent($this, 100),
             'capabox' => new FcmMultiCapaboxComponent($this, 100),
             'illus' => new FcmModernPlaneswalker3IllustratorComponent($this, 100),
@@ -179,17 +180,22 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
             ],
             'loyalty1' => [
                 'x' => 89. / 791. * 100,
-                'y' => 759. / 1107. * 100,
+                'y' => 669. / 1107. * 100,
                 'fontsize' => 32. / 36.
             ],
             'loyalty2' => [
                 'x' => 89. / 791. * 100,
-                'y' => 859. / 1107. * 100,
+                'y' => 769. / 1107. * 100,
                 'fontsize' => 32. / 36.
             ],
             'loyalty3' => [
                 'x' => 89. / 791. * 100,
-                'y' => 954. / 1107. * 100,
+                'y' => 864. / 1107. * 100,
+                'fontsize' => 32. / 36.
+            ],
+            'loyalty4' => [
+                'x' => 89. / 791. * 100,
+                'y' => 957. / 1107. * 100,
                 'fontsize' => 32. / 36.
             ],
             'loyalty-base' => [
@@ -202,19 +208,24 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
             ],
             'capabox' => [
                 'x1' => 154. / 791. * 100,
-                'y1' => 713. / 1107. * 100,
+                'y1' => 623. / 1107. * 100,
                 'w1' => 559. / 791. * 100,
                 'h1' => 80. / 1107. * 100,
                 
                 'x2' => 154. / 791. * 100,
-                'y2' => 808. / 1107. * 100,
+                'y2' => 718. / 1107. * 100,
                 'w2' => 559. / 791. * 100,
                 'h2' => 85. / 1107. * 100,
                 
                 'x3' => 154. / 791. * 100,
-                'y3' => 905. / 1107. * 100,
+                'y3' => 815. / 1107. * 100,
                 'w3' => 559. / 791. * 100,
-                'h3' => 93. / 1107. * 100,
+                'h3' => 81. / 1107. * 100,
+                
+                'x4' => 154. / 791. * 100,
+                'y4' => 911. / 1107. * 100,
+                'w4' => 559. / 791. * 100,
+                'h4' => 87. / 1107. * 100,
             ],
             'illus' => [
                 'x' => 395. / 791. * 100,
@@ -285,11 +296,13 @@ class FcmModernPlaneswalker4 extends FcmFuncard {
         $this->userParameter('loyalty1', 'text', $this->getField('capa1-cost'));
         $this->userParameter('loyalty2', 'text', $this->getField('capa2-cost'));
         $this->userParameter('loyalty3', 'text', $this->getField('capa3-cost'));
+        $this->userParameter('loyalty4', 'text', $this->getField('capa4-cost'));
         $this->userParameter('loyalty-base', 'text', $this->getField('loyalty-base'));
         // Capacités
         $this->userParameter('capabox', 'text1', $this->getField('capa1'));
         $this->userParameter('capabox', 'text2', $this->getField('capa2'));
         $this->userParameter('capabox', 'text3', $this->getField('capa3'));
+        $this->userParameter('capabox', 'text4', $this->getField('capa4'));
         $this->userParameter('capabox', 'title', $this->getField('title'));
         // Illustrator
         $this->userParameter('illus', 'text', $this->getField('illustrator'));

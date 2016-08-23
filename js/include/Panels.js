@@ -447,6 +447,7 @@ existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');
 existingPanels['mpw3-capa'] = new Panel('mpw3-capa', 'Capacité<br/>Texte d\'ambiance');
+existingPanels['mpw4-capa'] = new Panel('mpw4-capa', 'Capacité<br/>Texte d\'ambiance');
 existingPanels['fe'] = new Panel('fe', 'Force / Endurance');
 existingPanels['modernbasicfe'] = new Panel('modernbasicfe', 'Force / Endurance');
 existingPanels['loyalty'] = new Panel('loyalty', 'Loyauté de base');

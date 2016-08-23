@@ -152,7 +152,7 @@ function ModernPlaneswalker4Template(){
         existingPanels['mpw4-illustration'],
         existingPanels['titre-type'],
         existingPanels['cm'],
-        existingPanels['mpw3-capa'],
+        existingPanels['mpw4-capa'],
         existingPanels['loyalty'],
         existingPanels['se'],
         existingPanels['illus-copy']

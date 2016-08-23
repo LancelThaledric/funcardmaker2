@@ -113,6 +113,19 @@ class FcmMultiCapaboxComponent extends FcmFuncardComponent {
             $this->_capaComponents[$i]->setParameter('y', $this->getParameter('y'.($i+1)) + $this->getFuncard()->reverse_yc($yoffset));
             $this->_capaComponents[$i]->setParameter('h', $this->getFuncard()->reverse_yc($this->_totalHeights[$i]));
 
+            // Là c'est du debug ! On affiche le BBOX de la capabox !
+            /*$capabox_bbox = new Imagick();
+            $capabox_bbox->newImage(
+                $this->getFuncard()->xc($this->getParameter('w'.($i+1))),
+                $this->getFuncard()->yc($this->getParameter('h'.($i+1))),
+                'rgba(0,0,255,0.2)'
+            );
+            $this->getFuncard()->getCanvas()->compositeImage(
+                $capabox_bbox, Imagick::COMPOSITE_OVER,
+                $this->getFuncard()->xc($this->getParameter('x'.($i+1))),
+                $this->getFuncard()->yc($this->getParameter('y'.($i+1)))
+            );*/
+            
             $this->_capaComponents[$i]->apply();
         }
         
