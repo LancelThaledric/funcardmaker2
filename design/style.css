@@ -1202,6 +1202,11 @@ label.large{
     background-size: contain;
 }
 
+.mpw4-imgareaselect-selection{
+    background: url('../resource/background/modern-planeswalker4/illus-mask-helper.png');
+    background-size: contain;
+}
+
 /*============================================================================================================== */
 /* Chapter 4 : Media Queries ==================================================================================== */
 /*============================================================================================================== */

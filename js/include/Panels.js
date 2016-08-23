@@ -224,6 +224,31 @@ ModernPW3IllustrationPanel.prototype.centerImage = function(){
 
 
 
+
+
+function ModernPW4IllustrationPanel(n, t){
+    IllustrationPanel.call(this, n, t);
+}
+ModernPW4IllustrationPanel.prototype = Object.create(IllustrationPanel.prototype);
+
+ModernPW4IllustrationPanel.prototype.onActivate = function(){
+    IllustrationPanel.prototype.onActivate.call(this);
+}
+
+ModernPW4IllustrationPanel.prototype.centerImage = function(){
+    IllustrationPanel.prototype.centerImage.call(this);
+    
+    if(this.cropSelector != null){
+        this.cropSelector.setOptions({classPrefix:'mpw4-imgareaselect', handles:true});
+        this.cropSelector.update();
+    }
+    
+}
+
+
+
+
+
 function BackgroundPanel(n, t){
     Panel.call(this, n, t);
     
@@ -417,6 +442,7 @@ existingPanels['modernplaneswalkerbackground'] = new ModernBasicBackgroundPanel(
 // Sections de fabrication de carte
 existingPanels['illustration'] = new IllustrationPanel('illustration', 'Illustration');
 existingPanels['mpw3-illustration'] = new ModernPW3IllustrationPanel('mpw3-illustration', 'Illustration');
+existingPanels['mpw4-illustration'] = new ModernPW4IllustrationPanel('mpw4-illustration', 'Illustration');
 existingPanels['titre-type'] = new Panel('titre-type', 'Titre et type');
 existingPanels['cm'] = new Panel('cm', 'Coût de mana');
 existingPanels['capa'] = new Panel('capa', 'Capacité<br/>Texte d\'ambiance');

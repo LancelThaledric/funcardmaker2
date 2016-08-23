@@ -149,7 +149,7 @@ function ModernPlaneswalker4Template(){
     
     this.panels = [
         existingPanels['modernplaneswalkerbackground'],
-        existingPanels['mpw3-illustration'],
+        existingPanels['mpw4-illustration'],
         existingPanels['titre-type'],
         existingPanels['cm'],
         existingPanels['mpw3-capa'],
