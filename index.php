@@ -27,11 +27,19 @@
     <meta name="theme-color" content="#c74141">
 </head>
 <body class="index">
-	<?php include 'template/header.php'; ?>
-    <div class="fcm-wrapper">
-	    <?php include 'template/menu.php'; ?>
-        <?php include 'template/generator.php'; ?>
-    </div>
+    
+    <?php
+    if(MAINTENANCE_MODE):
+        require('template/maintenance.php');
+    else:
+        
+        include 'template/header.php'; ?>
+        <div class="fcm-wrapper">
+            <?php include 'template/menu.php'; ?>
+            <?php include 'template/generator.php'; ?>
+        </div>
+    
+    <?php endif; ?>
     
 </body>
 </html>

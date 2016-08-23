@@ -3,6 +3,8 @@
 define('DEBUG', false);
 ini_set('xdebug.var_display_max_depth', 3);
 
+define('MAINTENANCE_MODE', false);
+
 /**
  * Retourne la taille maximum d'upload en octets
  * Code from Drupal
