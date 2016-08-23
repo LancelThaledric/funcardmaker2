@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>SMF Funcard Maker 2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Créez en toute simplicité des funcards HD pour le jeu Magic: The Gathering.">
     <link rel="stylesheet" href="design/style.css" media="all">
     <script src="js/lib/jquery-1.12.2.min.js"></script>
     <script src="js/lib/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js"></script>

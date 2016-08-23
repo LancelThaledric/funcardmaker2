@@ -1,6 +1,11 @@
 <section class="fcm-panel" id="fcm-panel-changelog">
     <h2>Historique des versions</h2>
     
+    <h3 class="lined">v0.4</h3>
+    <ul class="credits-list">
+        <li>Adaptation du Template Modern Planeswalker 4 capacités par Thaledric d'après la base 3 capacités de Sovelis</li>
+    </ul>
+    
     <h3 class="lined">v0.3</h3>
     <p>v0.3.1</p>
     <ul class="credits-list">
@@ -12,7 +17,7 @@
     <p>v0.3.0</p>
     <ul class="credits-list">
         <li>Nouveau moteur de rendu de fonds de cartes</li>
-        <li>Adaptation du Template Modern Planeswalker 3 capacités par Sovelis &amp; Pleykorn</li>
+        <li>Adaptation du Template Modern Planeswalker 3 capacités par Sovelis</li>
     </ul>
     
     <h3 class="lined">v0.2</h3>

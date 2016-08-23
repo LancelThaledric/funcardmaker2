@@ -1,5 +1,5 @@
 <header id="fcm-header">
-    <a href="#" data-panel="home"><h1 class="fcm-title">SMF Funcard Maker 2<span class="betabox">Alpha 0.3.1</span></h1></a>
+    <a href="#" data-panel="home"><h1 class="fcm-title">SMF Funcard Maker 2<span class="betabox">Alpha 0.4</span></h1></a>
     <a href="#" id="menu-toggle"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>&nbsp; Menu</a>
     <nav id="main-menu">
         <a href="#" data-panel="template" id="fcm-new-card"><i class="fa fa-plus fa-fw"></i>&nbsp; Nouvelle carte</a>
