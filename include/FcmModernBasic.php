@@ -63,11 +63,11 @@ class FcmModernBasic extends FcmFuncard {
         
         $components = [
             'title' => new FcmSingleLineTitleComponent($this, 100),
-            'type' => new FcmSingleLineComponent($this, 100),
+            'type' => new FcmSingleLineTitleComponent($this, 100),
             'illustration' => new FcmIllustrationComponent($this, 100),
             'capabox' => new FcmCapaboxComponent($this, 100),
             'cm' => new FcmManaCostComponent($this, 50),
-            'se' => new FcmExtensionSymbolComponent($this, 100),
+            'se' => new FcmExtensionSymbolComponent($this, 50),
             
             'illus' => new FcmIllustratorComponent($this, 200),
             'copyright' => new FcmSingleLineComponent($this, 200),
@@ -138,7 +138,9 @@ class FcmModernBasic extends FcmFuncard {
             ],
             'type' => [
                 'x' => 80. / 791. * 100,
-                'y' => 664. / 1107. * 100,
+                'y' => 628. / 1107. * 100,
+                'w' => 637. / 791. * 100,
+                'h' => 49. / 1107. * 100,
                 'size' => 40. / 36.
             ],
             'capabox' => [
@@ -198,6 +200,9 @@ class FcmModernBasic extends FcmFuncard {
         
         // Prononcé par FcmManaCostComponent
         $this->getComponent('title')->listen('marginright');
+        
+        // Prononcé par FcmExtensionSymbolComponent
+        $this->getComponent('type')->listen('marginright');
     }
     
     /***********************************************************************

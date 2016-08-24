@@ -61,6 +61,12 @@ class FcmExtensionSymbolComponent extends FcmFuncardComponent {
         }
         $this->resizeSE();
         
+        return [
+            'type' => [
+                'marginright' => $this->_imagick->getImageWidth()
+            ]
+        ];
+        
     }
     
     private function loadOfficialSE($extension, $rarity){
