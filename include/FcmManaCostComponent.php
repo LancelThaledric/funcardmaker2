@@ -93,6 +93,9 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         return [
             'title' => [
                 'marginright' => $this->_width
+            ],
+            'titleshadow' => [
+                'marginright' => $this->_width
             ]
         ];
     }

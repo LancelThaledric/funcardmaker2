@@ -7,7 +7,9 @@ require_once('include/FcmBorderComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
+require_once('include/FcmSingleLineTitleComponent.php');
 require_once('include/FcmSingleLineShadowComponent.php');
+require_once('include/FcmSingleLineTitleShadowComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmCapaboxComponent.php');
 require_once('include/FcmOldBasicIllustratorComponent.php');
@@ -61,10 +63,10 @@ class FcmOldBasic extends FcmFuncard {
         
         $components = [
             'illustration' => new FcmIllustrationComponent($this, -1),
-            'title' => new FcmSingleLineComponent($this, 100),
-            'type' => new FcmSingleLineComponent($this, 100),
-            'titleshadow' => new FcmSingleLineShadowComponent($this, 50),
-            'typeshadow' => new FcmSingleLineShadowComponent($this, 50),
+            'title' => new FcmSingleLineTitleComponent($this, 100),
+            'type' => new FcmSingleLineTitleComponent($this, 100),
+            'titleshadow' => new FcmSingleLineTitleShadowComponent($this, 90),
+            'typeshadow' => new FcmSingleLineTitleShadowComponent($this, 90),
             'cm' => new FcmManaCostComponent($this, 50),
             'capabox' => new FcmCapaboxComponent($this, 50),
             'fe' => new FcmSingleLineComponent($this, 100),
@@ -129,21 +131,27 @@ class FcmOldBasic extends FcmFuncard {
             ],
             'title' => [
                 'x' => 91. / 787. * 100,
-                'y' => 85. / 1087. * 100,
+                'y' => 49. / 1087. * 100,
+                'w' => 632. / 787. * 100,
+                'h' => 49. / 1087. * 100,
                 'size' => 45. / 36.,
                 'color' => 'white',
                 'font' => 'magicmedieval'
             ],
             'type' => [
                 'x' => 81. / 787. * 100,
-                'y' => 638. / 1087. * 100,
+                'y' => 607. / 1087. * 100,
+                'w' => 620. / 787. * 100,
+                'h' => 44. / 1087. * 100,
                 'size' => 36. / 36.,
                 'color' => 'white',
                 'font' => 'mplantin'
             ],
             'titleshadow' => [
                 'x' => 92. / 787. * 100,
-                'y' => 86. / 1087. * 100,
+                'y' => 50. / 1087. * 100,
+                'w' => 632. / 787. * 100,
+                'h' => 49. / 1087. * 100,
                 'size' => 45. / 36.,
                 'color' => 'rgba(0,0,0,0.4)',
                 'font' => 'magicmedieval',
@@ -152,7 +160,9 @@ class FcmOldBasic extends FcmFuncard {
             ],
             'typeshadow' => [
                 'x' => 82. / 787. * 100,
-                'y' => 639. / 1087. * 100,
+                'y' => 608. / 1087. * 100,
+                'w' => 620. / 787. * 100,
+                'h' => 44. / 1087. * 100,
                 'size' => 36. / 36.,
                 'color' => 'rgba(0,0,0,0.4)',
                 'font' => 'mplantin',
@@ -233,6 +243,14 @@ class FcmOldBasic extends FcmFuncard {
     ************************************************************************/
     public function initListeningList(){
         $this->getComponent('copyright')->listen('color');
+        
+        // Prononcé par FcmManaCostComponent
+        $this->getComponent('title')->listen('marginright');
+        $this->getComponent('titleshadow')->listen('marginright');
+        
+        // Prononcé par FcmExtensionSymbolComponent
+        $this->getComponent('type')->listen('marginright');
+        $this->getComponent('typeshadow')->listen('marginright');
     }
     
     /***********************************************************************

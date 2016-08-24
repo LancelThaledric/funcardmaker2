@@ -64,6 +64,9 @@ class FcmExtensionSymbolComponent extends FcmFuncardComponent {
         return [
             'type' => [
                 'marginright' => $this->_imagick->getImageWidth()
+            ],
+            'typeshadow' => [
+                'marginright' => $this->_imagick->getImageWidth()
             ]
         ];
         

@@ -6,16 +6,20 @@ require_once('include/FcmFuncardComponent.php');
  * Component affichant une ligne de titre. Il sera centré verticalement dans sa boite de texte selon la hauteur du caratère 'T'.
  *
  * Parameters : 
+ * From FcmSingleLineTitleComponent :
  * - x, y, w, h : box geometry
  * - marginleft, marginright, margintop, marginbottom : margins to apply to the box, in PX
- * - color : text color
+ * - color : shadow color
  * - size : font size in em basesize
  * - text : text to display
  * - font : font name
  * - align : aligmement : 'left', 'right' or 'center'. Default left.
+* New parameters :
+ * - blur : blur radius
+ * - strokewidth : stroke width
  */
 
-class FcmSingleLineTitleComponent extends FcmFuncardComponent {
+class FcmSingleLineTitleShadowComponent extends FcmSingleLineTitleComponent {
     
     // self::$draw est disponible par héritage
     
@@ -49,6 +53,8 @@ class FcmSingleLineTitleComponent extends FcmFuncardComponent {
         self::$draw->setFillColor($this->getParameter('color'));
         self::$draw->setFont(self::$fontManager->getFont($this->getParameter('font')));
         self::$draw->setFontSize($this->getFuncard()->fsc($this->getParameter('size')));
+        self::$draw->setStrokeWidth($this->getFuncard()->fsc($this->getParameter('strokewidth')));
+        self::$draw->setStrokeColor($this->getParameter('color'));
         
         // On calcule la taille du texte optimale
         
@@ -74,7 +80,9 @@ class FcmSingleLineTitleComponent extends FcmFuncardComponent {
         
         // Etape 4 : Dessin
         
-        $this->getFuncard()->getCanvas()->annotateImage(
+        $layer = $this->getFuncard()->createLayer();
+        
+        $layer->annotateImage(
             self::$draw,
             $this->_x,
             $this->_y + (int) $relativey,
@@ -82,12 +90,18 @@ class FcmSingleLineTitleComponent extends FcmFuncardComponent {
             $this->getParameter('text')
         );
         
+        $layer->blurImage($this->getFuncard()->fsc($this->getParameter('blur')), $this->getFuncard()->fsc($this->getParameter('blur')));
+        
+        $this->getFuncard()->getCanvas()->compositeImage($layer, Imagick::COMPOSITE_OVER, 0, 0);
+        
         self::$draw->pop();
     }
     
     public function setDefaultParameters(){
         $this->setParameter('color', 'black');
         $this->setParameter('size', 1);
+        $this->setParameter('blur', 0);
+        $this->setParameter('strokewidth', 0);
         $this->setParameter('text', '');
         $this->setParameter('font', 'matrix');
         $this->setParameter('align', 'left');
