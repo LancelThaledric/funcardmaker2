@@ -4,6 +4,7 @@ require_once('include/FcmFuncard.php');
 
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmSingleLineComponent.php');
+require_once('include/FcmSingleLineTitleComponent.php');
 require_once('include/FcmBorderComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
@@ -61,11 +62,11 @@ class FcmModernBasic extends FcmFuncard {
     public function initComponents(){
         
         $components = [
-            'title' => new FcmSingleLineComponent($this, 100),
+            'title' => new FcmSingleLineTitleComponent($this, 100),
             'type' => new FcmSingleLineComponent($this, 100),
             'illustration' => new FcmIllustrationComponent($this, 100),
             'capabox' => new FcmCapaboxComponent($this, 100),
-            'cm' => new FcmManaCostComponent($this, 100),
+            'cm' => new FcmManaCostComponent($this, 50),
             'se' => new FcmExtensionSymbolComponent($this, 100),
             
             'illus' => new FcmIllustratorComponent($this, 200),
@@ -130,8 +131,10 @@ class FcmModernBasic extends FcmFuncard {
             ],
             'title' => [
                 'x' => 73. / 791. * 100,
-                'y' => 108. / 1107. * 100,
-                'size' => 48. / 36.
+                'y' => 69. / 1107. * 100,
+                'w' => 648. / 791. * 100,
+                'h' => 49. / 1107. * 100,
+                'size' => 48. / 36.,
             ],
             'type' => [
                 'x' => 80. / 791. * 100,
@@ -192,6 +195,9 @@ class FcmModernBasic extends FcmFuncard {
             $this->getComponent('illus')->listen('altcolor');
             $this->getComponent('copyright')->listen('color');
         }
+        
+        // Prononcé par FcmManaCostComponent
+        $this->getComponent('title')->listen('marginright');
     }
     
     /***********************************************************************

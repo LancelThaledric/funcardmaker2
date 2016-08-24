@@ -88,6 +88,13 @@ class FcmManaCostComponent extends FcmFuncardComponent {
         
         $this->_imagick = new Imagick();
         $this->_imagick->newImage($this->_width, $this->_metrics['characterHeight'] + 2 * self::EXTERNAL_PADDING, 'none', 'miff');
+        
+        // On retourne comme marge à droite pour le titre la largeur du mana
+        return [
+            'title' => [
+                'marginright' => $this->_width
+            ]
+        ];
     }
     
     private function computeWidth(){
