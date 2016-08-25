@@ -5,6 +5,7 @@ require_once('include/FcmFuncard.php');
 require_once('include/FcmFuncardComponent.php');
 require_once('include/FcmBorderComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
+require_once('include/FcmOldBasicBackgroundBaseComponent.php');
 require_once('include/FcmCustomBackgroundComponent.php');
 require_once('include/FcmSingleLineComponent.php');
 require_once('include/FcmSingleLineTitleComponent.php');
@@ -82,7 +83,7 @@ class FcmOldBasic extends FcmFuncard {
         if($this->_customBackground){
             $components['background'] = new FcmCustomBackgroundComponent($this, 0);
         } else {
-            $components['background'] = new FcmBackgroundLayerComponent($this, 0);
+            $components['background'] = new FcmOldBasicBackgroundBaseComponent($this, 0);
             $components['capabackground'] = new FcmBackgroundLayerComponent($this, 1);
             $components['capaborder'] = new FcmBackgroundLayerComponent($this, 2);
             $components['border'] = new FcmBorderComponent($this, 10);
@@ -100,11 +101,6 @@ class FcmOldBasic extends FcmFuncard {
     public static function staticInitDefaultParameters(){
         self::$_defaultParameters = [
             'background' => [
-                'x' => 41. / 787. * 100,
-                'y' => 41. / 1087. * 100,
-                'w' => 705. / 787. * 100,
-                'h' => 1005. / 1087. * 100,
-                'type' => 'base',
                 'method' => 'horizontal'
             ],
             'capabackground' => [
