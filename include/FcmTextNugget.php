@@ -50,6 +50,7 @@ class FcmTextNugget extends FcmAbstractTextNugget{
     private $_text;
     
     public function getText() { return $this->_text; }
+    public function appendText($txt) { $this->_text .= $txt; }
     
     public function __construct($t){
         $this->_text = $t;

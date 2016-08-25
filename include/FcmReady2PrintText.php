@@ -17,6 +17,7 @@ class FcmReady2PrintText{
     private $_imagick, $_imagickdraw;
     private $_cursor;
     private $_topBottomExternalPadding;
+    private $_activeTextNugget;
     
     public function getHeight() { return $this->_height; }
     
@@ -46,6 +47,7 @@ class FcmReady2PrintText{
         $this->_topBottomExternalPadding = $padding;
         
         $this->_cursor = null;
+        $this->_activeTextNugget = null;
         $this->_count = 0;
     }
     
@@ -134,7 +136,6 @@ class FcmReady2PrintText{
             
         }
         
-        
         $this->advanceCursor($coords);
         
         //var_dump($coords);
@@ -152,6 +153,8 @@ class FcmReady2PrintText{
      */
     public function render(){
         //var_dump($this->_nuggets);
+        $this->fuseTextNuggets();
+        
         $this->_imagick->newImage($this->_width, $this->_height + $this->_topBottomExternalPadding * 2, 'none', 'miff');
         $this->_imagick->setImageFormat('png');
         
@@ -211,7 +214,29 @@ class FcmReady2PrintText{
     
     public function getCharMetrics() { return $this->_charMetrics; }
     
-    
+    private function fuseTextNuggets(){
+        
+        $this->_activeTextNugget = null;
+        $this->_count = count($this->_nuggets);
+        for($i = 0 ; $i < $this->_count ; ++$i){
+            
+            if($this->_nuggets[$i] instanceof FcmTextNugget){
+                if($this->_activeTextNugget === null){
+                    $this->_activeTextNugget = $this->_nuggets[$i];
+                } else {
+                    $this->_activeTextNugget->appendText($this->_nuggets[$i]->getText());
+                    unset($this->_nuggets[$i]); // Le tableau n'est pas réindexé
+                }
+            } else {
+                $this->_activeTextNugget = null;
+            }
+            
+        }
+        
+        // Il faut réindexer entièrement le tableau après la fusion
+        $this->_nuggets = array_values($this->_nuggets);
+        $this->_count = count($this->_nuggets);
+    }
 }
 
 
