@@ -2,6 +2,13 @@
     <h2>Historique des versions</h2>
     
     <h3 class="lined">v0.4</h3>
+    <p>v0.4.1</p>
+    <ul class="credits-list">
+        <li>Le titre et le type devient plus petit s'il n'y a pas assez d'espace.</li>
+        <li>Bug corrigé : les espace entre les mots étaient parfois trop larges.</li>
+    </ul>
+    
+    <p>v0.4.0</p>
     <ul class="credits-list">
         <li>Adaptation du Template Modern Planeswalker 4 capacités par Thaledric d'après la base 3 capacités de Sovelis</li>
     </ul>
