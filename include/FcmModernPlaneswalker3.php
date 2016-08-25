@@ -7,6 +7,7 @@ require_once('include/FcmModernPlaneswalker3BorderComponent.php');
 require_once('include/FcmModernPlaneswalker3TextureComponent.php');
 require_once('include/FcmBackgroundLayerComponent.php');
 require_once('include/FcmSingleLineComponent.php');
+require_once('include/FcmSingleLineTitleComponent.php');
 require_once('include/FcmManaCostComponent.php');
 require_once('include/FcmExtensionSymbolComponent.php');
 require_once('include/FcmModernPlaneswalker3IllustrationComponent.php');
@@ -59,10 +60,10 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
     ************************************************************************/
     public function initComponents(){
         $components = [
-            'title' => new FcmSingleLineComponent($this, 100),
-            'type' => new FcmSingleLineComponent($this, 100),
-            'cm' => new FcmManaCostComponent($this, 100),
-            'se' => new FcmExtensionSymbolComponent($this, 100),
+            'title' => new FcmSingleLineTitleComponent($this, 100),
+            'type' => new FcmSingleLineTitleComponent($this, 100),
+            'cm' => new FcmManaCostComponent($this, 90),
+            'se' => new FcmExtensionSymbolComponent($this, 90),
             'illustration' => new FcmModernPlaneswalker3IllustrationComponent($this, 50),
             'illustration-frame' => new FcmImageComponent($this, 70),
             'loyalty1' => new FcmLoyaltyCostComponent($this, 100),
@@ -126,12 +127,16 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             ],
             'title' => [
                 'x' => 73. / 791. * 100,
-                'y' => 93. / 1107. * 100,
+                'y' => 52. / 1107. * 100,
+                'w' => 649. / 791. * 100,
+                'h' => 54. / 1107. * 100,
                 'size' => 48. / 36.,
             ],
             'type' => [
                 'x' => 82. / 791. * 100,
-                'y' => 680. / 1107. * 100,
+                'y' => 642. / 1107. * 100,
+                'w' => 636. / 791. * 100,
+                'h' => 53. / 1107. * 100,
                 'size' => 40. / 36.,
             ],
             'cm' => [
@@ -246,6 +251,12 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
             $this->getComponent('titlebox')->listen('method');
             $this->getComponent('typebox')->listen('method');
         }
+        
+        // Prononcé par FcmManaCostComponent
+        $this->getComponent('title')->listen('marginright');
+        
+        // Prononcé par FcmExtensionSymbolComponent
+        $this->getComponent('type')->listen('marginright');
     }
     
     /***********************************************************************
