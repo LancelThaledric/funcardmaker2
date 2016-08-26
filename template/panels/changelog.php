@@ -6,6 +6,7 @@
     <ul class="credits-list">
         <li>Le titre et le type devient plus petit s'il n'y a pas assez d'espace.</li>
         <li>Bug corrigé : les espace entre les mots étaient parfois trop larges.</li>
+        <li>Il est maintenant possible d'insérer des espaces insécables grâce à un bouton ou avec [Maj + Espace].</li>
     </ul>
     
     <p>v0.4.0</p>
