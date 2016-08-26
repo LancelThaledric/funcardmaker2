@@ -337,6 +337,25 @@ function setCaretPosition(ctrl, pos1, pos2)
     }
 }
 
+// Keyboard shortcut to print nbsp
+$(document).keydown(function (event) {
+    // espace avec Maj
+    if (event.which == 32 && event.shiftKey) {
+        var caretPosStart = focusElement[0].selectionStart;
+        var caretPosEnd = focusElement[0].selectionEnd;
+        var textAreaTxt = focusElement.val();
+        var txtToAdd = '\u00A0';
+        focusElement.val(textAreaTxt.substring(0, caretPosStart)
+                       + txtToAdd
+                       + textAreaTxt.substring(caretPosEnd) );
+        focusElement.focus();
+        setCaretPosition(focusElement[0],
+                         caretPosEnd + txtToAdd.length,
+                         caretPosEnd + txtToAdd.length);
+        event.preventDefault();
+    }
+});
+
 
 // Media Handling
 Panel.CONTAINER_ELEMENT.on('change', '.fcm-media', function(){

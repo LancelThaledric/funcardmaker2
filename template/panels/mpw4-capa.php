@@ -50,6 +50,9 @@
             <div class="input-toolbar" id="fcm-capa-ta-italic-toolbar">
                 <button id="button-capa-i" class="double-inserter" data-insert='["<i>", "</i>"]'><i class="fa fa-italic fa-fw"></i><i>Italique</i></button>
                 <span class="separator"></span>
+                <button id="button-capa-nbsp"  class="single-inserter" data-insert="&nbsp;" title="[Maj + Espace] Insère un espace qui ne pourra pas engendrer de retour à la ligne.
+Attention : il est visuellement identique à l'espace ordinaire.">Espace insécable</button>
+                <span class="separator"></span>
                 <button id="button-capa-this"  class="single-inserter" data-insert="~this~">Titre de la carte</button>
             </div>
             
