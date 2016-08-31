@@ -41,7 +41,7 @@ class FcmLoyaltyCostComponent extends FcmFuncardComponent {
             'up' => 55. / 104.,
             'down' => 55. / 104.,
             'none' => 55. / 104.,
-            'base' => 60. / 115.
+            'base' => 59. / 115.
         ];
         
         self::$DOTS_OFFSET_X = 74. / 1107. * 100;

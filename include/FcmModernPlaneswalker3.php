@@ -198,7 +198,7 @@ class FcmModernPlaneswalker3 extends FcmFuncard {
                 'fontsize' => 32. / 36.
             ],
             'loyalty-base' => [
-                'x' => 691. / 791. * 100,
+                'x' => 690. / 791. * 100,
                 'y' => 1029. / 1107. * 100,
                 'fontsize' => 46. / 36.,
                 'imagewidth' => 115. / 791. * 100,
