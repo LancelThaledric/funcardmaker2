@@ -125,6 +125,7 @@ class FcmManaNugget extends FcmAbstractTextNugget{
         '18' => '18.png',
         '19' => '19.png',
         '20' => '20.png',
+        '30' => '30.png',
         '100' => '100.png',
         '1000000' => 'million.png',
         'i' => 'inf.png',
